@@ -33,16 +33,19 @@
       --transition: 0.3s ease;
       --gradient: linear-gradient(135deg, #1e90ff 0%, #38bdf8 100%);
       --gradient-dark: linear-gradient(135deg, #101a2e 0%, #16233d 100%);
+      --navbar-h: 72px;
     }
 
-    html { scroll-behavior: smooth; }
-
-    body {
+    /* ==============================
+       SIN SCROLL EN BODY
+    ============================== */
+    html, body {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Poppins', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      overflow-x: hidden;
     }
 
     a { text-decoration: none; }
@@ -84,21 +87,22 @@
       bottom: -80px;
     }
 
-    /* Navbar */
+    /* ==============================
+       NAVBAR FIJA
+    ============================== */
     .navbar {
       position: fixed;
       top: 0;
       width: 100%;
+      height: var(--navbar-h);
       z-index: 1000;
-      padding: 16px 0;
-      transition: var(--transition);
-    }
-
-    .navbar.scrolled {
-      background: rgba(11, 18, 32, 0.9);
+      padding: 0;
+      background: rgba(11, 18, 32, 0.92);
       backdrop-filter: blur(16px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
     }
 
     .nav-wrap {
@@ -106,6 +110,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 20px;
+      width: 100%;
     }
 
     .logo {
@@ -116,6 +121,7 @@
       font-weight: 800;
       font-size: 1.4rem;
       letter-spacing: 0.5px;
+      cursor: pointer;
     }
 
     .logo-icon {
@@ -143,20 +149,30 @@
       border-radius: 10px;
       font-size: 0.95rem;
       transition: var(--transition);
+      cursor: pointer;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-links a.active-link {
       color: var(--text);
-      background: rgba(255,255,255,0.04);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .nav-links a.active-link {
+      color: var(--primary-2);
     }
 
     .nav-btn {
-      background: var(--gradient);
+      background: var(--gradient) !important;
       color: white !important;
       font-weight: 600;
       border-radius: 999px !important;
       padding: 10px 18px !important;
       box-shadow: 0 10px 25px rgba(30, 144, 255, 0.22);
+    }
+
+    .nav-btn.active-link {
+      color: white !important;
     }
 
     .menu-btn {
@@ -168,14 +184,62 @@
       cursor: pointer;
     }
 
-    /* Hero */
+    /* ==============================
+       CONTENEDOR DE SECCIONES
+    ============================== */
+    .app-content {
+      position: fixed;
+      top: var(--navbar-h);
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    /* ==============================
+       SECCIONES INDEPENDIENTES
+    ============================== */
+    .seccion {
+      display: none;
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      /* scroll suave dentro de la sección */
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .seccion.activa {
+      display: block;
+    }
+
+    /* Animación de entrada */
+    .seccion.activa {
+      animation: sectionFadeIn 0.4s ease;
+    }
+
+    @keyframes sectionFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==============================
+       HERO
+    ============================== */
     .hero {
       position: relative;
       z-index: 1;
-      min-height: 100vh;
+      min-height: 100%;
       display: flex;
       align-items: center;
-      padding: 120px 0 70px;
+      padding: 60px 0 70px;
     }
 
     .hero-grid {
@@ -252,9 +316,9 @@
 
     .btn-whatsapp:hover { transform: translateY(-2px); }
 
-    /* =============================================
+    /* ==============================
        CELULAR REALISTA
-    ============================================= */
+    ============================== */
     .phone-scene {
       display: flex;
       align-items: center;
@@ -264,7 +328,6 @@
       perspective: 1200px;
     }
 
-    /* Animaciones del celular */
     @keyframes phoneFloat {
       0%, 100% { transform: translateY(0) rotateY(-4deg) rotateX(2deg); }
       25% { transform: translateY(-14px) rotateY(-2deg) rotateX(0deg); }
@@ -307,7 +370,6 @@
       50% { transform: scale(1.1); opacity: 0.15; }
     }
 
-    /* Sombra del celular */
     .phone-shadow {
       position: absolute;
       bottom: 10px;
@@ -319,7 +381,6 @@
       z-index: 0;
     }
 
-    /* Cuerpo del celular */
     .phone {
       position: relative;
       width: 240px;
@@ -337,7 +398,6 @@
       overflow: hidden;
     }
 
-    /* Reflejo de vidrio */
     .phone::before {
       content: "";
       position: absolute;
@@ -358,7 +418,6 @@
       pointer-events: none;
     }
 
-    /* Borde metálico */
     .phone::after {
       content: "";
       position: absolute;
@@ -369,7 +428,6 @@
       pointer-events: none;
     }
 
-    /* Pantalla */
     .phone-screen {
       position: absolute;
       top: 8px;
@@ -382,7 +440,6 @@
       z-index: 3;
     }
 
-    /* Brillo de pantalla */
     .screen-glow {
       position: absolute;
       inset: 0;
@@ -392,7 +449,6 @@
       pointer-events: none;
     }
 
-    /* Dynamic Island */
     .dynamic-island {
       position: absolute;
       top: 14px;
@@ -420,7 +476,6 @@
       box-shadow: inset 0 0 2px rgba(56, 189, 248, 0.3);
     }
 
-    /* Contenido de pantalla */
     .screen-content {
       position: relative;
       z-index: 5;
@@ -430,7 +485,6 @@
       flex-direction: column;
     }
 
-    /* Barra de estado */
     .status-bar {
       display: flex;
       justify-content: space-between;
@@ -449,7 +503,6 @@
       font-size: 10px;
     }
 
-    /* Logo en pantalla */
     .screen-logo {
       text-align: center;
       margin-bottom: 22px;
@@ -485,7 +538,6 @@
       margin-top: 2px;
     }
 
-    /* Notificaciones en pantalla */
     .screen-notifs {
       display: flex;
       flex-direction: column;
@@ -524,7 +576,6 @@
     .notif-text { font-size: 11px; font-weight: 600; }
     .notif-sub { font-size: 9px; color: var(--muted); }
 
-    /* Barra inferior del celular */
     .screen-bottom {
       display: flex;
       justify-content: center;
@@ -538,7 +589,6 @@
       border-radius: 4px;
     }
 
-    /* Botones laterales */
     .side-btn {
       position: absolute;
       background: linear-gradient(180deg, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
@@ -546,35 +596,11 @@
       z-index: 1;
     }
 
-    .btn-power {
-      right: -3px;
-      top: 120px;
-      width: 3px;
-      height: 50px;
-    }
+    .btn-power { right: -3px; top: 120px; width: 3px; height: 50px; }
+    .btn-vol-up { left: -3px; top: 100px; width: 3px; height: 35px; }
+    .btn-vol-down { left: -3px; top: 145px; width: 3px; height: 35px; }
+    .btn-silent { left: -3px; top: 70px; width: 3px; height: 18px; }
 
-    .btn-vol-up {
-      left: -3px;
-      top: 100px;
-      width: 3px;
-      height: 35px;
-    }
-
-    .btn-vol-down {
-      left: -3px;
-      top: 145px;
-      width: 3px;
-      height: 35px;
-    }
-
-    .btn-silent {
-      left: -3px;
-      top: 70px;
-      width: 3px;
-      height: 18px;
-    }
-
-    /* Partículas orbitando */
     .orbit-particle {
       position: absolute;
       width: 8px;
@@ -587,8 +613,7 @@
       background: var(--primary-2);
       box-shadow: 0 0 12px var(--primary-2);
       animation: orbit 10s linear infinite;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       margin: -4px;
     }
 
@@ -596,25 +621,20 @@
       background: #22c55e;
       box-shadow: 0 0 12px #22c55e;
       animation: orbit 14s linear infinite reverse;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       margin: -4px;
-      width: 6px;
-      height: 6px;
+      width: 6px; height: 6px;
     }
 
     .orbit-3 {
       background: #fb923c;
       box-shadow: 0 0 10px #fb923c;
       animation: orbit 18s linear infinite;
-      top: 50%;
-      left: 50%;
+      top: 50%; left: 50%;
       margin: -3px;
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
     }
 
-    /* Tarjetas flotantes */
     .float-tag {
       position: absolute;
       background: rgba(22, 35, 61, 0.85);
@@ -631,23 +651,9 @@
       white-space: nowrap;
     }
 
-    .float-tag-1 {
-      top: 50px;
-      left: -30px;
-      animation-delay: 0s;
-    }
-
-    .float-tag-2 {
-      bottom: 80px;
-      right: -40px;
-      animation-delay: 1.5s;
-    }
-
-    .float-tag-3 {
-      bottom: 20px;
-      left: -20px;
-      animation-delay: 3s;
-    }
+    .float-tag-1 { top: 50px; left: -30px; animation-delay: 0s; }
+    .float-tag-2 { bottom: 80px; right: -40px; animation-delay: 1.5s; }
+    .float-tag-3 { bottom: 20px; left: -20px; animation-delay: 3s; }
 
     .float-tag i {
       width: 36px;
@@ -665,11 +671,13 @@
     .float-tag .ft-label { font-size: 12px; font-weight: 600; }
     .float-tag .ft-sub { font-size: 10px; color: var(--muted); }
 
-    /* Secciones */
-    section {
+    /* ==============================
+       SECCIONES INTERNAS
+    ============================== */
+    .sec-inner {
       position: relative;
       z-index: 1;
-      padding: 90px 0;
+      padding: 60px 0;
     }
 
     .section-header {
@@ -699,7 +707,7 @@
     }
 
     /* Servicios */
-    .services {
+    .services-bg {
       background: rgba(255,255,255,0.02);
     }
 
@@ -735,16 +743,8 @@
       margin-bottom: 18px;
     }
 
-    .service-card h3 {
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-
-    .service-card p {
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
+    .service-card h3 { font-size: 1.05rem; margin-bottom: 8px; font-weight: 700; }
+    .service-card p { color: var(--muted); font-size: 0.95rem; }
 
     /* Info grid */
     .info-grid {
@@ -786,10 +786,7 @@
       color: var(--muted);
     }
 
-    .schedule-item:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
+    .schedule-item:last-child { border-bottom: none; padding-bottom: 0; }
 
     .open { color: var(--success); font-weight: 600; }
     .closed { color: var(--danger); font-weight: 600; }
@@ -849,18 +846,10 @@
       font-size: 1.1rem;
     }
 
-    .contact-link span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
+    .contact-link span { display: block; color: var(--muted); font-size: 0.9rem; }
+    .contact-link strong { color: white; font-size: 1rem; }
 
-    .contact-link strong {
-      color: white;
-      font-size: 1rem;
-    }
-
-    /* Footer */
+    /* Footer dentro de sección */
     .footer {
       padding: 30px 0 40px;
       border-top: 1px solid rgba(255,255,255,0.05);
@@ -898,7 +887,9 @@
 
     .wa-float:hover { transform: scale(1.08); }
 
-    /* Animación reveal */
+    /* ==============================
+       REVEAL (ya activo por defecto)
+    ============================== */
     .reveal {
       opacity: 0;
       transform: translateY(30px);
@@ -910,15 +901,33 @@
       transform: translateY(0);
     }
 
-    /* Responsive */
+    /* Scrollbar personalizada en secciones */
+    .seccion::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    .seccion::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .seccion::-webkit-scrollbar-thumb {
+      background: rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+    }
+
+    .seccion::-webkit-scrollbar-thumb:hover {
+      background: rgba(56, 189, 248, 0.45);
+    }
+
+    /* ==============================
+       RESPONSIVE
+    ============================== */
     @media (max-width: 980px) {
       .hero-grid,
       .services-grid,
       .info-grid {
         grid-template-columns: 1fr;
       }
-
-      .hero { padding-top: 110px; }
 
       .hero-content { text-align: center; }
 
@@ -1015,266 +1024,300 @@
   <!-- NAVBAR -->
   <header class="navbar" id="navbar">
     <div class="container nav-wrap">
-      <a href="#inicio" class="logo">
+      <div class="logo" onclick="mostrarSeccion('inicio')">
         <div class="logo-icon"><i class="fas fa-mobile-screen-button"></i></div>
         DR <span>CELL</span>
-      </a>
+      </div>
       <button class="menu-btn" id="menuBtn"><i class="fas fa-bars"></i></button>
       <ul class="nav-links" id="navLinks">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#horario">Horario</a></li>
-        <li><a href="#direccion">Dirección</a></li>
-        <li><a href="#contacto" class="nav-btn">Contactar</a></li>
+        <li><a onclick="mostrarSeccion('inicio')">Inicio</a></li>
+        <li><a onclick="mostrarSeccion('servicios')">Servicios</a></li>
+        <li><a onclick="mostrarSeccion('horario')">Horario</a></li>
+        <li><a onclick="mostrarSeccion('direccion')">Dirección</a></li>
+        <li><a onclick="mostrarSeccion('contacto')" class="nav-btn">Contactar</a></li>
       </ul>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero" id="inicio">
-    <div class="container hero-grid">
-      <div class="hero-content reveal">
-        <div class="badge">
-          <i class="fas fa-screwdriver-wrench"></i>
-          Reparación de software y hardware móvil
-        </div>
-        <h1>DR CELL<br><span class="accent">Tu móvil como nuevo</span></h1>
-        <p>Soluciones rápidas y profesionales para tu celular. Reparamos equipos, resolvemos fallas de software y dejamos tu dispositivo funcionando al máximo.</p>
-        <div class="hero-buttons">
-          <a href="tel:+5356194280" class="btn btn-primary">
-            <i class="fas fa-phone"></i> Llamar ahora
-          </a>
-          <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="btn btn-whatsapp">
-            <i class="fab fa-whatsapp"></i> WhatsApp
-          </a>
-        </div>
-      </div>
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="app-content">
 
-      <!-- CELULAR REALISTA -->
-      <div class="phone-scene reveal">
-
-        <!-- Partículas orbitando -->
-        <div class="orbit-particle orbit-1"></div>
-        <div class="orbit-particle orbit-2"></div>
-        <div class="orbit-particle orbit-3"></div>
-
-        <!-- Tarjetas flotantes -->
-        <div class="float-tag float-tag-1">
-          <i class="ft-blue fas fa-screwdriver-wrench"></i>
-          <div>
-            <div class="ft-label">Hardware</div>
-            <div class="ft-sub">Pantallas y baterías</div>
+    <!-- ========================
+         SECCIÓN: INICIO
+    ======================== -->
+    <div class="seccion activa" id="inicio">
+      <div class="hero">
+        <div class="container hero-grid">
+          <div class="hero-content reveal active">
+            <div class="badge">
+              <i class="fas fa-screwdriver-wrench"></i>
+              Reparación de software y hardware móvil
+            </div>
+            <h1>DR CELL<br><span class="accent">Tu móvil como nuevo</span></h1>
+            <p>Soluciones rápidas y profesionales para tu celular. Reparamos equipos, resolvemos fallas de software y dejamos tu dispositivo funcionando al máximo.</p>
+            <div class="hero-buttons">
+              <a href="tel:+5356194280" class="btn btn-primary">
+                <i class="fas fa-phone"></i> Llamar ahora
+              </a>
+              <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="btn btn-whatsapp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+              </a>
+            </div>
           </div>
-        </div>
 
-        <div class="float-tag float-tag-2">
-          <i class="ft-green fas fa-code"></i>
-          <div>
-            <div class="ft-label">Software</div>
-            <div class="ft-sub">FRP y flasheos</div>
-          </div>
-        </div>
+          <!-- CELULAR REALISTA -->
+          <div class="phone-scene reveal active">
+            <div class="orbit-particle orbit-1"></div>
+            <div class="orbit-particle orbit-2"></div>
+            <div class="orbit-particle orbit-3"></div>
 
-        <div class="float-tag float-tag-3">
-          <i class="ft-purple fas fa-shield-halved"></i>
-          <div>
-            <div class="ft-label">Desbloqueos</div>
-            <div class="ft-sub">Todas las marcas</div>
-          </div>
-        </div>
-
-        <!-- Sombra -->
-        <div class="phone-shadow"></div>
-
-        <!-- Celular -->
-        <div class="phone">
-          <!-- Botones laterales -->
-          <div class="side-btn btn-power"></div>
-          <div class="side-btn btn-vol-up"></div>
-          <div class="side-btn btn-vol-down"></div>
-          <div class="side-btn btn-silent"></div>
-
-          <!-- Pantalla -->
-          <div class="phone-screen">
-            <div class="screen-glow"></div>
-            <div class="dynamic-island"></div>
-
-            <div class="screen-content">
-              <div class="status-bar">
-                <span class="time">10:00</span>
-                <div class="status-icons">
-                  <i class="fas fa-signal"></i>
-                  <i class="fas fa-wifi"></i>
-                  <i class="fas fa-battery-full"></i>
-                </div>
+            <div class="float-tag float-tag-1">
+              <i class="ft-blue fas fa-screwdriver-wrench"></i>
+              <div>
+                <div class="ft-label">Hardware</div>
+                <div class="ft-sub">Pantallas y baterías</div>
               </div>
+            </div>
 
-              <div class="screen-logo">
-                <div class="screen-logo-icon">
-                  <i class="fas fa-mobile-screen-button"></i>
-                </div>
-                <h4>DR <span>CELL</span></h4>
-                <p>Servicio técnico</p>
+            <div class="float-tag float-tag-2">
+              <i class="ft-green fas fa-code"></i>
+              <div>
+                <div class="ft-label">Software</div>
+                <div class="ft-sub">FRP y flasheos</div>
               </div>
+            </div>
 
-              <div class="screen-notifs">
-                <div class="screen-notif">
-                  <div class="notif-icon notif-blue"><i class="fas fa-mobile-screen"></i></div>
-                  <div>
-                    <div class="notif-text">Pantalla lista</div>
-                    <div class="notif-sub">Reparación completada</div>
+            <div class="float-tag float-tag-3">
+              <i class="ft-purple fas fa-shield-halved"></i>
+              <div>
+                <div class="ft-label">Desbloqueos</div>
+                <div class="ft-sub">Todas las marcas</div>
+              </div>
+            </div>
+
+            <div class="phone-shadow"></div>
+
+            <div class="phone">
+              <div class="side-btn btn-power"></div>
+              <div class="side-btn btn-vol-up"></div>
+              <div class="side-btn btn-vol-down"></div>
+              <div class="side-btn btn-silent"></div>
+
+              <div class="phone-screen">
+                <div class="screen-glow"></div>
+                <div class="dynamic-island"></div>
+
+                <div class="screen-content">
+                  <div class="status-bar">
+                    <span class="time">10:00</span>
+                    <div class="status-icons">
+                      <i class="fas fa-signal"></i>
+                      <i class="fas fa-wifi"></i>
+                      <i class="fas fa-battery-full"></i>
+                    </div>
+                  </div>
+
+                  <div class="screen-logo">
+                    <div class="screen-logo-icon">
+                      <i class="fas fa-mobile-screen-button"></i>
+                    </div>
+                    <h4>DR <span>CELL</span></h4>
+                    <p>Servicio técnico</p>
+                  </div>
+
+                  <div class="screen-notifs">
+                    <div class="screen-notif">
+                      <div class="notif-icon notif-blue"><i class="fas fa-mobile-screen"></i></div>
+                      <div>
+                        <div class="notif-text">Pantalla lista</div>
+                        <div class="notif-sub">Reparación completada</div>
+                      </div>
+                    </div>
+                    <div class="screen-notif">
+                      <div class="notif-icon notif-green"><i class="fas fa-check-circle"></i></div>
+                      <div>
+                        <div class="notif-text">Batería al 100%</div>
+                        <div class="notif-sub">Cambio exitoso</div>
+                      </div>
+                    </div>
+                    <div class="screen-notif">
+                      <div class="notif-icon notif-orange"><i class="fas fa-unlock"></i></div>
+                      <div>
+                        <div class="notif-text">Equipo desbloqueado</div>
+                        <div class="notif-sub">Listo para usar</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="screen-bottom">
+                    <div class="home-bar"></div>
                   </div>
                 </div>
-                <div class="screen-notif">
-                  <div class="notif-icon notif-green"><i class="fas fa-check-circle"></i></div>
-                  <div>
-                    <div class="notif-text">Batería al 100%</div>
-                    <div class="notif-sub">Cambio exitoso</div>
-                  </div>
-                </div>
-                <div class="screen-notif">
-                  <div class="notif-icon notif-orange"><i class="fas fa-unlock"></i></div>
-                  <div>
-                    <div class="notif-text">Equipo desbloqueado</div>
-                    <div class="notif-sub">Listo para usar</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="screen-bottom">
-                <div class="home-bar"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- SERVICIOS -->
-  <section class="services" id="servicios">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="mini">Servicios</span>
-        <h2>Lo que hacemos</h2>
-        <p>Reparaciones y soluciones técnicas para mantener tu móvil en perfecto estado.</p>
-      </div>
-      <div class="services-grid">
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-mobile-screen"></i></div>
-          <h3>Cambios de pantallas</h3>
-          <p>Reemplazo de pantallas dañadas con instalación profesional.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-battery-full"></i></div>
-          <h3>Cambio de baterías</h3>
-          <p>Mejora el rendimiento y autonomía de tu equipo.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-plug"></i></div>
-          <h3>Puertos de carga</h3>
-          <p>Reparamos o sustituimos conectores dañados.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-microchip"></i></div>
-          <h3>Microsoldaduras</h3>
-          <p>Trabajo técnico de precisión en placa y componentes.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-unlock-keyhole"></i></div>
-          <h3>Desbloqueos</h3>
-          <p>Soluciones para acceso, bloqueo y seguridad del equipo.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
-          <h3>FRP</h3>
-          <p>Eliminación de bloqueo FRP en equipos compatibles.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-rotate"></i></div>
-          <h3>Flasheos</h3>
-          <p>Actualización y reinstalación de sistema operativo.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-sim-card"></i></div>
-          <h3>Liberaciones</h3>
-          <p>Procesos para usar tu equipo con distintas redes.</p>
-        </div>
-        <div class="service-card reveal">
-          <div class="service-icon"><i class="fas fa-download"></i></div>
-          <h3>Apps para iPhone y Android</h3>
-          <p>Instalación y configuración de aplicaciones móviles.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- HORARIO + DIRECCION -->
-  <section>
-    <div class="container info-grid">
-      <div class="info-card reveal" id="horario">
-        <h3><i class="fas fa-clock"></i> Horario</h3>
-        <div class="schedule-list">
-          <div class="schedule-item">
-            <span>Lunes a Viernes</span>
-            <span class="open">10:00 AM - 4:00 PM</span>
+    <!-- ========================
+         SECCIÓN: SERVICIOS
+    ======================== -->
+    <div class="seccion" id="servicios">
+      <div class="sec-inner services-bg">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="mini">Servicios</span>
+            <h2>Lo que hacemos</h2>
+            <p>Reparaciones y soluciones técnicas para mantener tu móvil en perfecto estado.</p>
           </div>
-          <div class="schedule-item">
-            <span>Sábados</span>
-            <span class="open">10:00 AM - 2:00 PM</span>
-          </div>
-          <div class="schedule-item">
-            <span>Domingos</span>
-            <span class="closed">Cerrado</span>
-          </div>
-        </div>
-      </div>
-      <div class="info-card address-box reveal" id="direccion">
-        <h3><i class="fas fa-location-dot"></i> Dirección</h3>
-        <p>Marianao Ave 43 / 118 y 120 #11807 INT 2</p>
-        <a class="location-btn" href="https://www.google.com/maps/search/Marianao+Ave+43+118+y+120+11807+INT+2" target="_blank">
-          <i class="fas fa-map-location-dot"></i> Ver ubicación
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACTO -->
-  <section id="contacto">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="mini">Contacto</span>
-        <h2>Habla con nosotros</h2>
-        <p>Contáctanos directamente por teléfono o WhatsApp.</p>
-      </div>
-      <div class="info-card contact-box reveal">
-        <div class="contact-links">
-          <a href="tel:+5356194280" class="contact-link">
-            <i class="fas fa-phone"></i>
-            <div>
-              <span>Teléfono</span>
-              <strong>+53 56194280</strong>
+          <div class="services-grid">
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-mobile-screen"></i></div>
+              <h3>Cambios de pantallas</h3>
+              <p>Reemplazo de pantallas dañadas con instalación profesional.</p>
             </div>
-          </a>
-          <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="contact-link">
-            <i class="fab fa-whatsapp"></i>
-            <div>
-              <span>WhatsApp</span>
-              <strong>+53 56194280</strong>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-battery-full"></i></div>
+              <h3>Cambio de baterías</h3>
+              <p>Mejora el rendimiento y autonomía de tu equipo.</p>
             </div>
-          </a>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-plug"></i></div>
+              <h3>Puertos de carga</h3>
+              <p>Reparamos o sustituimos conectores dañados.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-microchip"></i></div>
+              <h3>Microsoldaduras</h3>
+              <p>Trabajo técnico de precisión en placa y componentes.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-unlock-keyhole"></i></div>
+              <h3>Desbloqueos</h3>
+              <p>Soluciones para acceso, bloqueo y seguridad del equipo.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-shield-halved"></i></div>
+              <h3>FRP</h3>
+              <p>Eliminación de bloqueo FRP en equipos compatibles.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-rotate"></i></div>
+              <h3>Flasheos</h3>
+              <p>Actualización y reinstalación de sistema operativo.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-sim-card"></i></div>
+              <h3>Liberaciones</h3>
+              <p>Procesos para usar tu equipo con distintas redes.</p>
+            </div>
+            <div class="service-card reveal">
+              <div class="service-icon"><i class="fas fa-download"></i></div>
+              <h3>Apps para iPhone y Android</h3>
+              <p>Instalación y configuración de aplicaciones móviles.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-content">
-      <div>© 2025 DR CELL. Todos los derechos reservados.</div>
-      <div>Reparación de software y hardware móvil</div>
+    <!-- ========================
+         SECCIÓN: HORARIO
+    ======================== -->
+    <div class="seccion" id="horario">
+      <div class="sec-inner">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="mini">Horario</span>
+            <h2>Cuándo encontrarnos</h2>
+            <p>Estos son nuestros horarios de atención.</p>
+          </div>
+          <div class="info-card reveal" style="max-width: 600px; margin: 0 auto;">
+            <h3><i class="fas fa-clock"></i> Horario de atención</h3>
+            <div class="schedule-list">
+              <div class="schedule-item">
+                <span>Lunes a Viernes</span>
+                <span class="open">10:00 AM - 4:00 PM</span>
+              </div>
+              <div class="schedule-item">
+                <span>Sábados</span>
+                <span class="open">10:00 AM - 2:00 PM</span>
+              </div>
+              <div class="schedule-item">
+                <span>Domingos</span>
+                <span class="closed">Cerrado</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
+
+    <!-- ========================
+         SECCIÓN: DIRECCIÓN
+    ======================== -->
+    <div class="seccion" id="direccion">
+      <div class="sec-inner">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="mini">Ubicación</span>
+            <h2>Dónde encontrarnos</h2>
+            <p>Visítanos en nuestra dirección física.</p>
+          </div>
+          <div class="info-card address-box reveal" style="max-width: 600px; margin: 0 auto;">
+            <h3><i class="fas fa-location-dot"></i> Dirección</h3>
+            <p>Marianao Ave 43 / 118 y 120 #11807 INT 2</p>
+            <a class="location-btn" href="https://www.google.com/maps/search/Marianao+Ave+43+118+y+120+11807+INT+2" target="_blank">
+              <i class="fas fa-map-location-dot"></i> Ver ubicación
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================
+         SECCIÓN: CONTACTO
+    ======================== -->
+    <div class="seccion" id="contacto">
+      <div class="sec-inner">
+        <div class="container">
+          <div class="section-header reveal">
+            <span class="mini">Contacto</span>
+            <h2>Habla con nosotros</h2>
+            <p>Contáctanos directamente por teléfono o WhatsApp.</p>
+          </div>
+          <div class="info-card contact-box reveal" style="max-width: 600px; margin: 0 auto;">
+            <div class="contact-links">
+              <a href="tel:+5356194280" class="contact-link">
+                <i class="fas fa-phone"></i>
+                <div>
+                  <span>Teléfono</span>
+                  <strong>+53 56194280</strong>
+                </div>
+              </a>
+              <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="contact-link">
+                <i class="fab fa-whatsapp"></i>
+                <div>
+                  <span>WhatsApp</span>
+                  <strong>+53 56194280</strong>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer dentro de la última sección -->
+        <footer class="footer" style="margin-top: 60px;">
+          <div class="container footer-content">
+            <div>© 2025 DR CELL. Todos los derechos reservados.</div>
+            <div>Reparación de software y hardware móvil</div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+  </div><!-- fin app-content -->
 
   <!-- WHATSAPP FLOTANTE -->
   <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="wa-float">
@@ -1282,20 +1325,72 @@
   </a>
 
   <script>
-    const navbar = document.getElementById('navbar');
+    // ==============================
+    // NAVEGACIÓN INDEPENDIENTE
+    // ==============================
+    const secciones = ['inicio', 'servicios', 'horario', 'direccion', 'contacto'];
+
+    function mostrarSeccion(id) {
+      // Ocultar todas
+      secciones.forEach(s => {
+        const el = document.getElementById(s);
+        if (el) el.classList.remove('activa');
+      });
+
+      // Mostrar la seleccionada
+      const target = document.getElementById(id);
+      if (target) {
+        target.classList.add('activa');
+        // Scroll al inicio de la sección
+        target.scrollTop = 0;
+        // Activar reveals
+        activarReveals(target);
+      }
+
+      // Marcar link activo en el menú
+      actualizarLinksActivos(id);
+
+      // Cerrar menú móvil
+      navLinks.classList.remove('active');
+    }
+
+    function activarReveals(seccion) {
+      const revels = seccion.querySelectorAll('.reveal');
+      revels.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('active');
+        }, i * 80);
+      });
+    }
+
+    function actualizarLinksActivos(idActivo) {
+      document.querySelectorAll('.nav-links a').forEach(link => {
+        link.classList.remove('active-link');
+      });
+
+      // Mapeo de id a posición del link
+      const map = {
+        'inicio': 0,
+        'servicios': 1,
+        'horario': 2,
+        'direccion': 3,
+        'contacto': 4
+      };
+
+      const links = document.querySelectorAll('.nav-links a');
+      if (links[map[idActivo]]) {
+        links[map[idActivo]].classList.add('active-link');
+      }
+    }
+
+    // ==============================
+    // MENÚ HAMBURGUESA
+    // ==============================
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
 
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 20);
-    });
-
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => navLinks.classList.remove('active'));
     });
 
     document.addEventListener('click', (e) => {
@@ -1304,17 +1399,25 @@
       }
     });
 
-    const reveals = document.querySelectorAll('.reveal');
-    const revealOnScroll = () => {
-      reveals.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 80) {
-          el.classList.add('active');
-        }
-      });
-    };
+    // ==============================
+    // SCROLL INTERNO activa reveals
+    // ==============================
+    secciones.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('scroll', () => {
+          activarReveals(el);
+        });
+      }
+    });
 
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
+    // ==============================
+    // INICIO: activar reveals iniciales
+    // ==============================
+    window.addEventListener('DOMContentLoaded', () => {
+      actualizarLinksActivos('inicio');
+      activarReveals(document.getElementById('inicio'));
+    });
   </script>
 </body>
 </html>
