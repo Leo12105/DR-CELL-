@@ -349,6 +349,18 @@
     .tienda-empty i { font-size: 3rem; margin-bottom: 16px; display: block; color: rgba(0,240,255,.2); }
     .tienda-empty h3 { font-size: 1.2rem; color: var(--text); margin-bottom: 8px; }
 
+    .tienda-loading {
+      text-align: center; padding: 60px 20px;
+    }
+    .spinner {
+      width: 40px; height: 40px; margin: 0 auto 16px;
+      border: 3px solid rgba(0,240,255,.1);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
     /* HORARIO / DIRECCIÓN / CONTACTO */
     .info-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
     .info-card h3 { font-size: 1.1rem; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
@@ -547,9 +559,16 @@
     <div class="sub-content">
       <div class="container">
         <div class="section-header"><span class="mini">Tienda</span><h2>Productos disponibles</h2><p>Accesorios y repuestos para tu celular.</p></div>
-        <div class="tienda-grid" id="tiendaGrid">
-          <!-- Productos se cargan dinámicamente -->
+        
+        <div class="tienda-loading" id="tiendaLoading">
+          <div class="spinner"></div>
+          <p style="color:var(--muted);">Cargando productos...</p>
         </div>
+
+        <div class="tienda-grid" id="tiendaGrid" style="display:none;">
+          <!-- Productos se cargan dinámicamente desde Firebase -->
+        </div>
+
         <div class="tienda-empty" id="tiendaEmpty" style="display:none;">
           <i class="fas fa-box-open"></i>
           <h3>No hay productos disponibles</h3>
@@ -627,8 +646,30 @@
     </div>
   </div>
 
+  <!-- FIREBASE -->
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+    import { getFirestore, collection, onSnapshot } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDR_7eWhH_uu1Ad85FGl5G0HdxxHXzUpxE",
+      authDomain: "drcell-tienda.firebaseapp.com",
+      databaseURL: "https://drcell-tienda-default-rtdb.firebaseio.com",
+      projectId: "drcell-tienda",
+      storageBucket: "drcell-tienda.firebasestorage.app",
+      messagingSenderId: "578229626967",
+      appId: "1:578229626967:web:7f71da8803e83e35199b12"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    window.firebaseDB = db;
+    window.firebaseLoaded = true;
+  </script>
+
   <script>
-    // === NAVEGACIÓN ===
+    // NAVEGACIÓN
     function irA(id) {
       document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
       const target = document.getElementById(id);
@@ -663,48 +704,71 @@
       }
     });
 
-    // === TIENDA ===
-    function getProductos() {
-      try {
-        return JSON.parse(localStorage.getItem('drcell_productos')) || [];
-      } catch { return []; }
-    }
+    // TIENDA CON FIREBASE
+    let productosListener = null;
 
-    function cargarTienda() {
-      const productos = getProductos();
+    async function cargarTienda() {
       const grid = document.getElementById('tiendaGrid');
       const empty = document.getElementById('tiendaEmpty');
+      const loading = document.getElementById('tiendaLoading');
 
-      if (productos.length === 0) {
-        grid.style.display = 'none';
-        empty.style.display = 'block';
-        return;
-      }
-
-      grid.style.display = 'grid';
+      // Mostrar loading
+      loading.style.display = 'block';
+      grid.style.display = 'none';
       empty.style.display = 'none';
-      grid.innerHTML = '';
 
-      productos.forEach(p => {
-        const msg = encodeURIComponent(`Hola DR CELL, estoy interesado en: ${p.nombre} (${p.precio}). ¿Está disponible?`);
-        const imgHTML = p.imagen
-          ? `<img src="${p.imagen}" alt="${p.nombre}" class="product-img" onerror="this.outerHTML='<div class=\\'product-img-placeholder\\'><i class=\\'fas fa-image\\'></i></div>'">`
-          : `<div class="product-img-placeholder"><i class="fas fa-box"></i></div>`;
+      // Esperar a que Firebase esté listo
+      const waitForFirebase = setInterval(async () => {
+        if (window.firebaseLoaded && window.firebaseDB) {
+          clearInterval(waitForFirebase);
 
-        grid.innerHTML += `
-          <div class="product-card">
-            ${imgHTML}
-            <div class="product-body">
-              <h3>${p.nombre}</h3>
-              <p class="product-desc">${p.descripcion}</p>
-              <div class="product-price">${p.precio}</div>
-              <a href="https://wa.me/5356194280?text=${msg}" target="_blank" class="product-wa-btn">
-                <i class="fab fa-whatsapp"></i> Me interesa
-              </a>
-            </div>
-          </div>
-        `;
-      });
+          const { collection, onSnapshot } = await import('https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js');
+
+          // Desuscribir listener anterior si existe
+          if (productosListener) productosListener();
+
+          // Escuchar cambios en tiempo real
+          productosListener = onSnapshot(collection(window.firebaseDB, 'productos'), (snapshot) => {
+            const productos = [];
+            snapshot.forEach((doc) => {
+              productos.push({ id: doc.id, ...doc.data() });
+            });
+
+            loading.style.display = 'none';
+
+            if (productos.length === 0) {
+              grid.style.display = 'none';
+              empty.style.display = 'block';
+              return;
+            }
+
+            grid.style.display = 'grid';
+            empty.style.display = 'none';
+            grid.innerHTML = '';
+
+            productos.forEach(p => {
+              const msg = encodeURIComponent(`Hola DR CELL, estoy interesado en: ${p.nombre} (${p.precio}). ¿Está disponible?`);
+              const imgHTML = p.imagen
+                ? `<img src="${p.imagen}" alt="${p.nombre}" class="product-img" onerror="this.outerHTML='<div class=\\'product-img-placeholder\\'><i class=\\'fas fa-image\\'></i></div>'">`
+                : `<div class="product-img-placeholder"><i class="fas fa-box"></i></div>`;
+
+              grid.innerHTML += `
+                <div class="product-card">
+                  ${imgHTML}
+                  <div class="product-body">
+                    <h3>${p.nombre}</h3>
+                    <p class="product-desc">${p.descripcion}</p>
+                    <div class="product-price">${p.precio}</div>
+                    <a href="https://wa.me/5356194280?text=${msg}" target="_blank" class="product-wa-btn">
+                      <i class="fab fa-whatsapp"></i> Me interesa
+                    </a>
+                  </div>
+                </div>
+              `;
+            });
+          });
+        }
+      }, 100);
     }
   </script>
 </body>
