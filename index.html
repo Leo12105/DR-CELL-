@@ -1,555 +1,383 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DR CELL | Reparación de Software y Hardware Móvil en Marianao, La Habana</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR CELL Habana | Servicio Técnico de Celulares</title>
+    <meta name="description" content="Servicio técnico profesional de celulares en La Habana. Reparación de hardware y software, cambio de pantalla, batería, liberaciones y más.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  <meta name="description" content="DR CELL - Servicio técnico de reparación de celulares en Marianao, La Habana. Pantallas, baterías, puertos de carga, microsoldaduras, FRP, flasheos, desbloqueos y más.">
-  <meta name="theme-color" content="#0a0a0f">
+        :root {
+            --azul-oscuro: #0a1929;
+            --azul: #1e3a8a;
+            --azul-claro: #3b82f6;
+            --blanco: #ffffff;
+            --gris: #e5e7eb;
+            --texto: #1f2937;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: #f1f5f9;
+            color: var(--texto);
+            line-height: 1.6;
+        }
 
-  <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    :root{--bg:#0a0a0f;--card:#12121c;--primary:#00f0ff;--neon-pink:#ff00e5;--neon-purple:#b000ff;--neon-green:#00ff88;--neon-blue:#00f0ff;--neon-orange:#ff6b00;--neon-yellow:#ffe600;--text:#fff;--muted:#8a8fa8;--danger:#ff3860;--border:rgba(0,240,255,.08);--shadow:0 10px 30px rgba(0,0,0,.4);--radius:18px;--transition:.3s ease;--gradient:linear-gradient(135deg,#00f0ff,#b000ff 50%,#ff00e5)}
-    html,body{height:100%;overflow:hidden;font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
-    a{text-decoration:none;color:inherit}
-    .container{width:min(1100px,90%);margin:0 auto}
+        /* NAVBAR */
+        nav {
+            background: var(--azul-oscuro);
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        nav h2 { color: var(--blanco); font-size: 1.5rem; }
+        nav h2 span { color: var(--azul-claro); }
+        nav ul { list-style: none; display: flex; gap: 25px; }
+        nav ul a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul a:hover { color: var(--azul-claro); }
+        .menu-toggle { display: none; color: white; font-size: 1.5rem; cursor: pointer; background: none; border: none; }
 
-    .bg-blur{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
-    .bg-blur::before,.bg-blur::after{content:"";position:absolute;width:450px;height:450px;border-radius:50%;filter:blur(120px);opacity:.12}
-    .bg-blur::before{background:var(--neon-blue);top:-100px;left:-120px}
-    .bg-blur::after{background:var(--neon-pink);right:-100px;bottom:-80px}
-    .bg-glow-extra{position:fixed;width:350px;height:350px;border-radius:50%;filter:blur(100px);opacity:.07;background:var(--neon-purple);top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0}
+        /* HERO */
+        header {
+            background: linear-gradient(135deg, rgba(10,25,41,0.95), rgba(30,58,138,0.9)),
+                        url('https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+        header h1 { font-size: 3rem; margin-bottom: 15px; }
+        header h1 span { color: var(--azul-claro); }
+        header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+        .hero-buttons { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
+        .btn {
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        .btn-wsp { background: #25d366; color: white; }
+        .btn-call { background: var(--azul-claro); color: white; }
 
-    .pantalla{position:fixed;inset:0;z-index:1;display:none;flex-direction:column}
-    .pantalla.activa{display:flex;animation:fadeIn .35s ease}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+        /* SECCIONES */
+        section { padding: 80px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+        .titulo {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--azul-oscuro);
+            margin-bottom: 10px;
+        }
+        .subtitulo {
+            text-align: center;
+            color: #6b7280;
+            margin-bottom: 50px;
+        }
 
-    .top-bar{height:60px;background:rgba(10,10,15,.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(0,240,255,.06);display:flex;align-items:center;padding:0 20px;gap:14px;flex-shrink:0;z-index:10}
-    .back-btn{width:40px;height:40px;border:1px solid rgba(0,240,255,.15);background:rgba(0,240,255,.06);border-radius:12px;color:var(--primary);font-size:1rem;cursor:pointer;display:grid;place-items:center;transition:var(--transition)}
-    .back-btn:hover{background:rgba(0,240,255,.12);transform:translateX(-2px)}
-    .top-bar-title{font-size:1.1rem;font-weight:700;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+        /* SOBRE NOSOTROS */
+        .sobre {
+            background: var(--blanco);
+            text-align: center;
+        }
+        .sobre p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
 
-    .sub-content{flex:1;overflow-y:auto;overflow-x:hidden;padding:30px 0 50px;-webkit-overflow-scrolling:touch}
-    .sub-content::-webkit-scrollbar{width:4px}
-    .sub-content::-webkit-scrollbar-track{background:transparent}
-    .sub-content::-webkit-scrollbar-thumb{background:rgba(0,240,255,.2);border-radius:10px}
+        /* SERVICIOS */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        .servicio-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            border-top: 5px solid var(--azul-claro);
+        }
+        .servicio-card h3 {
+            color: var(--azul-oscuro);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .servicio-card h3 i { color: var(--azul-claro); }
+        .servicio-card ul { list-style: none; margin-bottom: 25px; }
+        .servicio-card ul li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--gris);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .servicio-card ul li i { color: #10b981; }
+        .botones-servicio { display: flex; gap: 10px; flex-wrap: wrap; }
+        .btn-small {
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: opacity 0.3s;
+        }
+        .btn-small:hover { opacity: 0.85; }
+        .bg-wsp { background: #25d366; }
+        .bg-call { background: var(--azul-claro); }
 
-    .main-screen{height:100%;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
-    .main-screen::-webkit-scrollbar{width:4px}
-    .main-screen::-webkit-scrollbar-track{background:transparent}
-    .main-screen::-webkit-scrollbar-thumb{background:rgba(0,240,255,.2);border-radius:10px}
+        /* HORARIO */
+        .horario {
+            background: var(--azul-oscuro);
+            color: white;
+            text-align: center;
+        }
+        .horario .titulo { color: white; }
+        .horario-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .horario-card {
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        .horario-card i { font-size: 2rem; color: var(--azul-claro); margin-bottom: 10px; }
+        .horario-card h4 { margin-bottom: 8px; }
 
-    .main-inner{min-height:100%;display:flex;flex-direction:column;justify-content:center;padding:30px 0}
-    .hero-area{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:40px}
+        /* CONTACTO */
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+        .contacto-card {
+            background: white;
+            padding: 35px 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            text-decoration: none;
+            color: var(--texto);
+        }
+        .contacto-card:hover { transform: translateY(-8px); }
+        .contacto-card i { font-size: 2.5rem; margin-bottom: 15px; }
+        .icon-wsp { color: #25d366; }
+        .icon-call { color: var(--azul-claro); }
+        .icon-fb { color: #1877f2; }
 
-    .brand-col{text-align:center}
-    .main-logo-icon{width:80px;height:80px;border-radius:22px;background:var(--gradient);display:grid;place-items:center;font-size:2rem;color:#fff;margin:0 auto 16px;box-shadow:0 0 35px rgba(0,240,255,.3),0 0 70px rgba(176,0,255,.15);animation:logoPulse 3s ease-in-out infinite}
-    @keyframes logoPulse{0%,100%{box-shadow:0 0 35px rgba(0,240,255,.3),0 0 70px rgba(176,0,255,.15)}50%{box-shadow:0 0 55px rgba(0,240,255,.45),0 0 90px rgba(176,0,255,.25)}}
-    .main-title{font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:1px;margin-bottom:4px}
-    .main-title span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .main-tagline{color:var(--muted);font-size:.92rem;margin-bottom:8px}
-    .main-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border:1px solid rgba(0,240,255,.2);background:rgba(0,240,255,.06);color:var(--primary);border-radius:999px;font-size:.78rem;margin-bottom:18px}
-    .quick-contact{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-    .qc-btn{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:600;font-size:.88rem;transition:var(--transition);border:none;cursor:pointer;font-family:'Poppins',sans-serif}
-    .qc-call{background:var(--gradient);color:#fff;box-shadow:0 0 18px rgba(0,240,255,.2)}
-    .qc-call:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(0,240,255,.35)}
-    .qc-wa{background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0f;box-shadow:0 0 18px rgba(0,255,136,.2)}
-    .qc-wa:hover{transform:translateY(-2px);box-shadow:0 0 28px rgba(0,255,136,.35)}
+        /* FOOTER */
+        footer {
+            background: var(--azul-oscuro);
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        footer p { margin: 5px 0; }
+        footer a { color: var(--azul-claro); text-decoration: none; }
 
-    .phone-col{display:flex;align-items:center;justify-content:center}
-    .phone-scene{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px;perspective:1200px}
-    @keyframes phoneFloat{0%,100%{transform:translateY(0) rotateY(-4deg) rotateX(2deg)}25%{transform:translateY(-12px) rotateY(-2deg) rotateX(0)}50%{transform:translateY(-5px) rotateY(4deg) rotateX(-2deg)}75%{transform:translateY(-16px) rotateY(2deg) rotateX(1deg)}}
-    .phone-shadow{position:absolute;bottom:8px;width:150px;height:25px;background:radial-gradient(ellipse,rgba(0,240,255,.18),rgba(176,0,255,.08) 50%,transparent 70%);border-radius:50%;animation:shadowPulse 4s ease-in-out infinite}
-    @keyframes shadowPulse{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
-    .phone{position:relative;width:200px;height:410px;background:linear-gradient(145deg,#1a1a2e,#0d0d1a 40%,#1a1a2e);border-radius:38px;border:2px solid rgba(0,240,255,.15);box-shadow:0 0 0 1px rgba(0,240,255,.05),0 20px 50px rgba(0,0,0,.5),0 0 50px rgba(0,240,255,.06),0 0 100px rgba(176,0,255,.04),inset 0 1px 0 rgba(255,255,255,.1);animation:phoneFloat 6s ease-in-out infinite;z-index:2;overflow:hidden}
-    .phone::before{content:"";position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:linear-gradient(105deg,transparent 40%,rgba(0,240,255,.03) 45%,rgba(0,240,255,.06) 50%,rgba(0,240,255,.03) 55%,transparent 60%);animation:shimmer 5s ease-in-out infinite;z-index:10}
-    @keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
-    .phone::after{content:"";position:absolute;inset:-1px;border-radius:39px;background:linear-gradient(160deg,rgba(0,240,255,.12),transparent 40%,transparent 60%,rgba(176,0,255,.08));z-index:1}
-    .phone-screen{position:absolute;top:7px;left:7px;right:7px;bottom:7px;background:linear-gradient(160deg,#0a0a18,#080812 50%,#0c0c20);border-radius:32px;overflow:hidden;z-index:3}
-    .screen-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 20%,rgba(0,240,255,.08),transparent 60%);animation:screenGlow 4s ease-in-out infinite;z-index:4}
-    @keyframes screenGlow{0%,100%{opacity:.5}50%{opacity:1}}
-    .dynamic-island{position:absolute;top:12px;left:50%;transform:translateX(-50%);width:80px;height:24px;background:#000;border-radius:20px;z-index:8;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;box-shadow:0 0 12px rgba(0,0,0,.5)}
-    .dynamic-island::before{content:"";width:7px;height:7px;background:radial-gradient(circle,#1a2744 40%,#0d1526);border-radius:50%;box-shadow:inset 0 0 2px rgba(0,240,255,.3)}
-    .screen-content{position:relative;z-index:5;padding:50px 16px 16px;height:100%;display:flex;flex-direction:column}
-    .status-bar{display:flex;justify-content:space-between;align-items:center;font-size:10px;color:rgba(255,255,255,.6);margin-bottom:20px;padding:0 4px}
-    .status-bar .time{font-weight:600}
-    .status-icons{display:flex;gap:4px;font-size:9px}
-    .screen-logo{text-align:center;margin-bottom:18px}
-    .screen-logo-icon{width:44px;height:44px;margin:0 auto 8px;background:var(--gradient);border-radius:14px;display:grid;place-items:center;font-size:18px;color:#fff;box-shadow:0 0 20px rgba(0,240,255,.3),0 0 40px rgba(176,0,255,.15);animation:pulse 3s ease-in-out infinite}
-    @keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(0,240,255,.3),0 0 40px rgba(176,0,255,.15)}50%{box-shadow:0 0 30px rgba(0,240,255,.45),0 0 60px rgba(176,0,255,.25)}}
-    .screen-logo h4{font-size:14px;font-weight:800;letter-spacing:1px}
-    .screen-logo h4 span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .screen-logo p{font-size:8px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
-    .screen-notifs{display:flex;flex-direction:column;gap:8px;flex:1}
-    .screen-notif{background:rgba(255,255,255,.04);border:1px solid rgba(0,240,255,.06);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;animation:notifSlide 4s ease-in-out infinite}
-    @keyframes notifSlide{0%,100%{transform:translateX(0);opacity:1}50%{transform:translateX(3px);opacity:.85}}
-    .screen-notif:nth-child(2){animation-delay:1s}
-    .screen-notif:nth-child(3){animation-delay:2s}
-    .notif-icon{width:30px;height:30px;min-width:30px;border-radius:8px;display:grid;place-items:center;font-size:12px}
-    .notif-blue{background:rgba(0,240,255,.12);color:var(--neon-blue)}
-    .notif-green{background:rgba(0,255,136,.12);color:var(--neon-green)}
-    .notif-orange{background:rgba(255,107,0,.12);color:var(--neon-orange)}
-    .notif-text{font-size:10px;font-weight:600}
-    .notif-sub{font-size:8px;color:var(--muted)}
-    .screen-bottom{display:flex;justify-content:center;padding-top:12px}
-    .home-bar{width:80px;height:4px;background:rgba(255,255,255,.2);border-radius:4px}
-    .side-btn{position:absolute;background:linear-gradient(180deg,rgba(255,255,255,.1),rgba(255,255,255,.03));border-radius:3px;z-index:1}
-    .btn-power{right:-3px;top:100px;width:3px;height:45px}
-    .btn-vol-up{left:-3px;top:85px;width:3px;height:30px}
-    .btn-vol-down{left:-3px;top:125px;width:3px;height:30px}
-    .btn-silent{left:-3px;top:60px;width:3px;height:16px}
-    .orbit-particle{position:absolute;border-radius:50%;z-index:1}
-    .orbit-1{width:7px;height:7px;background:var(--neon-blue);box-shadow:0 0 12px var(--neon-blue);animation:orbit 10s linear infinite;top:50%;left:50%;margin:-3.5px}
-    .orbit-2{width:5px;height:5px;background:var(--neon-green);box-shadow:0 0 12px var(--neon-green);animation:orbit 14s linear infinite reverse;top:50%;left:50%;margin:-2.5px}
-    .orbit-3{width:4px;height:4px;background:var(--neon-pink);box-shadow:0 0 10px var(--neon-pink);animation:orbit 18s linear infinite;top:50%;left:50%;margin:-2px}
-    @keyframes orbit{0%{transform:rotate(0) translateX(140px) rotate(0)}100%{transform:rotate(360deg) translateX(140px) rotate(-360deg)}}
+        /* BOTÓN FLOTANTE WSP */
+        .float-wsp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            text-decoration: none;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            z-index: 999;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+        }
 
-    .menu-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-    .menu-card{background:var(--card);border:1px solid rgba(0,240,255,.06);border-radius:16px;padding:20px 14px;text-align:center;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden}
-    .menu-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);opacity:0;transition:var(--transition)}
-    .menu-card:hover{transform:translateY(-5px);border-color:rgba(0,240,255,.2);box-shadow:0 10px 30px rgba(0,0,0,.3),0 0 20px rgba(0,240,255,.05)}
-    .menu-card:hover::before{opacity:1}
-    .menu-card:active{transform:translateY(-2px) scale(.97)}
-    .menu-icon{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;font-size:1.15rem;margin:0 auto 10px;transition:var(--transition)}
-    .mi-blue{background:rgba(0,240,255,.1);color:var(--neon-blue)}
-    .mi-green{background:rgba(0,255,136,.1);color:var(--neon-green)}
-    .mi-purple{background:rgba(176,0,255,.1);color:var(--neon-purple)}
-    .mi-orange{background:rgba(255,107,0,.1);color:var(--neon-orange)}
-    .mi-yellow{background:rgba(255,230,0,.1);color:var(--neon-yellow)}
-    .menu-card:hover .mi-blue{box-shadow:0 0 18px rgba(0,240,255,.25)}
-    .menu-card:hover .mi-green{box-shadow:0 0 18px rgba(0,255,136,.25)}
-    .menu-card:hover .mi-purple{box-shadow:0 0 18px rgba(176,0,255,.25)}
-    .menu-card:hover .mi-orange{box-shadow:0 0 18px rgba(255,107,0,.25)}
-    .menu-card:hover .mi-yellow{box-shadow:0 0 18px rgba(255,230,0,.25)}
-    .menu-card h3{font-size:.85rem;font-weight:700;margin-bottom:3px}
-    .menu-card p{color:var(--muted);font-size:.7rem;line-height:1.4}
-
-    .section-header{text-align:center;margin-bottom:36px}
-    .section-header .mini{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-size:.82rem;text-transform:uppercase;letter-spacing:2px;margin-bottom:8px;display:inline-block;font-weight:700}
-    .section-header h2{font-size:clamp(1.6rem,4vw,2.4rem);margin-bottom:8px;font-weight:800}
-    .section-header p{color:var(--muted);max-width:520px;margin:0 auto;font-size:.92rem}
-
-    .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .service-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:22px 18px;transition:var(--transition);box-shadow:var(--shadow);position:relative;overflow:hidden;display:flex;flex-direction:column}
-    .service-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);opacity:0;transition:var(--transition)}
-    .service-card:hover{transform:translateY(-4px);border-color:rgba(0,240,255,.2)}
-    .service-card:hover::before{opacity:1}
-    .service-icon{width:50px;height:50px;border-radius:14px;background:rgba(0,240,255,.08);color:var(--neon-blue);display:grid;place-items:center;font-size:1.2rem;margin-bottom:12px}
-    .service-card h3{margin-bottom:6px;font-size:.95rem}
-    .service-card>p{color:var(--muted);font-size:.82rem;flex:1}
-    .wa-service-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:14px;padding:10px 16px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0f;border-radius:999px;font-size:.78rem;font-weight:700;font-family:'Poppins',sans-serif;transition:var(--transition);box-shadow:0 0 12px rgba(0,255,136,.15);border:none;cursor:pointer}
-    .wa-service-btn:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(0,255,136,.3)}
-    .wa-service-btn i{font-size:.9rem}
-
-    .tienda-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .product-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow);display:flex;flex-direction:column;position:relative}
-    .product-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--gradient);opacity:0;transition:var(--transition);z-index:2}
-    .product-card:hover{transform:translateY(-4px);border-color:rgba(0,240,255,.2)}
-    .product-card:hover::before{opacity:1}
-    .product-img{width:100%;height:200px;object-fit:cover;border-bottom:1px solid rgba(0,240,255,.06);background:rgba(0,240,255,.03)}
-    .product-img-placeholder{width:100%;height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,rgba(0,240,255,.04),rgba(176,0,255,.04));border-bottom:1px solid rgba(0,240,255,.06);color:var(--muted);font-size:3rem}
-    .product-body{padding:18px;display:flex;flex-direction:column;flex:1}
-    .product-body h3{font-size:1rem;font-weight:700;margin-bottom:6px}
-    .product-body .product-desc{color:var(--muted);font-size:.82rem;flex:1;margin-bottom:14px;line-height:1.5}
-    .product-price{font-size:1.3rem;font-weight:800;margin-bottom:14px;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .product-wa-btn{display:flex;align-items:center;justify-content:center;gap:8px;padding:11px 16px;background:linear-gradient(135deg,#00ff88,#00cc6a);color:#0a0a0f;border-radius:999px;font-size:.82rem;font-weight:700;font-family:'Poppins',sans-serif;transition:var(--transition);box-shadow:0 0 12px rgba(0,255,136,.15);border:none;cursor:pointer;width:100%}
-    .product-wa-btn:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(0,255,136,.3)}
-    .tienda-empty{text-align:center;padding:60px 20px;color:var(--muted)}
-    .tienda-empty i{font-size:3rem;margin-bottom:16px;display:block;color:rgba(0,240,255,.2)}
-    .tienda-empty h3{font-size:1.2rem;color:var(--text);margin-bottom:8px}
-    .tienda-loading{text-align:center;padding:60px 20px}
-    .spinner{width:40px;height:40px;margin:0 auto 16px;border:3px solid rgba(0,240,255,.1);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-
-    .info-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:26px;box-shadow:var(--shadow)}
-    .info-card h3{font-size:1.1rem;margin-bottom:16px;display:flex;align-items:center;gap:10px}
-    .info-card h3 i{color:var(--primary)}
-    .schedule-list{display:flex;flex-direction:column;gap:12px}
-    .schedule-item{display:flex;justify-content:space-between;gap:20px;padding-bottom:10px;border-bottom:1px solid rgba(0,240,255,.05);color:var(--muted)}
-    .schedule-item:last-child{border-bottom:none;padding-bottom:0}
-    .open{color:var(--neon-green);font-weight:600}
-    .closed{color:var(--danger);font-weight:600}
-
-    .direccion-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:20px;align-items:start}
-    .address-details{display:flex;flex-direction:column;gap:10px;margin-bottom:16px}
-    .address-item{display:flex;align-items:center;gap:12px;padding:11px 14px;background:rgba(0,240,255,.03);border:1px solid rgba(0,240,255,.06);border-radius:12px;transition:var(--transition)}
-    .address-item:hover{border-color:rgba(0,240,255,.18);transform:translateX(4px)}
-    .address-item i{width:36px;height:36px;min-width:36px;border-radius:10px;background:rgba(0,240,255,.08);color:var(--primary);display:grid;place-items:center;font-size:.9rem}
-    .address-item span{display:block;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.5px}
-    .address-item strong{display:block;font-size:.88rem;font-weight:600}
-    .location-btn{display:inline-flex;align-items:center;gap:10px;background:var(--gradient);color:#fff;padding:11px 18px;border-radius:999px;font-weight:600;transition:var(--transition);margin-top:8px;font-size:.9rem}
-    .location-btn:hover{transform:translateY(-2px);box-shadow:0 0 25px rgba(0,240,255,.3)}
-    .map-container{border-radius:var(--radius);overflow:hidden;border:1px solid rgba(0,240,255,.1);box-shadow:0 0 25px rgba(0,240,255,.06),0 12px 35px rgba(0,0,0,.4)}
-    .map-wrapper{width:100%;height:380px}
-    .map-wrapper iframe{width:100%;height:100%;border:0;border-radius:var(--radius);filter:invert(90%) hue-rotate(180deg) saturate(.8) brightness(.9)}
-
-    .contact-links{display:flex;flex-direction:column;gap:14px}
-    .contact-link{display:flex;align-items:center;gap:14px;background:rgba(0,240,255,.02);border:1px solid rgba(0,240,255,.06);padding:16px;border-radius:14px;color:#fff;transition:var(--transition)}
-    .contact-link:hover{border-color:rgba(0,240,255,.2);transform:translateX(4px)}
-    .contact-link i{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;font-size:1.15rem}
-    .cl-phone{background:rgba(0,240,255,.08);color:var(--primary)}
-    .cl-wa{background:rgba(0,255,136,.08);color:var(--neon-green)}
-    .contact-link span{display:block;color:var(--muted);font-size:.85rem}
-    .contact-link strong{color:#fff;font-size:1rem}
-    .footer{padding:20px 0;border-top:1px solid rgba(0,240,255,.05);text-align:center;color:var(--muted);font-size:.82rem;margin-top:30px}
-
-    @media(max-width:900px){
-      .hero-area{grid-template-columns:1fr;gap:20px}
-      .brand-col{order:1}.phone-col{order:2}
-      .menu-grid{grid-template-columns:repeat(3,1fr)}
-      .services-grid,.tienda-grid{grid-template-columns:repeat(2,1fr)}
-      .direccion-grid{grid-template-columns:1fr}
-      .map-wrapper{height:300px}
-      .phone{width:170px;height:350px;border-radius:34px}
-      .phone-screen{border-radius:28px}
-      .phone-scene{min-height:360px}
-      @keyframes orbit{0%{transform:rotate(0) translateX(120px) rotate(0)}100%{transform:rotate(360deg) translateX(120px) rotate(-360deg)}}
-    }
-    @media(max-width:600px){
-      .main-inner{padding:20px 0}
-      .hero-area{gap:10px;margin-bottom:20px}
-      .main-logo-icon{width:60px;height:60px;font-size:1.5rem;border-radius:18px}
-      .main-title{font-size:1.8rem}
-      .main-tagline{font-size:.82rem}
-      .main-badge{font-size:.72rem;padding:5px 12px}
-      .quick-contact{gap:8px}
-      .qc-btn{padding:10px 16px;font-size:.82rem}
-      .phone-scene{min-height:300px}
-      .phone{width:140px;height:290px;border-radius:28px}
-      .phone-screen{top:6px;left:6px;right:6px;bottom:6px;border-radius:24px}
-      .dynamic-island{width:65px;height:20px;top:10px}
-      .screen-content{padding:42px 12px 12px}
-      .screen-logo-icon{width:36px;height:36px;font-size:15px;border-radius:11px}
-      .screen-logo h4{font-size:12px}
-      .screen-logo p{font-size:7px}
-      .screen-logo{margin-bottom:14px}
-      .screen-notifs{gap:6px}
-      .screen-notif{padding:8px 10px;gap:8px;border-radius:10px}
-      .notif-icon{width:26px;height:26px;min-width:26px;font-size:10px;border-radius:7px}
-      .notif-text{font-size:9px}.notif-sub{font-size:7px}
-      .status-bar{font-size:9px;margin-bottom:14px}
-      .home-bar{width:60px;height:3px}
-      .orbit-particle{display:none}
-      .menu-grid{grid-template-columns:repeat(3,1fr);gap:8px}
-      .menu-icon{width:40px;height:40px;font-size:.95rem;border-radius:12px}
-      .menu-card{padding:14px 8px;border-radius:14px}
-      .menu-card h3{font-size:.75rem}
-      .menu-card p{font-size:.65rem}
-      .services-grid,.tienda-grid{grid-template-columns:1fr}
-      .sub-content{padding:20px 0 40px}
-      .section-header{margin-bottom:24px}
-      .map-wrapper{height:250px}
-      .product-img,.product-img-placeholder{height:160px}
-    }
-    @media(max-width:380px){
-      .phone{width:120px;height:250px;border-radius:24px}
-      .phone-screen{border-radius:20px;top:5px;left:5px;right:5px;bottom:5px}
-      .screen-content{padding:36px 10px 10px}
-      .phone-scene{min-height:260px}
-      .dynamic-island{width:55px;height:18px;top:8px}
-      .screen-notif:nth-child(3){display:none}
-      .menu-grid{grid-template-columns:repeat(2,1fr)}
-    }
-  </style>
+        /* RESPONSIVE */
+        @media(max-width: 768px) {
+            nav ul { display: none; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: var(--azul-oscuro); padding: 20px; }
+            nav ul.active { display: flex; }
+            .menu-toggle { display: block; }
+            header h1 { font-size: 2rem; }
+            .servicios-grid, .contacto-grid, .horario-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
-  <div class="bg-blur"></div>
-  <div class="bg-glow-extra"></div>
+<!-- NAVBAR -->
+<nav>
+    <h2>DR <span>CELL</span></h2>
+    <button class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">☰</button>
+    <ul id="menu">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+    </ul>
+</nav>
 
-  <!-- PRINCIPAL -->
-  <div class="pantalla activa" id="main">
-    <div class="main-screen">
-      <div class="main-inner">
-        <div class="container">
-          <div class="hero-area">
-            <div class="brand-col">
-              <div class="main-logo-icon"><i class="fas fa-mobile-screen-button"></i></div>
-              <h1 class="main-title">DR <span>CELL</span></h1>
-              <p class="main-tagline">Reparación de Software y Hardware Móvil</p>
-              <div class="main-badge"><i class="fas fa-map-marker-alt"></i> Marianao, La Habana</div>
-              <div class="quick-contact">
-                <a href="tel:+5356194280" class="qc-btn qc-call"><i class="fas fa-phone"></i> Llamar</a>
-                <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="qc-btn qc-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-              </div>
-            </div>
-            <div class="phone-col">
-              <div class="phone-scene">
-                <div class="orbit-particle orbit-1"></div>
-                <div class="orbit-particle orbit-2"></div>
-                <div class="orbit-particle orbit-3"></div>
-                <div class="phone-shadow"></div>
-                <div class="phone">
-                  <div class="side-btn btn-power"></div>
-                  <div class="side-btn btn-vol-up"></div>
-                  <div class="side-btn btn-vol-down"></div>
-                  <div class="side-btn btn-silent"></div>
-                  <div class="phone-screen">
-                    <div class="screen-glow"></div>
-                    <div class="dynamic-island"></div>
-                    <div class="screen-content">
-                      <div class="status-bar">
-                        <span class="time">10:00</span>
-                        <div class="status-icons"><i class="fas fa-signal"></i><i class="fas fa-wifi"></i><i class="fas fa-battery-full"></i></div>
-                      </div>
-                      <div class="screen-logo">
-                        <div class="screen-logo-icon"><i class="fas fa-mobile-screen-button"></i></div>
-                        <h4>DR <span>CELL</span></h4>
-                        <p>Servicio técnico</p>
-                      </div>
-                      <div class="screen-notifs">
-                        <div class="screen-notif"><div class="notif-icon notif-blue"><i class="fas fa-mobile-screen"></i></div><div><div class="notif-text">Pantalla lista</div><div class="notif-sub">Reparación completada</div></div></div>
-                        <div class="screen-notif"><div class="notif-icon notif-green"><i class="fas fa-check-circle"></i></div><div><div class="notif-text">Batería al 100%</div><div class="notif-sub">Cambio exitoso</div></div></div>
-                        <div class="screen-notif"><div class="notif-icon notif-orange"><i class="fas fa-unlock"></i></div><div><div class="notif-text">Equipo desbloqueado</div><div class="notif-sub">Listo para usar</div></div></div>
-                      </div>
-                      <div class="screen-bottom"><div class="home-bar"></div></div>
-                    </div>
-                  </div>
+<!-- HERO -->
+<header id="inicio">
+    <h1>DR <span>CELL</span> HABANA</h1>
+    <p>Expertos en reparación de celulares y servicios de software. Tu equipo en las mejores manos.</p>
+    <div class="hero-buttons">
+        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20información" class="btn btn-wsp" target="_blank">
+            <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="tel:+5356194280" class="btn btn-call">
+            <i class="fas fa-phone"></i> Llamar Ahora
+        </a>
+    </div>
+</header>
+
+<!-- SOBRE NOSOTROS -->
+<section class="sobre" id="sobre">
+    <div class="container">
+        <h2 class="titulo">¿Qué hacemos?</h2>
+        <p class="subtitulo">Conoce un poco más sobre nuestro trabajo</p>
+        <p>En <strong>DR CELL Habana</strong> somos especialistas en el servicio técnico de celulares. Ofrecemos soluciones completas en <strong>hardware</strong> (cambio de pantalla, batería, puertos, microsoldaduras y reparación de placa) y <strong>software</strong> (liberaciones, desbloqueos, flasheos, eliminación de cuentas y más). Nuestro objetivo es brindar un servicio rápido, profesional y con garantía. ¡Tu celular en las mejores manos!</p>
+    </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" style="background:#f1f5f9;">
+    <div class="container">
+        <h2 class="titulo">Nuestros Servicios</h2>
+        <p class="subtitulo">Soluciones completas para tu dispositivo</p>
+        <div class="servicios-grid">
+
+            <!-- HARDWARE -->
+            <div class="servicio-card">
+                <h3><i class="fas fa-tools"></i> Hardware</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Cambio de pantalla</li>
+                    <li><i class="fas fa-check-circle"></i> Cambio de batería</li>
+                    <li><i class="fas fa-check-circle"></i> Cambio de puertos de carga</li>
+                    <li><i class="fas fa-check-circle"></i> Cambio de botones</li>
+                    <li><i class="fas fa-check-circle"></i> Microsoldaduras</li>
+                    <li><i class="fas fa-check-circle"></i> Reparación de placa</li>
+                </ul>
+                <div class="botones-servicio">
+                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20servicio%20de%20hardware" class="btn-small bg-wsp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:+5356194280" class="btn-small bg-call"><i class="fas fa-phone"></i> Llamar</a>
                 </div>
-              </div>
             </div>
-          </div>
 
-          <div class="menu-grid">
-            <div class="menu-card" onclick="irA('servicios')"><div class="menu-icon mi-blue"><i class="fas fa-screwdriver-wrench"></i></div><h3>Servicios</h3><p>Reparaciones</p></div>
-            <div class="menu-card" onclick="irA('tienda')"><div class="menu-icon mi-yellow"><i class="fas fa-store"></i></div><h3>Tienda</h3><p>Productos</p></div>
-            <div class="menu-card" onclick="irA('horario')"><div class="menu-icon mi-green"><i class="fas fa-clock"></i></div><h3>Horario</h3><p>Atención</p></div>
-            <div class="menu-card" onclick="irA('direccion')"><div class="menu-icon mi-purple"><i class="fas fa-location-dot"></i></div><h3>Dirección</h3><p>Ubicación</p></div>
-            <div class="menu-card" onclick="irA('contacto')"><div class="menu-icon mi-orange"><i class="fas fa-address-book"></i></div><h3>Contacto</h3><p>WhatsApp</p></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- SERVICIOS -->
-  <div class="pantalla" id="servicios">
-    <div class="top-bar">
-      <button class="back-btn" onclick="irA('main')"><i class="fas fa-arrow-left"></i></button>
-      <span class="top-bar-title">Servicios</span>
-    </div>
-    <div class="sub-content">
-      <div class="container">
-        <div class="section-header"><span class="mini">Nuestros servicios</span><h2>Lo que hacemos</h2><p>Reparaciones y soluciones técnicas para tu móvil.</p></div>
-        <div class="services-grid">
-          <div class="service-card"><div class="service-icon"><i class="fas fa-mobile-screen"></i></div><h3>Cambios de pantallas</h3><p>Reemplazo profesional de pantallas dañadas.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20un%20cambio%20de%20pantalla%20para%20mi%20celular.%20%C2%BFQu%C3%A9%20precio%20tiene%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-battery-full"></i></div><h3>Cambio de baterías</h3><p>Mejora el rendimiento de tu equipo.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20un%20cambio%20de%20bater%C3%ADa%20para%20mi%20celular.%20%C2%BFQu%C3%A9%20precio%20tiene%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-plug"></i></div><h3>Puertos de carga</h3><p>Reparación de conectores dañados.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20tengo%20un%20problema%20con%20el%20puerto%20de%20carga%20de%20mi%20celular.%20%C2%BFPueden%20repararlo%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-microchip"></i></div><h3>Microsoldaduras</h3><p>Trabajo de precisión en placa.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20una%20microsoldadura%20en%20mi%20celular.%20%C2%BFPueden%20revisarlo%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-unlock-keyhole"></i></div><h3>Desbloqueos</h3><p>Soluciones de acceso y seguridad.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20desbloquear%20mi%20celular.%20%C2%BFQu%C3%A9%20opciones%20tienen%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-shield-halved"></i></div><h3>FRP</h3><p>Eliminación de bloqueo FRP.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20eliminar%20el%20bloqueo%20FRP%20de%20mi%20celular.%20%C2%BFPueden%20hacerlo%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-rotate"></i></div><h3>Flasheos</h3><p>Reinstalación de sistema operativo.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20un%20flasheo%20para%20mi%20celular.%20%C2%BFQu%C3%A9%20precio%20tiene%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-sim-card"></i></div><h3>Liberaciones</h3><p>Usa tu equipo con distintas redes.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20liberar%20mi%20celular.%20%C2%BFQu%C3%A9%20precio%20tiene%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-          <div class="service-card"><div class="service-icon"><i class="fas fa-download"></i></div><h3>Apps iPhone y Android</h3><p>Instalación de aplicaciones.</p><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20instalar%20aplicaciones%20en%20mi%20celular.%20%C2%BFQu%C3%A9%20apps%20tienen%3F" target="_blank" class="wa-service-btn"><i class="fab fa-whatsapp"></i> Consultar</a></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- TIENDA -->
-  <div class="pantalla" id="tienda">
-    <div class="top-bar">
-      <button class="back-btn" onclick="irA('main')"><i class="fas fa-arrow-left"></i></button>
-      <span class="top-bar-title">Tienda</span>
-    </div>
-    <div class="sub-content">
-      <div class="container">
-        <div class="section-header"><span class="mini">Tienda</span><h2>Productos disponibles</h2><p>Accesorios y repuestos para tu celular.</p></div>
-        <div class="tienda-loading" id="tiendaLoading"><div class="spinner"></div><p style="color:var(--muted)">Cargando productos...</p></div>
-        <div class="tienda-grid" id="tiendaGrid" style="display:none"></div>
-        <div class="tienda-empty" id="tiendaEmpty" style="display:none"><i class="fas fa-box-open"></i><h3>No hay productos disponibles</h3><p>Pronto agregaremos nuevos productos. ¡Vuelve pronto!</p></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- HORARIO -->
-  <div class="pantalla" id="horario">
-    <div class="top-bar">
-      <button class="back-btn" onclick="irA('main')"><i class="fas fa-arrow-left"></i></button>
-      <span class="top-bar-title">Horario</span>
-    </div>
-    <div class="sub-content">
-      <div class="container">
-        <div class="section-header"><span class="mini">Horario</span><h2>Cuándo encontrarnos</h2><p>Nuestros horarios de atención.</p></div>
-        <div class="info-card" style="max-width:520px;margin:0 auto">
-          <h3><i class="fas fa-clock"></i> Horario de atención</h3>
-          <div class="schedule-list">
-            <div class="schedule-item"><span>Lunes a Viernes</span><span class="open">10:00 AM - 4:00 PM</span></div>
-            <div class="schedule-item"><span>Sábados</span><span class="open">10:00 AM - 2:00 PM</span></div>
-            <div class="schedule-item"><span>Domingos</span><span class="closed">Cerrado</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- DIRECCIÓN -->
-  <div class="pantalla" id="direccion">
-    <div class="top-bar">
-      <button class="back-btn" onclick="irA('main')"><i class="fas fa-arrow-left"></i></button>
-      <span class="top-bar-title">Dirección</span>
-    </div>
-    <div class="sub-content">
-      <div class="container">
-        <div class="section-header"><span class="mini">Ubicación</span><h2>Dónde encontrarnos</h2><p>Visítanos en nuestra dirección.</p></div>
-        <div class="direccion-grid">
-          <div class="info-card">
-            <h3><i class="fas fa-location-dot"></i> Dirección</h3>
-            <p style="color:var(--muted);margin-bottom:16px;font-size:.92rem"><i class="fas fa-map-pin" style="color:var(--primary);margin-right:8px"></i>Ave 43 / 118 y 120 #11807 INT 2</p>
-            <div class="address-details">
-              <div class="address-item"><i class="fas fa-city"></i><div><span>Municipio</span><strong>Marianao</strong></div></div>
-              <div class="address-item"><i class="fas fa-map"></i><div><span>Provincia</span><strong>La Habana, Cuba</strong></div></div>
-              <div class="address-item"><i class="fas fa-clock"></i><div><span>Horario</span><strong>L-V 10-4PM · S 10-2PM</strong></div></div>
-              <div class="address-item"><i class="fas fa-phone"></i><div><span>Teléfono</span><strong>+53 56194280</strong></div></div>
+            <!-- SOFTWARE -->
+            <div class="servicio-card">
+                <h3><i class="fas fa-code"></i> Software</h3>
+                <ul>
+                    <li><i class="fas fa-check-circle"></i> Liberaciones de compañías</li>
+                    <li><i class="fas fa-check-circle"></i> Desbloqueos</li>
+                    <li><i class="fas fa-check-circle"></i> Flasheos</li>
+                    <li><i class="fas fa-check-circle"></i> Eliminación de cuentas Google</li>
+                    <li><i class="fas fa-check-circle"></i> Aplicaciones iPhone y Android</li>
+                    <li><i class="fas fa-check-circle"></i> Creación de cuentas iCloud</li>
+                </ul>
+                <div class="botones-servicio">
+                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20servicio%20de%20software" class="btn-small bg-wsp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="tel:+5356194280" class="btn-small bg-call"><i class="fas fa-phone"></i> Llamar</a>
+                </div>
             </div>
-            <a class="location-btn" href="https://www.google.com/maps/search/Marianao+Ave+43+118+y+120+11807+INT+2+La+Habana+Cuba" target="_blank"><i class="fas fa-map-location-dot"></i> Google Maps</a>
-          </div>
-          <div class="map-container"><div class="map-wrapper"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.5!2d-82.3895!3d23.0800!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sMarianao%2C+La+Habana%2C+Cuba!5e0!3m2!1ses!2scu!4v1" width="100%" height="100%" style="border:0" allowfullscreen="" loading="lazy" title="DR CELL"></iframe></div></div>
+
         </div>
-      </div>
     </div>
-  </div>
+</section>
 
-  <!-- CONTACTO -->
-  <div class="pantalla" id="contacto">
-    <div class="top-bar">
-      <button class="back-btn" onclick="irA('main')"><i class="fas fa-arrow-left"></i></button>
-      <span class="top-bar-title">Contacto</span>
-    </div>
-    <div class="sub-content">
-      <div class="container">
-        <div class="section-header"><span class="mini">Contacto</span><h2>Habla con nosotros</h2><p>Contáctanos por teléfono o WhatsApp.</p></div>
-        <div class="info-card" style="max-width:520px;margin:0 auto">
-          <div class="contact-links">
-            <a href="tel:+5356194280" class="contact-link"><i class="fas fa-phone cl-phone"></i><div><span>Teléfono</span><strong>+53 56194280</strong></div></a>
-            <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL%2C%20necesito%20informaci%C3%B3n" target="_blank" class="contact-link"><i class="fab fa-whatsapp cl-wa"></i><div><span>WhatsApp</span><strong>+53 56194280</strong></div></a>
-          </div>
+<!-- HORARIO -->
+<section class="horario" id="horario">
+    <div class="container">
+        <h2 class="titulo">Horario de Atención</h2>
+        <p class="subtitulo" style="color:#cbd5e1;">Estamos para ti toda la semana</p>
+        <div class="horario-grid">
+            <div class="horario-card">
+                <i class="fas fa-calendar-day"></i>
+                <h4>Lunes a Viernes</h4>
+                <p>10:00 AM - 4:00 PM</p>
+            </div>
+            <div class="horario-card">
+                <i class="fas fa-calendar-week"></i>
+                <h4>Sábados</h4>
+                <p>10:00 AM - 2:00 PM</p>
+            </div>
         </div>
-        <div class="footer"><p>© 2025 DR CELL. Todos los derechos reservados.</p></div>
-      </div>
     </div>
-  </div>
+</section>
 
-  <!-- FIREBASE (misma versión que admin.html) -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<!-- CONTACTO -->
+<section id="contacto">
+    <div class="container">
+        <h2 class="titulo">Contáctanos</h2>
+        <p class="subtitulo">Estamos a un clic de distancia</p>
+        <div class="contacto-grid">
+            <a href="https://wa.me/5356194280" target="_blank" class="contacto-card">
+                <i class="fab fa-whatsapp icon-wsp"></i>
+                <h3>WhatsApp</h3>
+                <p>+53 5619 4280</p>
+            </a>
+            <a href="tel:+5356194280" class="contacto-card">
+                <i class="fas fa-phone-alt icon-call"></i>
+                <h3>Llámanos</h3>
+                <p>+53 5619 4280</p>
+            </a>
+            <a href="https://www.facebook.com/profile.php?id=61557937613324" target="_blank" class="contacto-card">
+                <i class="fab fa-facebook icon-fb"></i>
+                <h3>Facebook</h3>
+                <p>Drcell Habana</p>
+            </a>
+        </div>
+    </div>
+</section>
 
-  <script>
-    // FIREBASE INIT
-    firebase.initializeApp({
-      apiKey: "AIzaSyDR_7eWhH_uu1Ad85FGl5G0HdxxHXzUpxE",
-      authDomain: "drcell-tienda.firebaseapp.com",
-      projectId: "drcell-tienda",
-      storageBucket: "drcell-tienda.firebasestorage.app",
-      messagingSenderId: "578229626967",
-      appId: "1:578229626967:web:7f71da8803e83e35199b12"
-    });
+<!-- FOOTER -->
+<footer>
+    <p><strong>DR CELL HABANA</strong> - Servicios de Hardware y Software Móvil</p>
+    <p>&copy; 2024 Todos los derechos reservados</p>
+</footer>
 
-    const db = firebase.firestore();
+<!-- BOTÓN FLOTANTE WSP -->
+<a href="https://wa.me/5356194280" class="float-wsp" target="_blank" title="Chatea con nosotros">
+    <i class="fab fa-whatsapp"></i>
+</a>
 
-    // NAVEGACIÓN
-    function irA(id) {
-      document.querySelectorAll('.pantalla').forEach(p => p.classList.remove('activa'));
-      const target = document.getElementById(id);
-      if (target) {
-        target.classList.add('activa');
-        const sub = target.querySelector('.sub-content');
-        if (sub) sub.scrollTop = 0;
-        const ms = target.querySelector('.main-screen');
-        if (ms) ms.scrollTop = 0;
-      }
-      if (id === 'tienda') cargarTienda();
-    }
-
-    const navOriginal = irA;
-    irA = function(id) {
-      navOriginal(id);
-      if (id !== 'main') {
-        history.pushState({ p: id }, '', '#' + id);
-      } else {
-        history.pushState({ p: 'main' }, '', window.location.pathname);
-      }
-    };
-
-    window.addEventListener('popstate', (e) => {
-      navOriginal(e.state && e.state.p ? e.state.p : 'main');
-    });
-
-    window.addEventListener('DOMContentLoaded', () => {
-      const hash = location.hash.replace('#', '');
-      if (['servicios','tienda','horario','direccion','contacto'].includes(hash)) {
-        navOriginal(hash);
-      }
-    });
-
-    // TIENDA - TIEMPO REAL CON FIREBASE
-    let tiendaListener = null;
-
-    function cargarTienda() {
-      const grid = document.getElementById('tiendaGrid');
-      const empty = document.getElementById('tiendaEmpty');
-      const loading = document.getElementById('tiendaLoading');
-
-      // Si ya hay listener activo, no crear otro
-      if (tiendaListener) return;
-
-      loading.style.display = 'block';
-      grid.style.display = 'none';
-      empty.style.display = 'none';
-
-      tiendaListener = db.collection('productos')
-        .orderBy('createdAt', 'desc')
-        .onSnapshot(function(snapshot) {
-          const productos = [];
-          snapshot.forEach(function(doc) {
-            productos.push({ id: doc.id, ...doc.data() });
-          });
-
-          loading.style.display = 'none';
-
-          if (productos.length === 0) {
-            grid.style.display = 'none';
-            empty.style.display = 'block';
-            return;
-          }
-
-          grid.style.display = 'grid';
-          empty.style.display = 'none';
-          grid.innerHTML = '';
-
-          productos.forEach(function(p) {
-            const msg = encodeURIComponent('Hola DR CELL, estoy interesado en: ' + p.nombre + ' (' + p.precio + '). ¿Está disponible?');
-            const imgHTML = p.imagen
-              ? '<img src="' + p.imagen + '" alt="' + p.nombre + '" class="product-img" onerror="this.outerHTML=\'<div class=\\\'product-img-placeholder\\\'><i class=\\\'fas fa-image\\\'></i></div>\'">'
-              : '<div class="product-img-placeholder"><i class="fas fa-box"></i></div>';
-
-            grid.innerHTML += '<div class="product-card">' +
-              imgHTML +
-              '<div class="product-body">' +
-                '<h3>' + p.nombre + '</h3>' +
-                '<p class="product-desc">' + p.descripcion + '</p>' +
-                '<div class="product-price">' + p.precio + '</div>' +
-                '<a href="https://wa.me/5356194280?text=' + msg + '" target="_blank" class="product-wa-btn">' +
-                  '<i class="fab fa-whatsapp"></i> Me interesa' +
-                '</a>' +
-              '</div>' +
-            '</div>';
-          });
-
-        }, function(error) {
-          console.error('Error cargando productos:', error);
-          loading.style.display = 'none';
-          empty.style.display = 'block';
-          document.querySelector('#tiendaEmpty h3').textContent = 'Error de conexión';
-          document.querySelector('#tiendaEmpty p').textContent = 'No se pudieron cargar los productos. Intenta más tarde.';
-        });
-    }
-  </script>
 </body>
 </html>
