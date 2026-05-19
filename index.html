@@ -12,6 +12,8 @@
             --azul-oscuro: #0a1929;
             --azul: #1e3a8a;
             --azul-claro: #3b82f6;
+            --blanco-oscuro: #e2e8f0;
+            --gris-claro: #cbd5e1;
         }
 
         html, body {
@@ -20,9 +22,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 100%);
+            background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 60%, #475569 100%);
             background-attachment: fixed;
-            color: white;
+            color: var(--blanco-oscuro);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -31,20 +33,23 @@
         /* HEADER */
         .header {
             text-align: center;
-            padding: 20px 15px 10px;
+            padding: 25px 15px 10px;
+            position: relative;
+            z-index: 10;
         }
         .header h1 {
-            font-size: 2rem;
+            font-size: 2.2rem;
             letter-spacing: 3px;
+            color: var(--blanco-oscuro);
         }
         .header h1 span { color: var(--azul-claro); }
         .header p {
-            color: #cbd5e1;
-            font-size: 0.9rem;
+            color: var(--gris-claro);
+            font-size: 0.95rem;
             margin-top: 5px;
         }
 
-        /* BOTONES DE ACCIÓN */
+        /* BOTONES DE MENÚ */
         .botones-menu {
             display: flex;
             justify-content: center;
@@ -56,12 +61,12 @@
             background: rgba(10,25,41,0.95);
             backdrop-filter: blur(15px);
             z-index: 100;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
         }
         .btn-menu {
-            background: rgba(255,255,255,0.1);
+            background: rgba(226,232,240,0.1);
             border: 2px solid transparent;
-            color: white;
+            color: var(--blanco-oscuro);
             padding: 10px 18px;
             border-radius: 50px;
             cursor: pointer;
@@ -71,15 +76,14 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
-            backdrop-filter: blur(10px);
         }
         .btn-menu:hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(226,232,240,0.2);
             transform: translateY(-2px);
         }
         .btn-menu.active {
             background: var(--azul-claro);
-            border-color: white;
+            border-color: var(--blanco-oscuro);
         }
 
         /* CONTENIDO */
@@ -87,7 +91,9 @@
             flex: 1;
             display: flex;
             justify-content: center;
-            padding: 20px;
+            padding: 30px 20px;
+            position: relative;
+            z-index: 10;
         }
 
         .seccion {
@@ -96,9 +102,7 @@
             max-width: 900px;
             animation: fadeIn 0.5s;
         }
-        .seccion.active {
-            display: block;
-        }
+        .seccion.active { display: block; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -106,11 +110,11 @@
         }
 
         .card {
-            background: rgba(255,255,255,0.1);
+            background: rgba(226,232,240,0.08);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 25px;
-            border: 1px solid rgba(255,255,255,0.2);
+            border: 1px solid rgba(226,232,240,0.2);
             width: 100%;
         }
 
@@ -121,56 +125,80 @@
             font-size: 1.5rem;
         }
 
-        /* INICIO con imagen */
-        .inicio-content {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .inicio-text {
-            flex: 1;
-            min-width: 250px;
+        /* ====== INICIO LIBRE (sin tarjeta) ====== */
+        .inicio-libre {
             text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        .inicio-text p {
-            font-size: 1rem;
-            line-height: 1.6;
-            margin-bottom: 20px;
+
+        /* FONDO DE TELÉFONOS GIGANTES */
+        .telefonos-fondo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: 1;
+            opacity: 0.12;
+            pointer-events: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
-        .inicio-img {
-            flex: 0 0 auto;
-        }
-        .inicio-img svg {
-            width: 250px;
+        .telefonos-fondo svg {
+            width: 90%;
+            max-width: 900px;
             height: auto;
-            filter: drop-shadow(0 10px 25px rgba(59,130,246,0.5));
+        }
+
+        .inicio-libre h2 {
+            font-size: 2.5rem;
+            color: var(--azul-claro);
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+        .inicio-libre p {
+            font-size: 1.15rem;
+            line-height: 1.7;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            color: var(--blanco-oscuro);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
         }
         .inicio-botones {
             display: flex;
             justify-content: center;
-            gap: 12px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         .btn-action {
-            padding: 12px 25px;
+            padding: 14px 30px;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: bold;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: transform 0.3s;
-            font-size: 0.95rem;
+            gap: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
         }
-        .btn-action:hover { transform: scale(1.05); }
+        .btn-action:hover {
+            transform: scale(1.08);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+        }
         .btn-wsp { background: #25d366; }
         .btn-call { background: var(--azul-claro); }
         .btn-fb { background: #1877f2; }
 
-        /* CATEGORIAS DE SERVICIOS */
+        /* CATEGORÍAS */
         .categoria-titulo {
             font-size: 1.3rem;
             color: var(--azul-claro);
@@ -183,15 +211,13 @@
         }
         .categoria-titulo:first-of-type { margin-top: 0; }
 
-        /* LISTA DE SERVICIOS INDIVIDUALES */
         .servicios-lista {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
             gap: 12px;
         }
-
         .servicio-item {
-            background: rgba(0,0,0,0.3);
+            background: rgba(10,25,41,0.5);
             padding: 15px;
             border-radius: 12px;
             border-left: 4px solid var(--azul-claro);
@@ -203,7 +229,7 @@
         }
         .servicio-item:hover {
             transform: translateY(-3px);
-            background: rgba(0,0,0,0.5);
+            background: rgba(10,25,41,0.7);
         }
         .servicio-info {
             display: flex;
@@ -212,20 +238,9 @@
             flex: 1;
             min-width: 0;
         }
-        .servicio-info i {
-            color: #10b981;
-            font-size: 1rem;
-            flex-shrink: 0;
-        }
-        .servicio-info span {
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-        .servicio-acciones {
-            display: flex;
-            gap: 6px;
-            flex-shrink: 0;
-        }
+        .servicio-info i { color: #10b981; font-size: 1rem; flex-shrink: 0; }
+        .servicio-info span { font-size: 0.95rem; font-weight: 500; }
+        .servicio-acciones { display: flex; gap: 6px; flex-shrink: 0; }
         .btn-circular {
             width: 36px;
             height: 36px;
@@ -249,18 +264,14 @@
             gap: 20px;
         }
         .horario-box {
-            background: rgba(0,0,0,0.3);
+            background: rgba(10,25,41,0.5);
             padding: 30px;
             border-radius: 12px;
             text-align: center;
         }
-        .horario-box i {
-            font-size: 2.5rem;
-            color: var(--azul-claro);
-            margin-bottom: 12px;
-        }
+        .horario-box i { font-size: 2.5rem; color: var(--azul-claro); margin-bottom: 12px; }
         .horario-box h3 { margin-bottom: 10px; }
-        .horario-box p { font-size: 1.1rem; color: #cbd5e1; }
+        .horario-box p { font-size: 1.1rem; color: var(--gris-claro); }
 
         /* CONTACTO */
         .contacto-grid {
@@ -269,12 +280,12 @@
             gap: 20px;
         }
         .contacto-box {
-            background: rgba(0,0,0,0.3);
+            background: rgba(10,25,41,0.5);
             padding: 30px 15px;
             border-radius: 12px;
             text-align: center;
             text-decoration: none;
-            color: white;
+            color: var(--blanco-oscuro);
             transition: transform 0.3s;
         }
         .contacto-box:hover { transform: translateY(-5px); }
@@ -287,27 +298,85 @@
         footer {
             text-align: center;
             padding: 20px;
-            color: #cbd5e1;
+            color: var(--gris-claro);
             font-size: 0.85rem;
-            background: rgba(0,0,0,0.3);
+            background: rgba(0,0,0,0.4);
+            position: relative;
+            z-index: 10;
         }
 
         /* RESPONSIVE */
         @media(max-width: 600px) {
-            .header h1 { font-size: 1.5rem; }
+            .header h1 { font-size: 1.6rem; }
             .btn-menu { padding: 8px 14px; font-size: 0.8rem; }
-            .horario-grid, .contacto-grid {
-                grid-template-columns: 1fr;
-            }
-            .servicios-lista {
-                grid-template-columns: 1fr;
-            }
-            .inicio-img svg { width: 180px; }
+            .horario-grid, .contacto-grid { grid-template-columns: 1fr; }
+            .servicios-lista { grid-template-columns: 1fr; }
             .card { padding: 20px; }
+            .inicio-libre h2 { font-size: 1.8rem; }
+            .inicio-libre p { font-size: 1rem; }
+            .telefonos-fondo { opacity: 0.08; }
         }
     </style>
 </head>
 <body>
+
+<!-- FONDO DE TELÉFONOS GIGANTES -->
+<div class="telefonos-fondo">
+    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- SAMSUNG GIGANTE -->
+        <g transform="translate(100, 50) rotate(-10)">
+            <rect x="0" y="0" width="280" height="450" rx="35" fill="#1a1a2e" stroke="#3b82f6" stroke-width="3"/>
+            <rect x="10" y="10" width="260" height="430" rx="28" fill="url(#screenSam)"/>
+            <circle cx="50" cy="40" r="6" fill="#0a0a0a"/>
+            <text x="140" y="90" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="Arial">9:41</text>
+            <text x="140" y="120" text-anchor="middle" fill="#cbd5e1" font-size="14" font-family="Arial">Galaxy S24 Ultra</text>
+            <!-- Apps -->
+            <rect x="40" y="160" width="45" height="45" rx="10" fill="#3b82f6"/>
+            <rect x="100" y="160" width="45" height="45" rx="10" fill="#25d366"/>
+            <rect x="160" y="160" width="45" height="45" rx="10" fill="#ef4444"/>
+            <rect x="220" y="160" width="45" height="45" rx="10" fill="#f59e0b"/>
+            <rect x="40" y="225" width="45" height="45" rx="10" fill="#8b5cf6"/>
+            <rect x="100" y="225" width="45" height="45" rx="10" fill="#ec4899"/>
+            <rect x="160" y="225" width="45" height="45" rx="10" fill="#10b981"/>
+            <rect x="220" y="225" width="45" height="45" rx="10" fill="#06b6d4"/>
+        </g>
+
+        <!-- IPHONE GIGANTE -->
+        <g transform="translate(440, 30) rotate(10)">
+            <rect x="0" y="0" width="290" height="470" rx="40" fill="#2c2c2c" stroke="#3b82f6" stroke-width="3"/>
+            <rect x="10" y="10" width="270" height="450" rx="32" fill="url(#screenIph)"/>
+            <rect x="100" y="25" width="90" height="25" rx="12" fill="#000"/>
+            <text x="145" y="100" text-anchor="middle" fill="white" font-size="30" font-weight="bold" font-family="Arial">9:41</text>
+            <text x="145" y="130" text-anchor="middle" fill="#cbd5e1" font-size="15" font-family="Arial">iPhone 15 Pro</text>
+            <!-- Apps -->
+            <rect x="40" y="170" width="48" height="48" rx="12" fill="#3b82f6"/>
+            <rect x="105" y="170" width="48" height="48" rx="12" fill="#25d366"/>
+            <rect x="170" y="170" width="48" height="48" rx="12" fill="#ef4444"/>
+            <rect x="235" y="170" width="48" height="48" rx="12" fill="#f59e0b"/>
+            <rect x="40" y="240" width="48" height="48" rx="12" fill="#8b5cf6"/>
+            <rect x="105" y="240" width="48" height="48" rx="12" fill="#10b981"/>
+            <rect x="170" y="240" width="48" height="48" rx="12" fill="#ec4899"/>
+            <rect x="235" y="240" width="48" height="48" rx="12" fill="#06b6d4"/>
+            <rect x="40" y="310" width="48" height="48" rx="12" fill="#f97316"/>
+            <rect x="105" y="310" width="48" height="48" rx="12" fill="#a855f7"/>
+            <rect x="170" y="310" width="48" height="48" rx="12" fill="#14b8a6"/>
+            <rect x="235" y="310" width="48" height="48" rx="12" fill="#facc15"/>
+            <!-- Barra inferior -->
+            <rect x="110" y="430" width="70" height="5" rx="3" fill="white"/>
+        </g>
+
+        <defs>
+            <linearGradient id="screenSam" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#1e3a8a"/>
+                <stop offset="100%" stop-color="#0a1929"/>
+            </linearGradient>
+            <linearGradient id="screenIph" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#3b82f6"/>
+                <stop offset="100%" stop-color="#1e3a8a"/>
+            </linearGradient>
+        </defs>
+    </svg>
+</div>
 
 <!-- HEADER -->
 <div class="header">
@@ -331,72 +400,24 @@
     </button>
 </div>
 
-<!-- CONTENIDO DINÁMICO -->
+<!-- CONTENIDO -->
 <div class="contenido">
 
-    <!-- INICIO -->
+    <!-- INICIO LIBRE -->
     <div class="seccion active" id="inicio">
-        <div class="card">
-            <div class="inicio-content">
-                <div class="inicio-img">
-                    <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="translate(20, 50) rotate(-8)">
-                            <rect x="0" y="0" width="110" height="220" rx="18" fill="#1a1a2e" stroke="#444" stroke-width="2"/>
-                            <rect x="5" y="5" width="100" height="210" rx="14" fill="url(#samsungScreen)"/>
-                            <circle cx="20" cy="22" r="3" fill="#0a0a0a"/>
-                            <text x="55" y="45" text-anchor="middle" fill="white" font-size="14" font-weight="bold" font-family="Arial">9:41</text>
-                            <text x="55" y="60" text-anchor="middle" fill="#cbd5e1" font-size="7" font-family="Arial">Galaxy S24 Ultra</text>
-                            <rect x="15" y="75" width="18" height="18" rx="4" fill="#3b82f6"/>
-                            <rect x="40" y="75" width="18" height="18" rx="4" fill="#25d366"/>
-                            <rect x="65" y="75" width="18" height="18" rx="4" fill="#ef4444"/>
-                            <rect x="15" y="100" width="18" height="18" rx="4" fill="#f59e0b"/>
-                            <rect x="40" y="100" width="18" height="18" rx="4" fill="#8b5cf6"/>
-                            <rect x="65" y="100" width="18" height="18" rx="4" fill="#ec4899"/>
-                        </g>
-                        <g transform="translate(150, 30) rotate(8)">
-                            <rect x="0" y="0" width="120" height="240" rx="22" fill="#2c2c2c" stroke="#555" stroke-width="2"/>
-                            <rect x="5" y="5" width="110" height="230" rx="18" fill="url(#iphoneScreen)"/>
-                            <rect x="40" y="12" width="40" height="12" rx="6" fill="#000"/>
-                            <text x="60" y="55" text-anchor="middle" fill="white" font-size="16" font-weight="bold" font-family="Arial">9:41</text>
-                            <text x="60" y="72" text-anchor="middle" fill="#cbd5e1" font-size="8" font-family="Arial">iPhone 15 Pro</text>
-                            <rect x="18" y="90" width="20" height="20" rx="5" fill="#3b82f6"/>
-                            <rect x="48" y="90" width="20" height="20" rx="5" fill="#25d366"/>
-                            <rect x="78" y="90" width="20" height="20" rx="5" fill="#ef4444"/>
-                            <rect x="18" y="118" width="20" height="20" rx="5" fill="#f59e0b"/>
-                            <rect x="48" y="118" width="20" height="20" rx="5" fill="#8b5cf6"/>
-                            <rect x="78" y="118" width="20" height="20" rx="5" fill="#10b981"/>
-                            <rect x="18" y="146" width="20" height="20" rx="5" fill="#ec4899"/>
-                            <rect x="48" y="146" width="20" height="20" rx="5" fill="#06b6d4"/>
-                            <rect x="78" y="146" width="20" height="20" rx="5" fill="#f97316"/>
-                            <rect x="40" y="220" width="40" height="3" rx="2" fill="white"/>
-                        </g>
-                        <defs>
-                            <linearGradient id="samsungScreen" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#1e3a8a"/>
-                                <stop offset="100%" stop-color="#0a1929"/>
-                            </linearGradient>
-                            <linearGradient id="iphoneScreen" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" stop-color="#3b82f6"/>
-                                <stop offset="100%" stop-color="#1e3a8a"/>
-                            </linearGradient>
-                        </defs>
-                    </svg>
-                </div>
-                <div class="inicio-text">
-                    <h2 style="color:var(--azul-claro); margin-bottom:10px;">¡Bienvenido!</h2>
-                    <p>En <strong>DR CELL Habana</strong> somos especialistas en reparación de celulares iPhone y Android. Hardware y software con garantía. ¡Tu celular en las mejores manos!</p>
-                    <div class="inicio-botones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL" target="_blank" class="btn-action btn-wsp">
-                            <i class="fab fa-whatsapp"></i> WhatsApp
-                        </a>
-                        <a href="tel:+5356194280" class="btn-action btn-call">
-                            <i class="fas fa-phone"></i> Llamar
-                        </a>
-                        <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="btn-action btn-fb">
-                            <i class="fab fa-facebook"></i> Facebook
-                        </a>
-                    </div>
-                </div>
+        <div class="inicio-libre">
+            <h2>¡Bienvenido!</h2>
+            <p>En <strong>DR CELL Habana</strong> somos especialistas en reparación de celulares iPhone y Android. Hardware y software con garantía, rapidez y profesionalismo. ¡Tu celular en las mejores manos!</p>
+            <div class="inicio-botones">
+                <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL" target="_blank" class="btn-action btn-wsp">
+                    <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <a href="tel:+5356194280" class="btn-action btn-call">
+                    <i class="fas fa-phone"></i> Llamar
+                </a>
+                <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="btn-action btn-fb">
+                    <i class="fab fa-facebook"></i> Facebook
+                </a>
             </div>
         </div>
     </div>
@@ -406,161 +427,104 @@
         <div class="card">
             <h2><i class="fas fa-tools"></i> Nuestros Servicios</h2>
 
-            <!-- HARDWARE -->
             <h3 class="categoria-titulo"><i class="fas fa-microchip"></i> Hardware</h3>
             <div class="servicios-lista">
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-mobile-screen"></i>
-                        <span>Cambio de pantalla</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-mobile-screen"></i><span>Cambio de pantalla</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20pantalla" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20pantalla" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-battery-full"></i>
-                        <span>Cambio de batería</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-battery-full"></i><span>Cambio de batería</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20batería" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20batería" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-plug"></i>
-                        <span>Cambio de puerto de carga</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-plug"></i><span>Cambio de puerto de carga</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20puerto%20de%20carga" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20puerto%20de%20carga" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-circle-dot"></i>
-                        <span>Cambio de botones</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-circle-dot"></i><span>Cambio de botones</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20botones" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20botones" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-fire"></i>
-                        <span>Microsoldaduras</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-fire"></i><span>Microsoldaduras</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20una%20microsoldadura" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20una%20microsoldadura" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-microchip"></i>
-                        <span>Reparación de placa</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-microchip"></i><span>Reparación de placa</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20reparación%20de%20placa" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20reparación%20de%20placa" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
             </div>
 
-            <!-- SOFTWARE -->
             <h3 class="categoria-titulo"><i class="fas fa-code"></i> Software</h3>
             <div class="servicios-lista">
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-unlock"></i>
-                        <span>Liberación de compañía</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-unlock"></i><span>Liberación de compañía</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20liberación%20de%20compañía" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20liberación%20de%20compañía" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-key"></i>
-                        <span>Desbloqueos</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-key"></i><span>Desbloqueos</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20desbloqueo" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20desbloqueo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-download"></i>
-                        <span>Flasheos</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-download"></i><span>Flasheos</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20flasheo" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20flasheo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fab fa-google"></i>
-                        <span>Eliminar cuenta Google</span>
-                    </div>
+                    <div class="servicio-info"><i class="fab fa-google"></i><span>Eliminar cuenta Google</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20eliminar%20cuenta%20de%20Google" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20eliminar%20cuenta%20de%20Google" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fab fa-apple"></i>
-                        <span>Apps para iPhone</span>
-                    </div>
+                    <div class="servicio-info"><i class="fab fa-apple"></i><span>Apps para iPhone</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20iPhone" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20iPhone" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fab fa-android"></i>
-                        <span>Apps para Android</span>
-                    </div>
+                    <div class="servicio-info"><i class="fab fa-android"></i><span>Apps para Android</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20Android" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20Android" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
                 <div class="servicio-item">
-                    <div class="servicio-info">
-                        <i class="fas fa-cloud"></i>
-                        <span>Crear cuenta iCloud</span>
-                    </div>
+                    <div class="servicio-info"><i class="fas fa-cloud"></i><span>Crear cuenta iCloud</span></div>
                     <div class="servicio-acciones">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20crear%20una%20cuenta%20iCloud" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20crear%20una%20cuenta%20iCloud" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-
             </div>
-
         </div>
     </div>
 
