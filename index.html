@@ -10,14 +10,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --negro: #0a0a0f;
-            --negro-suave: #131320;
-            --gris-oscuro: #1f1f2e;
-            --cyan: #06b6d4;
-            --cyan-brillante: #22d3ee;
-            --cyan-claro: #67e8f9;
-            --blanco-oscuro: #e2e8f0;
-            --gris-claro: #94a3b8;
+            --negro: #0a0a0a;
+            --grafito: #1a1a1a;
+            --grafito-claro: #2a2a2a;
+            --cian: #00d9ff;
+            --cian-brillante: #22e5ff;
+            --cian-oscuro: #00a8cc;
+            --blanco: #f1f5f9;
+            --gris: #94a3b8;
             --dorado: #fbbf24;
         }
 
@@ -27,9 +27,9 @@
         }
 
         body {
-            background: linear-gradient(135deg, #0a0a0f 0%, #131320 50%, #1f1f2e 100%);
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0d1f23 100%);
             background-attachment: fixed;
-            color: var(--blanco-oscuro);
+            color: var(--blanco);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
@@ -46,12 +46,12 @@
         .header h1 {
             font-size: 2rem;
             letter-spacing: 4px;
-            color: var(--blanco-oscuro);
+            color: var(--blanco);
             font-weight: 800;
         }
-        .header h1 span { color: var(--cyan-brillante); text-shadow: 0 0 15px rgba(34,211,238,0.5); }
+        .header h1 span { color: var(--cian); text-shadow: 0 0 20px rgba(0,217,255,0.5); }
         .header p {
-            color: var(--gris-claro);
+            color: var(--gris);
             font-size: 0.9rem;
             margin-top: 5px;
             font-weight: 300;
@@ -68,16 +68,16 @@
             flex-wrap: wrap;
             position: sticky;
             top: 0;
-            background: rgba(10,10,15,0.95);
+            background: rgba(10,10,10,0.95);
             backdrop-filter: blur(15px);
             z-index: 100;
             box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-            border-bottom: 1px solid rgba(34,211,238,0.2);
+            border-bottom: 1px solid rgba(0,217,255,0.15);
         }
         .btn-menu {
-            background: rgba(226,232,240,0.05);
+            background: rgba(255,255,255,0.05);
             border: 2px solid transparent;
-            color: var(--blanco-oscuro);
+            color: var(--blanco);
             padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
@@ -89,11 +89,16 @@
             transition: all 0.3s;
             font-family: 'Poppins', sans-serif;
         }
-        .btn-menu:hover { background: rgba(34,211,238,0.1); transform: translateY(-2px); }
+        .btn-menu:hover {
+            background: rgba(0,217,255,0.1);
+            transform: translateY(-2px);
+            border-color: rgba(0,217,255,0.3);
+        }
         .btn-menu.active {
-            background: var(--cyan);
-            border-color: var(--cyan-brillante);
-            box-shadow: 0 0 20px rgba(34,211,238,0.5);
+            background: var(--cian);
+            color: var(--negro);
+            border-color: var(--cian-brillante);
+            box-shadow: 0 0 20px rgba(0,217,255,0.5);
         }
 
         /* CONTENIDO */
@@ -116,7 +121,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* HERO */
+        /* ========== HERO ========== */
         .hero {
             display: grid;
             grid-template-columns: 1.2fr 1fr;
@@ -138,14 +143,15 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            background: rgba(34,211,238,0.1);
-            border: 1px solid var(--cyan);
+            background: rgba(0,217,255,0.1);
+            border: 1px solid var(--cian);
             padding: 6px 16px;
             border-radius: 50px;
             font-size: 0.8rem;
-            color: var(--cyan-brillante);
+            color: var(--cian);
             margin-bottom: 20px;
             font-weight: 600;
+            box-shadow: 0 0 15px rgba(0,217,255,0.2);
         }
         .badge-top i { color: var(--dorado); }
 
@@ -157,20 +163,22 @@
             color: white;
         }
         .hero-text h1 .highlight {
-            background: linear-gradient(135deg, var(--cyan), var(--cyan-brillante));
+            background: linear-gradient(135deg, var(--cian), var(--cian-brillante));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0,217,255,0.3));
         }
 
         .hero-text .descripcion {
             font-size: 1.05rem;
-            color: var(--gris-claro);
+            color: var(--gris);
             margin-bottom: 30px;
             line-height: 1.7;
             max-width: 500px;
         }
 
+        /* CTA */
         .cta-botones {
             display: flex;
             gap: 12px;
@@ -189,42 +197,42 @@
             transition: all 0.3s;
             font-size: 0.95rem;
             font-family: 'Poppins', sans-serif;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,0.6); }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,217,255,0.3); }
         .btn-primary {
             background: linear-gradient(135deg, #25d366, #1ea952);
         }
         .btn-secondary {
-            background: rgba(34,211,238,0.1);
-            border: 2px solid var(--cyan);
-            color: var(--cyan-brillante);
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--cian);
+            color: var(--cian);
             backdrop-filter: blur(10px);
         }
-        .btn-secondary:hover { background: rgba(34,211,238,0.2); }
 
+        /* Estadísticas */
         .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             padding-top: 25px;
-            border-top: 1px solid rgba(255,255,255,0.08);
+            border-top: 1px solid rgba(0,217,255,0.15);
         }
         .stat-item h3 {
             font-size: 2rem;
-            color: var(--cyan-brillante);
+            color: var(--cian);
             font-weight: 800;
             margin-bottom: 4px;
-            text-shadow: 0 0 10px rgba(34,211,238,0.3);
+            text-shadow: 0 0 15px rgba(0,217,255,0.3);
         }
         .stat-item p {
             font-size: 0.8rem;
-            color: var(--gris-claro);
+            color: var(--gris);
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* TELÉFONO HERO */
+        /* TELÉFONO */
         .hero-phone {
             display: flex;
             justify-content: center;
@@ -241,19 +249,19 @@
             position: absolute;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(34,211,238,0.4) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0,217,255,0.4) 0%, transparent 70%);
             border-radius: 50%;
             animation: pulse 3s ease-in-out infinite;
         }
         @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.1); opacity: 0.4; }
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.3; }
         }
 
         .hero-phone svg {
             width: 280px;
             height: auto;
-            filter: drop-shadow(0 25px 50px rgba(34,211,238,0.3));
+            filter: drop-shadow(0 25px 50px rgba(0,217,255,0.3));
             position: relative;
             z-index: 2;
             animation: float 4s ease-in-out infinite;
@@ -263,6 +271,7 @@
             50% { transform: translateY(-15px); }
         }
 
+        /* FEATURES */
         .features {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -271,8 +280,8 @@
             padding: 0 20px 40px;
         }
         .feature-card {
-            background: rgba(31,31,46,0.6);
-            border: 1px solid rgba(34,211,238,0.15);
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0,217,255,0.15);
             backdrop-filter: blur(10px);
             padding: 25px;
             border-radius: 16px;
@@ -281,22 +290,22 @@
         }
         .feature-card:hover {
             transform: translateY(-5px);
-            background: rgba(31,31,46,0.9);
-            border-color: var(--cyan);
-            box-shadow: 0 10px 30px rgba(34,211,238,0.2);
+            background: rgba(0,217,255,0.05);
+            border-color: var(--cian);
+            box-shadow: 0 10px 30px rgba(0,217,255,0.15);
         }
         .feature-card .icon-box {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, var(--cyan), var(--cyan-brillante));
+            background: linear-gradient(135deg, var(--cian), var(--cian-oscuro));
             border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
             font-size: 1.5rem;
-            color: white;
-            box-shadow: 0 5px 20px rgba(34,211,238,0.4);
+            color: var(--negro);
+            box-shadow: 0 0 25px rgba(0,217,255,0.4);
         }
         .feature-card h4 {
             font-size: 1.1rem;
@@ -306,37 +315,38 @@
         }
         .feature-card p {
             font-size: 0.85rem;
-            color: var(--gris-claro);
+            color: var(--gris);
             line-height: 1.5;
         }
 
-        /* TARJETA GENERAL */
+        /* CARD */
         .card {
-            background: rgba(31,31,46,0.6);
+            background: rgba(255,255,255,0.03);
             backdrop-filter: blur(15px);
             border-radius: 20px;
             padding: 30px;
-            border: 1px solid rgba(34,211,238,0.15);
+            border: 1px solid rgba(0,217,255,0.15);
             width: 100%;
         }
         .card h2 {
             text-align: center;
             margin-bottom: 25px;
-            color: var(--cyan-brillante);
+            color: var(--cian);
             font-size: 1.6rem;
             font-weight: 700;
+            text-shadow: 0 0 15px rgba(0,217,255,0.3);
         }
 
         /* SERVICIOS */
         .categoria-titulo {
             font-size: 1.3rem;
-            color: var(--cyan-brillante);
+            color: var(--cian);
             margin: 25px 0 15px;
             display: flex;
             align-items: center;
             gap: 10px;
             padding-bottom: 10px;
-            border-bottom: 2px solid rgba(34,211,238,0.3);
+            border-bottom: 2px solid rgba(0,217,255,0.2);
             font-weight: 600;
         }
         .categoria-titulo:first-of-type { margin-top: 0; }
@@ -347,7 +357,398 @@
             gap: 12px;
         }
         .servicio-item {
-            background: rgba(10,10,15,0.6);
+            background: rgba(10,10,10,0.6);
             padding: 15px;
             border-radius: 12px;
-            border-left: 4px 
+            border-left: 4px solid var(--cian);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
+        }
+        .servicio-item:hover {
+            transform: translateY(-3px);
+            background: rgba(0,217,255,0.05);
+            box-shadow: 0 5px 20px rgba(0,217,255,0.1);
+        }
+        .servicio-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
+        .servicio-info i { color: var(--cian); font-size: 1rem; flex-shrink: 0; }
+        .servicio-info span { font-size: 0.95rem; font-weight: 500; }
+        .servicio-acciones { display: flex; gap: 6px; flex-shrink: 0; }
+        .btn-circular {
+            width: 38px; height: 38px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: white;
+            font-size: 0.95rem;
+            transition: transform 0.3s;
+        }
+        .btn-circular:hover { transform: scale(1.15); }
+        .bg-wsp { background: #25d366; }
+        .bg-call { background: var(--cian); color: var(--negro) !important; }
+
+        /* HORARIO */
+        .horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .horario-box {
+            background: rgba(10,10,10,0.6);
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(0,217,255,0.1);
+        }
+        .horario-box i { font-size: 2.8rem; color: var(--cian); margin-bottom: 12px; text-shadow: 0 0 20px rgba(0,217,255,0.4); }
+        .horario-box h3 { margin-bottom: 10px; font-weight: 600; }
+        .horario-box p { font-size: 1.1rem; color: var(--gris); }
+
+        /* CONTACTO */
+        .contacto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .contacto-box {
+            background: rgba(10,10,10,0.6);
+            padding: 35px 15px;
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--blanco);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,217,255,0.1);
+        }
+        .contacto-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--cian);
+            box-shadow: 0 10px 30px rgba(0,217,255,0.15);
+        }
+        .contacto-box i { font-size: 2.8rem; margin-bottom: 12px; }
+        .contacto-box h3 { margin-bottom: 5px; font-weight: 600; }
+        .ic-wsp { color: #25d366; }
+        .ic-call { color: var(--cian); }
+        .ic-fb { color: #1877f2; }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: var(--gris);
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.6);
+            border-top: 1px solid rgba(0,217,255,0.15);
+        }
+
+        /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-text { order: 2; }
+            .hero-phone { order: 1; }
+            .hero-text h1 { font-size: 2.3rem; }
+            .cta-botones { justify-content: center; }
+            .hero-text .descripcion { margin-left: auto; margin-right: auto; }
+            .features { grid-template-columns: 1fr; }
+        }
+        @media(max-width: 600px) {
+            .header h1 { font-size: 1.5rem; }
+            .btn-menu { padding: 8px 14px; font-size: 0.8rem; }
+            .horario-grid, .contacto-grid { grid-template-columns: 1fr; }
+            .servicios-lista { grid-template-columns: 1fr; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .stats { grid-template-columns: 1fr; gap: 15px; text-align: center; }
+            .hero-phone svg { width: 220px; }
+            .phone-glow { width: 280px; height: 280px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+    <h1>DR <span>CELL</span> HABANA</h1>
+    <p>Servicio técnico profesional</p>
+</div>
+
+<!-- MENÚ -->
+<div class="botones-menu">
+    <button class="btn-menu active" onclick="mostrar('inicio', this)"><i class="fas fa-home"></i> Inicio</button>
+    <button class="btn-menu" onclick="mostrar('servicios', this)"><i class="fas fa-tools"></i> Servicios</button>
+    <button class="btn-menu" onclick="mostrar('horario', this)"><i class="fas fa-clock"></i> Horario</button>
+    <button class="btn-menu" onclick="mostrar('contacto', this)"><i class="fas fa-phone"></i> Contacto</button>
+</div>
+
+<!-- CONTENIDO -->
+<div class="contenido">
+
+    <!-- INICIO -->
+    <div class="seccion active" id="inicio">
+
+        <div class="hero">
+            <div class="hero-text">
+                <div class="badge-top">
+                    <i class="fas fa-star"></i>
+                    <span>Servicio Técnico Premium en La Habana</span>
+                </div>
+                <h1>Reparamos tu <span class="highlight">celular</span> con tecnología y profesionalismo</h1>
+                <p class="descripcion">
+                    Somos expertos en <strong>iPhone</strong> y <strong>Android</strong>. Hardware, software, microsoldaduras y mucho más. Diagnóstico gratuito y garantía en todos nuestros servicios.
+                </p>
+
+                <div class="cta-botones">
+                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20quiero%20información" target="_blank" class="btn-cta btn-primary">
+                        <i class="fab fa-whatsapp"></i> Cotizar ahora
+                    </a>
+                    <a href="tel:+5356194280" class="btn-cta btn-secondary">
+                        <i class="fas fa-phone"></i> Llamar
+                    </a>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>+500</h3>
+                        <p>Equipos reparados</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Garantía</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24h</h3>
+                        <p>Respuesta rápida</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-phone">
+                <div class="phone-glow"></div>
+                <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="395" rx="60" ry="6" fill="rgba(0,0,0,0.5)"/>
+                    <rect x="20" y="10" width="160" height="370" rx="32" fill="url(#bodyGradient)" stroke="#00d9ff" stroke-width="2"/>
+                    <rect x="28" y="18" width="144" height="354" rx="26" fill="url(#screenGradient)"/>
+                    <rect x="75" y="32" width="50" height="16" rx="8" fill="#000"/>
+                    <circle cx="115" cy="40" r="3" fill="#1a1a1a"/>
+                    <text x="100" y="100" text-anchor="middle" fill="white" font-size="32" font-weight="700" font-family="Poppins">9:41</text>
+                    <text x="100" y="120" text-anchor="middle" fill="#00d9ff" font-size="9" font-family="Poppins">DR CELL HABANA</text>
+
+                    <rect x="40" y="140" width="120" height="60" rx="12" fill="rgba(0,217,255,0.15)" stroke="rgba(0,217,255,0.3)" stroke-width="1"/>
+                    <text x="100" y="165" text-anchor="middle" fill="white" font-size="10" font-weight="600" font-family="Poppins">Servicio Técnico</text>
+                    <text x="100" y="185" text-anchor="middle" fill="#00d9ff" font-size="14" font-weight="700" font-family="Poppins">Profesional</text>
+
+                    <rect x="40" y="215" width="28" height="28" rx="7" fill="#00d9ff"/>
+                    <rect x="76" y="215" width="28" height="28" rx="7" fill="#25d366"/>
+                    <rect x="112" y="215" width="28" height="28" rx="7" fill="#ef4444"/>
+                    <rect x="148" y="215" width="14" height="28" rx="7" fill="#f59e0b" opacity="0.7"/>
+
+                    <rect x="40" y="252" width="28" height="28" rx="7" fill="#8b5cf6"/>
+                    <rect x="76" y="252" width="28" height="28" rx="7" fill="#10b981"/>
+                    <rect x="112" y="252" width="28" height="28" rx="7" fill="#ec4899"/>
+                    <rect x="148" y="252" width="14" height="28" rx="7" fill="#06b6d4" opacity="0.7"/>
+
+                    <rect x="40" y="289" width="28" height="28" rx="7" fill="#f97316"/>
+                    <rect x="76" y="289" width="28" height="28" rx="7" fill="#a855f7"/>
+                    <rect x="112" y="289" width="28" height="28" rx="7" fill="#14b8a6"/>
+                    <rect x="148" y="289" width="14" height="28" rx="7" fill="#facc15" opacity="0.7"/>
+
+                    <rect x="35" y="335" width="130" height="32" rx="14" fill="rgba(0,217,255,0.1)"/>
+                    <rect x="48" y="343" width="22" height="22" rx="6" fill="#00d9ff"/>
+                    <rect x="78" y="343" width="22" height="22" rx="6" fill="#25d366"/>
+                    <rect x="108" y="343" width="22" height="22" rx="6" fill="#1877f2"/>
+                    <rect x="138" y="343" width="22" height="22" rx="6" fill="#ef4444"/>
+
+                    <rect x="75" y="370" width="50" height="3" rx="2" fill="white"/>
+
+                    <defs>
+                        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1a1a1a"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
+                        </linearGradient>
+                        <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0d1f23"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
+                <h4>Garantía Total</h4>
+                <p>Todos nuestros servicios cuentan con garantía escrita.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-bolt"></i></div>
+                <h4>Servicio Rápido</h4>
+                <p>Reparamos tu equipo en el menor tiempo posible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                <h4>Técnicos Expertos</h4>
+                <p>Personal capacitado en iPhone, Android y microsoldaduras.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div class="seccion" id="servicios">
+        <div class="card">
+            <h2><i class="fas fa-tools"></i> Nuestros Servicios</h2>
+
+            <h3 class="categoria-titulo"><i class="fas fa-microchip"></i> Hardware</h3>
+            <div class="servicios-lista">
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-mobile-screen"></i><span>Cambio de pantalla</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20pantalla" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-battery-full"></i><span>Cambio de batería</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20batería" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-plug"></i><span>Cambio de puerto de carga</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20puerto%20de%20carga" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-circle-dot"></i><span>Cambio de botones</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20botones" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-fire"></i><span>Microsoldaduras</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20una%20microsoldadura" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-microchip"></i><span>Reparación de placa</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20reparación%20de%20placa" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <h3 class="categoria-titulo"><i class="fas fa-code"></i> Software</h3>
+            <div class="servicios-lista">
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-unlock"></i><span>Liberación de compañía</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20liberación%20de%20compañía" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-key"></i><span>Desbloqueos</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20desbloqueo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-download"></i><span>Flasheos</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20flasheo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fab fa-google"></i><span>Eliminar cuenta Google</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20eliminar%20cuenta%20de%20Google" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fab fa-apple"></i><span>Apps para iPhone</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20iPhone" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fab fa-android"></i><span>Apps para Android</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20Android" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+                <div class="servicio-item">
+                    <div class="servicio-info"><i class="fas fa-cloud"></i><span>Crear cuenta iCloud</span></div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20crear%20una%20cuenta%20iCloud" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- HORARIO -->
+    <div class="seccion" id="horario">
+        <div class="card">
+            <h2><i class="fas fa-clock"></i> Horario de Atención</h2>
+            <div class="horario-grid">
+                <div class="horario-box">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Lunes a Viernes</h3>
+                    <p>10:00 AM - 4:00 PM</p>
+                </div>
+                <div class="horario-box">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3>Sábados</h3>
+                    <p>10:00 AM - 2:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <div class="seccion" id="contacto">
+        <div class="card">
+            <h2><i class="fas fa-address-book"></i> Contáctanos</h2>
+            <div class="contacto-grid">
+                <a href="https://wa.me/5356194280" target="_blank" class="contacto-box">
+                    <i class="fab fa-whatsapp ic-wsp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>+53 5619 4280</p>
+                </a>
+                <a href="tel:+5356194280" class="contacto-box">
+                    <i class="fas fa-phone-alt ic-call"></i>
+                    <h3>Llamar</h3>
+                    <p>+53 5619 4280</p>
+                </a>
+                <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="contacto-box">
+                    <i class="fab fa-facebook ic-fb"></i>
+                    <h3>Facebook</h3>
+                    <p>Drcell Habana</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>&copy; 2024 DR CELL HABANA - Todos los derechos reservados</p>
+</footer>
+
+<script>
+    function mostrar(id, btn) {
+        document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.btn-menu').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
