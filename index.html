@@ -170,56 +170,77 @@
         .btn-call { background: var(--azul-claro); }
         .btn-fb { background: #1877f2; }
 
-        /* SERVICIOS */
-        .servicios-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+        /* CATEGORIAS DE SERVICIOS */
+        .categoria-titulo {
+            font-size: 1.3rem;
+            color: var(--azul-claro);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(59,130,246,0.3);
         }
-        .servicio-box {
+        .categoria-titulo:first-of-type { margin-top: 0; }
+
+        /* LISTA DE SERVICIOS INDIVIDUALES */
+        .servicios-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
+        .servicio-item {
             background: rgba(0,0,0,0.3);
-            padding: 25px;
+            padding: 15px;
             border-radius: 12px;
             border-left: 4px solid var(--azul-claro);
-        }
-        .servicio-box h3 {
-            color: var(--azul-claro);
-            margin-bottom: 15px;
-            font-size: 1.2rem;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
-        }
-        .servicio-box ul {
-            list-style: none;
-            font-size: 0.95rem;
-        }
-        .servicio-box ul li {
-            padding: 6px 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .servicio-box ul li i { color: #10b981; font-size: 0.8rem; }
-        .servicio-btns {
-            display: flex;
             gap: 10px;
-            margin-top: 15px;
+            transition: transform 0.3s, background 0.3s;
         }
-        .btn-mini {
+        .servicio-item:hover {
+            transform: translateY(-3px);
+            background: rgba(0,0,0,0.5);
+        }
+        .servicio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
             flex: 1;
-            padding: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            text-align: center;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: inline-flex;
+            min-width: 0;
+        }
+        .servicio-info i {
+            color: #10b981;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .servicio-info span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .servicio-acciones {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+        .btn-circular {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
             align-items: center;
             justify-content: center;
-            gap: 6px;
+            text-decoration: none;
+            color: white;
+            font-size: 0.95rem;
+            transition: transform 0.3s;
         }
+        .btn-circular:hover { transform: scale(1.15); }
+        .bg-wsp { background: #25d366; }
+        .bg-call { background: var(--azul-claro); }
 
         /* HORARIO */
         .horario-grid {
@@ -275,7 +296,10 @@
         @media(max-width: 600px) {
             .header h1 { font-size: 1.5rem; }
             .btn-menu { padding: 8px 14px; font-size: 0.8rem; }
-            .servicios-grid, .horario-grid, .contacto-grid {
+            .horario-grid, .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+            .servicios-lista {
                 grid-template-columns: 1fr;
             }
             .inicio-img svg { width: 180px; }
@@ -314,10 +338,8 @@
     <div class="seccion active" id="inicio">
         <div class="card">
             <div class="inicio-content">
-                <!-- IMAGEN SVG DE CELULARES -->
                 <div class="inicio-img">
                     <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
-                        <!-- SAMSUNG S24 ULTRA -->
                         <g transform="translate(20, 50) rotate(-8)">
                             <rect x="0" y="0" width="110" height="220" rx="18" fill="#1a1a2e" stroke="#444" stroke-width="2"/>
                             <rect x="5" y="5" width="100" height="210" rx="14" fill="url(#samsungScreen)"/>
@@ -331,8 +353,6 @@
                             <rect x="40" y="100" width="18" height="18" rx="4" fill="#8b5cf6"/>
                             <rect x="65" y="100" width="18" height="18" rx="4" fill="#ec4899"/>
                         </g>
-
-                        <!-- IPHONE 15 PRO -->
                         <g transform="translate(150, 30) rotate(8)">
                             <rect x="0" y="0" width="120" height="240" rx="22" fill="#2c2c2c" stroke="#555" stroke-width="2"/>
                             <rect x="5" y="5" width="110" height="230" rx="18" fill="url(#iphoneScreen)"/>
@@ -350,7 +370,6 @@
                             <rect x="78" y="146" width="20" height="20" rx="5" fill="#f97316"/>
                             <rect x="40" y="220" width="40" height="3" rx="2" fill="white"/>
                         </g>
-
                         <defs>
                             <linearGradient id="samsungScreen" x1="0%" y1="0%" x2="100%" y2="100%">
                                 <stop offset="0%" stop-color="#1e3a8a"/>
@@ -363,8 +382,6 @@
                         </defs>
                     </svg>
                 </div>
-
-                <!-- TEXTO -->
                 <div class="inicio-text">
                     <h2 style="color:var(--azul-claro); margin-bottom:10px;">¡Bienvenido!</h2>
                     <p>En <strong>DR CELL Habana</strong> somos especialistas en reparación de celulares iPhone y Android. Hardware y software con garantía. ¡Tu celular en las mejores manos!</p>
@@ -388,38 +405,162 @@
     <div class="seccion" id="servicios">
         <div class="card">
             <h2><i class="fas fa-tools"></i> Nuestros Servicios</h2>
-            <div class="servicios-grid">
-                <div class="servicio-box">
-                    <h3><i class="fas fa-microchip"></i> Hardware</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Cambio de pantalla</li>
-                        <li><i class="fas fa-check"></i> Cambio de batería</li>
-                        <li><i class="fas fa-check"></i> Puertos de carga</li>
-                        <li><i class="fas fa-check"></i> Botones</li>
-                        <li><i class="fas fa-check"></i> Microsoldaduras</li>
-                        <li><i class="fas fa-check"></i> Reparación de placa</li>
-                    </ul>
-                    <div class="servicio-btns">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20hardware" target="_blank" class="btn-mini" style="background:#25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="tel:+5356194280" class="btn-mini" style="background:#3b82f6;"><i class="fas fa-phone"></i> Llamar</a>
+
+            <!-- HARDWARE -->
+            <h3 class="categoria-titulo"><i class="fas fa-microchip"></i> Hardware</h3>
+            <div class="servicios-lista">
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-mobile-screen"></i>
+                        <span>Cambio de pantalla</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20pantalla" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
-                <div class="servicio-box">
-                    <h3><i class="fas fa-code"></i> Software</h3>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Liberaciones</li>
-                        <li><i class="fas fa-check"></i> Desbloqueos</li>
-                        <li><i class="fas fa-check"></i> Flasheos</li>
-                        <li><i class="fas fa-check"></i> Eliminar cuentas Google</li>
-                        <li><i class="fas fa-check"></i> Apps iPhone/Android</li>
-                        <li><i class="fas fa-check"></i> Cuentas iCloud</li>
-                    </ul>
-                    <div class="servicio-btns">
-                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20software" target="_blank" class="btn-mini" style="background:#25d366;"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                        <a href="tel:+5356194280" class="btn-mini" style="background:#3b82f6;"><i class="fas fa-phone"></i> Llamar</a>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-battery-full"></i>
+                        <span>Cambio de batería</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20batería" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
                     </div>
                 </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-plug"></i>
+                        <span>Cambio de puerto de carga</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20puerto%20de%20carga" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-circle-dot"></i>
+                        <span>Cambio de botones</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20botones" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-fire"></i>
+                        <span>Microsoldaduras</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20una%20microsoldadura" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-microchip"></i>
+                        <span>Reparación de placa</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20reparación%20de%20placa" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
             </div>
+
+            <!-- SOFTWARE -->
+            <h3 class="categoria-titulo"><i class="fas fa-code"></i> Software</h3>
+            <div class="servicios-lista">
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-unlock"></i>
+                        <span>Liberación de compañía</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20liberación%20de%20compañía" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-key"></i>
+                        <span>Desbloqueos</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20desbloqueo" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-download"></i>
+                        <span>Flasheos</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20flasheo" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fab fa-google"></i>
+                        <span>Eliminar cuenta Google</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20eliminar%20cuenta%20de%20Google" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fab fa-apple"></i>
+                        <span>Apps para iPhone</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20iPhone" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fab fa-android"></i>
+                        <span>Apps para Android</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20Android" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+                <div class="servicio-item">
+                    <div class="servicio-info">
+                        <i class="fas fa-cloud"></i>
+                        <span>Crear cuenta iCloud</span>
+                    </div>
+                    <div class="servicio-acciones">
+                        <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20crear%20una%20cuenta%20iCloud" target="_blank" class="btn-circular bg-wsp" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="tel:+5356194280" class="btn-circular bg-call" title="Llamar"><i class="fas fa-phone"></i></a>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
 
@@ -470,7 +611,7 @@
 
 <!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 DR CELL HABANA - Todos los derechos reservados</p>
+    <p>&copy; 2024 DR CELL HABANA - Todos los derechos reservados</p>
 </footer>
 
 <script>
@@ -479,7 +620,6 @@
         document.getElementById(id).classList.add('active');
         document.querySelectorAll('.btn-menu').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        // Subir al inicio al cambiar de sección
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
