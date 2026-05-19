@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DR CELL Habana | Servicio Técnico</title>
+    <title>DR CELL Habana | Servicio Técnico Profesional</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -12,22 +13,25 @@
             --azul-oscuro: #0a1929;
             --azul: #1e3a8a;
             --azul-claro: #3b82f6;
+            --azul-brillante: #60a5fa;
             --blanco-oscuro: #e2e8f0;
             --gris-claro: #cbd5e1;
+            --dorado: #fbbf24;
         }
 
         html, body {
             min-height: 100%;
-            font-family: 'Segoe UI', sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 60%, #475569 100%);
+            background: linear-gradient(135deg, #0a1929 0%, #1e3a8a 100%);
             background-attachment: fixed;
             color: var(--blanco-oscuro);
             display: flex;
             flex-direction: column;
             min-height: 100vh;
+            overflow-x: hidden;
         }
 
         /* HEADER */
@@ -38,18 +42,22 @@
             z-index: 10;
         }
         .header h1 {
-            font-size: 2.2rem;
-            letter-spacing: 3px;
+            font-size: 2rem;
+            letter-spacing: 4px;
             color: var(--blanco-oscuro);
+            font-weight: 800;
         }
-        .header h1 span { color: var(--azul-claro); }
+        .header h1 span { color: var(--azul-brillante); }
         .header p {
             color: var(--gris-claro);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-top: 5px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* BOTONES DE MENÚ */
+        /* MENÚ */
         .botones-menu {
             display: flex;
             justify-content: center;
@@ -67,7 +75,7 @@
             background: rgba(226,232,240,0.1);
             border: 2px solid transparent;
             color: var(--blanco-oscuro);
-            padding: 10px 18px;
+            padding: 10px 20px;
             border-radius: 50px;
             cursor: pointer;
             font-size: 0.9rem;
@@ -76,31 +84,23 @@
             align-items: center;
             gap: 8px;
             transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
         }
-        .btn-menu:hover {
-            background: rgba(226,232,240,0.2);
-            transform: translateY(-2px);
-        }
-        .btn-menu.active {
-            background: var(--azul-claro);
-            border-color: var(--blanco-oscuro);
-        }
+        .btn-menu:hover { background: rgba(226,232,240,0.2); transform: translateY(-2px); }
+        .btn-menu.active { background: var(--azul-claro); border-color: var(--blanco-oscuro); }
 
         /* CONTENIDO */
         .contenido {
             flex: 1;
             display: flex;
             justify-content: center;
-            padding: 30px 20px;
-            position: relative;
-            z-index: 10;
+            padding: 20px;
         }
-
         .seccion {
             display: none;
             width: 100%;
-            max-width: 900px;
-            animation: fadeIn 0.5s;
+            max-width: 1100px;
+            animation: fadeIn 0.6s;
         }
         .seccion.active { display: block; }
 
@@ -109,105 +109,226 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* ========== INICIO PROFESIONAL ========== */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 70vh;
+        }
+
+        .hero-text {
+            animation: slideLeft 1s;
+        }
+        @keyframes slideLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .badge-top {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(59,130,246,0.15);
+            border: 1px solid var(--azul-claro);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--azul-brillante);
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .badge-top i { color: var(--dorado); }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+        .hero-text h1 .highlight {
+            background: linear-gradient(135deg, var(--azul-claro), var(--azul-brillante));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-text .descripcion {
+            font-size: 1.05rem;
+            color: var(--gris-claro);
+            margin-bottom: 30px;
+            line-height: 1.7;
+            max-width: 500px;
+        }
+
+        /* Botones CTA */
+        .cta-botones {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+        .btn-cta {
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0,0,0,0.4); }
+        .btn-primary {
+            background: linear-gradient(135deg, #25d366, #1ea952);
+        }
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Estadísticas */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--azul-brillante);
+            font-weight: 800;
+            margin-bottom: 4px;
+        }
+        .stat-item p {
+            font-size: 0.8rem;
+            color: var(--gris-claro);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TELÉFONO HERO */
+        .hero-phone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: slideRight 1s;
+        }
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .phone-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(59,130,246,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.1); opacity: 0.4; }
+        }
+
+        .hero-phone svg {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 25px 50px rgba(0,0,0,0.5));
+            position: relative;
+            z-index: 2;
+            animation: float 4s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Features destacadas */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            padding: 0 20px 40px;
+        }
+        .feature-card {
+            background: rgba(226,232,240,0.05);
+            border: 1px solid rgba(226,232,240,0.1);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(226,232,240,0.1);
+            border-color: var(--azul-claro);
+        }
+        .feature-card .icon-box {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--azul-claro), var(--azul-brillante));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: white;
+        }
+        .feature-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: 600;
+        }
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--gris-claro);
+            line-height: 1.5;
+        }
+
+        /* TARJETA GENERAL */
         .card {
             background: rgba(226,232,240,0.08);
             backdrop-filter: blur(15px);
             border-radius: 20px;
-            padding: 25px;
-            border: 1px solid rgba(226,232,240,0.2);
+            padding: 30px;
+            border: 1px solid rgba(226,232,240,0.15);
             width: 100%;
         }
-
         .card h2 {
             text-align: center;
-            margin-bottom: 20px;
-            color: var(--azul-claro);
-            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--azul-brillante);
+            font-size: 1.6rem;
+            font-weight: 700;
         }
 
-        /* ====== INICIO LIBRE (sin tarjeta) ====== */
-        .inicio-libre {
-            text-align: center;
-            padding: 60px 20px;
-            position: relative;
-            min-height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* FONDO DE TELÉFONOS GIGANTES */
-        .telefonos-fondo {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            z-index: 1;
-            opacity: 0.12;
-            pointer-events: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .telefonos-fondo svg {
-            width: 90%;
-            max-width: 900px;
-            height: auto;
-        }
-
-        .inicio-libre h2 {
-            font-size: 2.5rem;
-            color: var(--azul-claro);
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
-        }
-        .inicio-libre p {
-            font-size: 1.15rem;
-            line-height: 1.7;
-            max-width: 650px;
-            margin: 0 auto 35px;
-            color: var(--blanco-oscuro);
-            text-shadow: 0 1px 5px rgba(0,0,0,0.5);
-        }
-        .inicio-botones {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .btn-action {
-            padding: 14px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
-            font-size: 1rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
-        }
-        .btn-action:hover {
-            transform: scale(1.08);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.6);
-        }
-        .btn-wsp { background: #25d366; }
-        .btn-call { background: var(--azul-claro); }
-        .btn-fb { background: #1877f2; }
-
-        /* CATEGORÍAS */
+        /* SERVICIOS */
         .categoria-titulo {
             font-size: 1.3rem;
-            color: var(--azul-claro);
+            color: var(--azul-brillante);
             margin: 25px 0 15px;
             display: flex;
             align-items: center;
             gap: 10px;
             padding-bottom: 10px;
             border-bottom: 2px solid rgba(59,130,246,0.3);
+            font-weight: 600;
         }
         .categoria-titulo:first-of-type { margin-top: 0; }
 
@@ -227,29 +348,16 @@
             gap: 10px;
             transition: transform 0.3s, background 0.3s;
         }
-        .servicio-item:hover {
-            transform: translateY(-3px);
-            background: rgba(10,25,41,0.7);
-        }
-        .servicio-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-            min-width: 0;
-        }
+        .servicio-item:hover { transform: translateY(-3px); background: rgba(10,25,41,0.7); }
+        .servicio-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
         .servicio-info i { color: #10b981; font-size: 1rem; flex-shrink: 0; }
         .servicio-info span { font-size: 0.95rem; font-weight: 500; }
         .servicio-acciones { display: flex; gap: 6px; flex-shrink: 0; }
         .btn-circular {
-            width: 36px;
-            height: 36px;
+            width: 38px; height: 38px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            color: white;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; color: white;
             font-size: 0.95rem;
             transition: transform 0.3s;
         }
@@ -258,166 +366,208 @@
         .bg-call { background: var(--azul-claro); }
 
         /* HORARIO */
-        .horario-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
+        .horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .horario-box {
             background: rgba(10,25,41,0.5);
-            padding: 30px;
-            border-radius: 12px;
+            padding: 35px;
+            border-radius: 16px;
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
         }
-        .horario-box i { font-size: 2.5rem; color: var(--azul-claro); margin-bottom: 12px; }
-        .horario-box h3 { margin-bottom: 10px; }
+        .horario-box i { font-size: 2.8rem; color: var(--azul-brillante); margin-bottom: 12px; }
+        .horario-box h3 { margin-bottom: 10px; font-weight: 600; }
         .horario-box p { font-size: 1.1rem; color: var(--gris-claro); }
 
         /* CONTACTO */
-        .contacto-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+        .contacto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
         .contacto-box {
             background: rgba(10,25,41,0.5);
-            padding: 30px 15px;
-            border-radius: 12px;
+            padding: 35px 15px;
+            border-radius: 16px;
             text-align: center;
             text-decoration: none;
             color: var(--blanco-oscuro);
             transition: transform 0.3s;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         .contacto-box:hover { transform: translateY(-5px); }
-        .contacto-box i { font-size: 2.5rem; margin-bottom: 12px; }
+        .contacto-box i { font-size: 2.8rem; margin-bottom: 12px; }
+        .contacto-box h3 { margin-bottom: 5px; font-weight: 600; }
         .ic-wsp { color: #25d366; }
-        .ic-call { color: var(--azul-claro); }
+        .ic-call { color: var(--azul-brillante); }
         .ic-fb { color: #1877f2; }
 
         /* FOOTER */
         footer {
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             color: var(--gris-claro);
             font-size: 0.85rem;
             background: rgba(0,0,0,0.4);
-            position: relative;
-            z-index: 10;
         }
 
         /* RESPONSIVE */
+        @media(max-width: 900px) {
+            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .hero-text { order: 2; }
+            .hero-phone { order: 1; }
+            .hero-text h1 { font-size: 2.3rem; }
+            .cta-botones { justify-content: center; }
+            .hero-text .descripcion { margin-left: auto; margin-right: auto; }
+            .features { grid-template-columns: 1fr; }
+        }
         @media(max-width: 600px) {
-            .header h1 { font-size: 1.6rem; }
+            .header h1 { font-size: 1.5rem; }
             .btn-menu { padding: 8px 14px; font-size: 0.8rem; }
             .horario-grid, .contacto-grid { grid-template-columns: 1fr; }
             .servicios-lista { grid-template-columns: 1fr; }
-            .card { padding: 20px; }
-            .inicio-libre h2 { font-size: 1.8rem; }
-            .inicio-libre p { font-size: 1rem; }
-            .telefonos-fondo { opacity: 0.08; }
+            .hero-text h1 { font-size: 1.9rem; }
+            .stats { grid-template-columns: 1fr; gap: 15px; text-align: center; }
+            .hero-phone svg { width: 220px; }
+            .phone-glow { width: 280px; height: 280px; }
         }
     </style>
 </head>
 <body>
 
-<!-- FONDO DE TELÉFONOS GIGANTES -->
-<div class="telefonos-fondo">
-    <svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
-        <!-- SAMSUNG GIGANTE -->
-        <g transform="translate(100, 50) rotate(-10)">
-            <rect x="0" y="0" width="280" height="450" rx="35" fill="#1a1a2e" stroke="#3b82f6" stroke-width="3"/>
-            <rect x="10" y="10" width="260" height="430" rx="28" fill="url(#screenSam)"/>
-            <circle cx="50" cy="40" r="6" fill="#0a0a0a"/>
-            <text x="140" y="90" text-anchor="middle" fill="white" font-size="28" font-weight="bold" font-family="Arial">9:41</text>
-            <text x="140" y="120" text-anchor="middle" fill="#cbd5e1" font-size="14" font-family="Arial">Galaxy S24 Ultra</text>
-            <!-- Apps -->
-            <rect x="40" y="160" width="45" height="45" rx="10" fill="#3b82f6"/>
-            <rect x="100" y="160" width="45" height="45" rx="10" fill="#25d366"/>
-            <rect x="160" y="160" width="45" height="45" rx="10" fill="#ef4444"/>
-            <rect x="220" y="160" width="45" height="45" rx="10" fill="#f59e0b"/>
-            <rect x="40" y="225" width="45" height="45" rx="10" fill="#8b5cf6"/>
-            <rect x="100" y="225" width="45" height="45" rx="10" fill="#ec4899"/>
-            <rect x="160" y="225" width="45" height="45" rx="10" fill="#10b981"/>
-            <rect x="220" y="225" width="45" height="45" rx="10" fill="#06b6d4"/>
-        </g>
-
-        <!-- IPHONE GIGANTE -->
-        <g transform="translate(440, 30) rotate(10)">
-            <rect x="0" y="0" width="290" height="470" rx="40" fill="#2c2c2c" stroke="#3b82f6" stroke-width="3"/>
-            <rect x="10" y="10" width="270" height="450" rx="32" fill="url(#screenIph)"/>
-            <rect x="100" y="25" width="90" height="25" rx="12" fill="#000"/>
-            <text x="145" y="100" text-anchor="middle" fill="white" font-size="30" font-weight="bold" font-family="Arial">9:41</text>
-            <text x="145" y="130" text-anchor="middle" fill="#cbd5e1" font-size="15" font-family="Arial">iPhone 15 Pro</text>
-            <!-- Apps -->
-            <rect x="40" y="170" width="48" height="48" rx="12" fill="#3b82f6"/>
-            <rect x="105" y="170" width="48" height="48" rx="12" fill="#25d366"/>
-            <rect x="170" y="170" width="48" height="48" rx="12" fill="#ef4444"/>
-            <rect x="235" y="170" width="48" height="48" rx="12" fill="#f59e0b"/>
-            <rect x="40" y="240" width="48" height="48" rx="12" fill="#8b5cf6"/>
-            <rect x="105" y="240" width="48" height="48" rx="12" fill="#10b981"/>
-            <rect x="170" y="240" width="48" height="48" rx="12" fill="#ec4899"/>
-            <rect x="235" y="240" width="48" height="48" rx="12" fill="#06b6d4"/>
-            <rect x="40" y="310" width="48" height="48" rx="12" fill="#f97316"/>
-            <rect x="105" y="310" width="48" height="48" rx="12" fill="#a855f7"/>
-            <rect x="170" y="310" width="48" height="48" rx="12" fill="#14b8a6"/>
-            <rect x="235" y="310" width="48" height="48" rx="12" fill="#facc15"/>
-            <!-- Barra inferior -->
-            <rect x="110" y="430" width="70" height="5" rx="3" fill="white"/>
-        </g>
-
-        <defs>
-            <linearGradient id="screenSam" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1e3a8a"/>
-                <stop offset="100%" stop-color="#0a1929"/>
-            </linearGradient>
-            <linearGradient id="screenIph" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#3b82f6"/>
-                <stop offset="100%" stop-color="#1e3a8a"/>
-            </linearGradient>
-        </defs>
-    </svg>
-</div>
-
 <!-- HEADER -->
 <div class="header">
     <h1>DR <span>CELL</span> HABANA</h1>
-    <p>Servicio técnico profesional de celulares</p>
+    <p>Servicio técnico profesional</p>
 </div>
 
-<!-- BOTONES DE MENÚ -->
+<!-- MENÚ -->
 <div class="botones-menu">
-    <button class="btn-menu active" onclick="mostrar('inicio', this)">
-        <i class="fas fa-home"></i> Inicio
-    </button>
-    <button class="btn-menu" onclick="mostrar('servicios', this)">
-        <i class="fas fa-tools"></i> Servicios
-    </button>
-    <button class="btn-menu" onclick="mostrar('horario', this)">
-        <i class="fas fa-clock"></i> Horario
-    </button>
-    <button class="btn-menu" onclick="mostrar('contacto', this)">
-        <i class="fas fa-phone"></i> Contacto
-    </button>
+    <button class="btn-menu active" onclick="mostrar('inicio', this)"><i class="fas fa-home"></i> Inicio</button>
+    <button class="btn-menu" onclick="mostrar('servicios', this)"><i class="fas fa-tools"></i> Servicios</button>
+    <button class="btn-menu" onclick="mostrar('horario', this)"><i class="fas fa-clock"></i> Horario</button>
+    <button class="btn-menu" onclick="mostrar('contacto', this)"><i class="fas fa-phone"></i> Contacto</button>
 </div>
 
 <!-- CONTENIDO -->
 <div class="contenido">
 
-    <!-- INICIO LIBRE -->
+    <!-- INICIO -->
     <div class="seccion active" id="inicio">
-        <div class="inicio-libre">
-            <h2>¡Bienvenido!</h2>
-            <p>En <strong>DR CELL Habana</strong> somos especialistas en reparación de celulares iPhone y Android. Hardware y software con garantía, rapidez y profesionalismo. ¡Tu celular en las mejores manos!</p>
-            <div class="inicio-botones">
-                <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL" target="_blank" class="btn-action btn-wsp">
-                    <i class="fab fa-whatsapp"></i> WhatsApp
-                </a>
-                <a href="tel:+5356194280" class="btn-action btn-call">
-                    <i class="fas fa-phone"></i> Llamar
-                </a>
-                <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="btn-action btn-fb">
-                    <i class="fab fa-facebook"></i> Facebook
-                </a>
+
+        <!-- HERO -->
+        <div class="hero">
+            <div class="hero-text">
+                <div class="badge-top">
+                    <i class="fas fa-star"></i>
+                    <span>Servicio Técnico Premium en La Habana</span>
+                </div>
+                <h1>Reparamos tu <span class="highlight">celular</span> con tecnología y profesionalismo</h1>
+                <p class="descripcion">
+                    Somos expertos en <strong>iPhone</strong> y <strong>Android</strong>. Hardware, software, microsoldaduras y mucho más. Diagnóstico gratuito y garantía en todos nuestros servicios.
+                </p>
+
+                <div class="cta-botones">
+                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20quiero%20información" target="_blank" class="btn-cta btn-primary">
+                        <i class="fab fa-whatsapp"></i> Cotizar ahora
+                    </a>
+                    <a href="tel:+5356194280" class="btn-cta btn-secondary">
+                        <i class="fas fa-phone"></i> Llamar
+                    </a>
+                </div>
+
+                <!-- Estadísticas -->
+                <div class="stats">
+                    <div class="stat-item">
+                        <h3>+500</h3>
+                        <p>Equipos reparados</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Garantía</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24h</h3>
+                        <p>Respuesta rápida</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TELÉFONO -->
+            <div class="hero-phone">
+                <div class="phone-glow"></div>
+                <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Sombra -->
+                    <ellipse cx="100" cy="395" rx="60" ry="6" fill="rgba(0,0,0,0.3)"/>
+
+                    <!-- Cuerpo del teléfono -->
+                    <rect x="20" y="10" width="160" height="370" rx="32" fill="url(#bodyGradient)" stroke="#3b82f6" stroke-width="2"/>
+                    <rect x="28" y="18" width="144" height="354" rx="26" fill="url(#screenGradient)"/>
+
+                    <!-- Dynamic Island -->
+                    <rect x="75" y="32" width="50" height="16" rx="8" fill="#000"/>
+                    <circle cx="115" cy="40" r="3" fill="#1a1a2e"/>
+
+                    <!-- Hora -->
+                    <text x="100" y="100" text-anchor="middle" fill="white" font-size="32" font-weight="700" font-family="Poppins">9:41</text>
+                    <text x="100" y="120" text-anchor="middle" fill="#cbd5e1" font-size="9" font-family="Poppins">DR CELL HABANA</text>
+
+                    <!-- Widget grande -->
+                    <rect x="40" y="140" width="120" height="60" rx="12" fill="rgba(255,255,255,0.15)"/>
+                    <text x="100" y="165" text-anchor="middle" fill="white" font-size="10" font-weight="600" font-family="Poppins">Servicio Técnico</text>
+                    <text x="100" y="185" text-anchor="middle" fill="#60a5fa" font-size="14" font-weight="700" font-family="Poppins">Profesional</text>
+
+                    <!-- Apps -->
+                    <rect x="40" y="215" width="28" height="28" rx="7" fill="#3b82f6"/>
+                    <rect x="76" y="215" width="28" height="28" rx="7" fill="#25d366"/>
+                    <rect x="112" y="215" width="28" height="28" rx="7" fill="#ef4444"/>
+                    <rect x="148" y="215" width="14" height="28" rx="7" fill="#f59e0b" opacity="0.7"/>
+
+                    <rect x="40" y="252" width="28" height="28" rx="7" fill="#8b5cf6"/>
+                    <rect x="76" y="252" width="28" height="28" rx="7" fill="#10b981"/>
+                    <rect x="112" y="252" width="28" height="28" rx="7" fill="#ec4899"/>
+                    <rect x="148" y="252" width="14" height="28" rx="7" fill="#06b6d4" opacity="0.7"/>
+
+                    <rect x="40" y="289" width="28" height="28" rx="7" fill="#f97316"/>
+                    <rect x="76" y="289" width="28" height="28" rx="7" fill="#a855f7"/>
+                    <rect x="112" y="289" width="28" height="28" rx="7" fill="#14b8a6"/>
+                    <rect x="148" y="289" width="14" height="28" rx="7" fill="#facc15" opacity="0.7"/>
+
+                    <!-- Dock -->
+                    <rect x="35" y="335" width="130" height="32" rx="14" fill="rgba(255,255,255,0.1)"/>
+                    <rect x="48" y="343" width="22" height="22" rx="6" fill="#3b82f6"/>
+                    <rect x="78" y="343" width="22" height="22" rx="6" fill="#25d366"/>
+                    <rect x="108" y="343" width="22" height="22" rx="6" fill="#1877f2"/>
+                    <rect x="138" y="343" width="22" height="22" rx="6" fill="#ef4444"/>
+
+                    <!-- Barra inferior -->
+                    <rect x="75" y="370" width="50" height="3" rx="2" fill="white"/>
+
+                    <defs>
+                        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1e293b"/>
+                            <stop offset="100%" stop-color="#0a1929"/>
+                        </linearGradient>
+                        <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1e3a8a"/>
+                            <stop offset="100%" stop-color="#0a1929"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+        </div>
+
+        <!-- FEATURES -->
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
+                <h4>Garantía Total</h4>
+                <p>Todos nuestros servicios cuentan con garantía escrita.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-bolt"></i></div>
+                <h4>Servicio Rápido</h4>
+                <p>Reparamos tu equipo en el menor tiempo posible.</p>
+            </div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                <h4>Técnicos Expertos</h4>
+                <p>Personal capacitado en iPhone, Android y microsoldaduras.</p>
             </div>
         </div>
     </div>
@@ -573,7 +723,6 @@
 
 </div>
 
-<!-- FOOTER -->
 <footer>
     <p>&copy; 2024 DR CELL HABANA - Todos los derechos reservados</p>
 </footer>
