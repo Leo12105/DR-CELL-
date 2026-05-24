@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DR CELL Habana | Servicio Técnico Profesional</title>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         :root {
             --negro: #0a0a0a;
             --grafito: #1a1a1a;
-            --grafito-claro: #2a2a2a;
             --cian: #00d9ff;
             --cian-brillante: #22e5ff;
             --cian-oscuro: #00a8cc;
@@ -42,213 +47,613 @@
             position: relative;
             z-index: 10;
         }
-        .header h1 { font-size: 2rem; letter-spacing: 4px; color: var(--blanco); font-weight: 800; }
-        .header h1 span { color: var(--cian); text-shadow: 0 0 20px rgba(0,217,255,0.5); }
-        .header p { color: var(--gris); font-size: 0.9rem; margin-top: 5px; font-weight: 300; letter-spacing: 2px; text-transform: uppercase; }
+
+        .header h1 {
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: var(--blanco);
+            font-weight: 800;
+        }
+
+        .header h1 span {
+            color: var(--cian);
+            text-shadow: 0 0 20px rgba(0,217,255,0.5);
+        }
+
+        .header p {
+            color: var(--gris);
+            font-size: 0.9rem;
+            margin-top: 5px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
         .botones-menu {
-            display: flex; justify-content: center; gap: 10px; padding: 15px; flex-wrap: wrap;
-            position: sticky; top: 0; background: rgba(10,10,10,0.95); backdrop-filter: blur(15px);
-            z-index: 100; box-shadow: 0 4px 15px rgba(0,0,0,0.6); border-bottom: 1px solid rgba(0,217,255,0.15);
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 15px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(15px);
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border-bottom: 1px solid rgba(0,217,255,0.15);
         }
-        .btn-menu {
-            background: rgba(255,255,255,0.05); border: 2px solid transparent; color: var(--blanco);
-            padding: 10px 20px; border-radius: 50px; cursor: pointer; font-size: 0.9rem; font-weight: 600;
-            display: flex; align-items: center; gap: 8px; transition: all 0.3s; font-family: 'Poppins', sans-serif;
-        }
-        .btn-menu:hover { background: rgba(0,217,255,0.1); transform: translateY(-2px); border-color: rgba(0,217,255,0.3); }
-        .btn-menu.active { background: var(--cian); color: var(--negro); border-color: var(--cian-brillante); box-shadow: 0 0 20px rgba(0,217,255,0.5); }
 
-        .contenido { flex: 1; display: flex; justify-content: center; padding: 20px; }
-        .seccion { display: none; width: 100%; max-width: 1100px; animation: fadeIn 0.6s; }
-        .seccion.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .btn-menu {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid transparent;
+            color: var(--blanco);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn-menu:hover {
+            background: rgba(0,217,255,0.1);
+            transform: translateY(-2px);
+            border-color: rgba(0,217,255,0.3);
+        }
+
+        .btn-menu.active {
+            background: var(--cian);
+            color: var(--negro);
+            border-color: var(--cian-brillante);
+            box-shadow: 0 0 20px rgba(0,217,255,0.5);
+        }
+
+        .contenido {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .seccion {
+            display: none;
+            width: 100%;
+            max-width: 1100px;
+            animation: fadeIn 0.6s;
+        }
+
+        .seccion.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
         .hero {
-            display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px;
-            align-items: center; padding: 40px 20px; min-height: 70vh;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            padding: 40px 20px;
+            min-height: 70vh;
         }
-        .hero-text { animation: slideLeft 1s; }
-        @keyframes slideLeft { from { opacity: 0; transform: translateX(-50px); } to { opacity: 1; transform: translateX(0); } }
+
+        .hero-text {
+            animation: slideLeft 1s;
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
         .badge-top {
-            display: inline-flex; align-items: center; gap: 8px; background: rgba(0,217,255,0.1);
-            border: 1px solid var(--cian); padding: 6px 16px; border-radius: 50px; font-size: 0.8rem;
-            color: var(--cian); margin-bottom: 20px; font-weight: 600; box-shadow: 0 0 15px rgba(0,217,255,0.2);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,217,255,0.1);
+            border: 1px solid var(--cian);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--cian);
+            margin-bottom: 20px;
+            font-weight: 600;
+            box-shadow: 0 0 15px rgba(0,217,255,0.2);
         }
-        .badge-top i { color: var(--dorado); }
 
-        .hero-text h1 { font-size: 3.2rem; line-height: 1.1; font-weight: 800; margin-bottom: 20px; color: white; }
+        .badge-top i {
+            color: var(--dorado);
+        }
+
+        .hero-text h1 {
+            font-size: 3.2rem;
+            line-height: 1.1;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: white;
+        }
+
         .hero-text h1 .highlight {
             background: linear-gradient(135deg, var(--cian), var(--cian-brillante));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0,217,255,0.3));
         }
-        .hero-text .descripcion { font-size: 1.05rem; color: var(--gris); margin-bottom: 30px; line-height: 1.7; max-width: 500px; }
 
-        .cta-botones { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 35px; }
-        .btn-cta {
-            padding: 14px 28px; border-radius: 50px; text-decoration: none; color: white; font-weight: 600;
-            display: inline-flex; align-items: center; gap: 10px; transition: all 0.3s; font-size: 0.95rem;
-            font-family: 'Poppins', sans-serif; box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        .hero-text .descripcion {
+            font-size: 1.05rem;
+            color: var(--gris);
+            margin-bottom: 30px;
+            line-height: 1.7;
+            max-width: 500px;
         }
-        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,217,255,0.3); }
-        .btn-primary { background: linear-gradient(135deg, #25d366, #1ea952); }
-        .btn-secondary { background: rgba(255,255,255,0.05); border: 2px solid var(--cian); color: var(--cian); }
+
+        .cta-botones {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 35px;
+        }
+
+        .btn-cta {
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,217,255,0.3);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #25d366, #1ea952);
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--cian);
+            color: var(--cian);
+            backdrop-filter: blur(10px);
+        }
 
         .stats {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            padding-top: 25px; border-top: 1px solid rgba(0,217,255,0.15);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(0,217,255,0.15);
         }
-        .stat-item h3 { font-size: 2rem; color: var(--cian); font-weight: 800; margin-bottom: 4px; }
-        .stat-item p { font-size: 0.8rem; color: var(--gris); text-transform: uppercase; letter-spacing: 1px; }
 
-        /* ===== TELÉFONO 3D ===== */
-        .hero-phone {
-            display: flex; justify-content: center; align-items: center;
-            position: relative; animation: slideRight 1s; perspective: 1200px;
+        .stat-item h3 {
+            font-size: 2rem;
+            color: var(--cian);
+            font-weight: 800;
+            margin-bottom: 4px;
+            text-shadow: 0 0 15px rgba(0,217,255,0.3);
         }
-        @keyframes slideRight { from { opacity: 0; transform: translateX(50px); } to { opacity: 1; transform: translateX(0); } }
+
+        .stat-item p {
+            font-size: 0.8rem;
+            color: var(--gris);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* TELÉFONO SIMPLE FLOTANDO */
+        .hero-phone {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            animation: slideRight 1s;
+        }
+
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
 
         .phone-glow {
-            position: absolute; width: 400px; height: 400px;
-            background: radial-gradient(circle, rgba(0,217,255,0.3) 0%, transparent 70%);
-            border-radius: 50%; animation: pulse 3s ease-in-out infinite; pointer-events: none;
-        }
-        @keyframes pulse { 0%, 100% { transform: scale(1); opacity: 0.5; } 50% { transform: scale(1.1); opacity: 0.3; } }
-
-        .phone-3d-container {
-            width: 260px; height: 540px; position: relative; z-index: 2;
-            transform-style: preserve-3d; transition: transform 0.1s ease-out;
-            cursor: grab; user-select: none; -webkit-user-select: none;
-        }
-        .phone-3d-container:active { cursor: grabbing; }
-        .phone-3d-container.no-transition { transition: none; }
-
-        .phone-face {
-            position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; -webkit-backface-visibility: hidden;
-            border-radius: 20px; overflow: hidden;
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0,217,255,0.4) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 3s ease-in-out infinite;
         }
 
-        .phone-front {
-            background: #0a0a0a;
-            border: 2.5px solid #333;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 40px rgba(0,217,255,0.1);
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.3;
+            }
+        }
+
+        .hero-phone svg {
+            width: 280px;
+            height: auto;
+            filter: drop-shadow(0 25px 50px rgba(0,217,255,0.3));
+            position: relative;
             z-index: 2;
+            animation: floatPhone 4s ease-in-out infinite;
         }
-        .phone-front svg { width: 100%; height: 100%; }
 
-        .phone-back {
-            background: #0a0a0a;
-            border: 2.5px solid #2a2a2a;
-            transform: rotateY(180deg);
-            z-index: 1;
+        @keyframes floatPhone {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-18px);
+            }
         }
-        .phone-back svg { width: 100%; height: 100%; }
 
-        .phone-hint {
-            position: absolute; bottom: -45px; left: 50%; transform: translateX(-50%);
-            color: var(--gris); font-size: 0.75rem; display: flex; align-items: center;
-            gap: 8px; animation: hintPulse 2s ease-in-out infinite; white-space: nowrap;
-            pointer-events: none; z-index: 10;
-        }
-        @keyframes hintPulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
-        .phone-hint i { color: var(--cian); font-size: 1rem; }
-
-        /* FEATURES */
         .features {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
-            margin-top: 60px; padding: 0 20px 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+            padding: 0 20px 40px;
         }
+
         .feature-card {
-            background: rgba(255,255,255,0.03); border: 1px solid rgba(0,217,255,0.15);
-            backdrop-filter: blur(10px); padding: 25px; border-radius: 16px; text-align: center; transition: all 0.3s;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(0,217,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s;
         }
-        .feature-card:hover { transform: translateY(-5px); background: rgba(0,217,255,0.05); border-color: var(--cian); }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(0,217,255,0.05);
+            border-color: var(--cian);
+            box-shadow: 0 10px 30px rgba(0,217,255,0.15);
+        }
+
         .feature-card .icon-box {
-            width: 60px; height: 60px; background: linear-gradient(135deg, var(--cian), var(--cian-oscuro));
-            border-radius: 16px; display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 15px; font-size: 1.5rem; color: var(--negro);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--cian), var(--cian-oscuro));
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: var(--negro);
+            box-shadow: 0 0 25px rgba(0,217,255,0.4);
         }
-        .feature-card h4 { font-size: 1.1rem; margin-bottom: 8px; color: white; font-weight: 600; }
-        .feature-card p { font-size: 0.85rem; color: var(--gris); line-height: 1.5; }
+
+        .feature-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            color: white;
+            font-weight: 600;
+        }
+
+        .feature-card p {
+            font-size: 0.85rem;
+            color: var(--gris);
+            line-height: 1.5;
+        }
 
         .card {
-            background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border-radius: 20px;
-            padding: 30px; border: 1px solid rgba(0,217,255,0.15); width: 100%;
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(0,217,255,0.15);
+            width: 100%;
         }
-        .card h2 { text-align: center; margin-bottom: 25px; color: var(--cian); font-size: 1.6rem; font-weight: 700; }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: var(--cian);
+            font-size: 1.6rem;
+            font-weight: 700;
+            text-shadow: 0 0 15px rgba(0,217,255,0.3);
+        }
 
         .categoria-titulo {
-            font-size: 1.3rem; color: var(--cian); margin: 25px 0 15px; display: flex; align-items: center;
-            gap: 10px; padding-bottom: 10px; border-bottom: 2px solid rgba(0,217,255,0.2); font-weight: 600;
+            font-size: 1.3rem;
+            color: var(--cian);
+            margin: 25px 0 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(0,217,255,0.2);
+            font-weight: 600;
         }
-        .categoria-titulo:first-of-type { margin-top: 0; }
 
-        .servicios-lista { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+        .categoria-titulo:first-of-type {
+            margin-top: 0;
+        }
+
+        .servicios-lista {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 12px;
+        }
+
         .servicio-item {
-            background: rgba(10,10,10,0.6); padding: 15px; border-radius: 12px; border-left: 4px solid var(--cian);
-            display: flex; justify-content: space-between; align-items: center; gap: 10px; transition: all 0.3s;
+            background: rgba(10,10,10,0.6);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--cian);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s, background 0.3s, box-shadow 0.3s;
         }
-        .servicio-item:hover { transform: translateY(-3px); background: rgba(0,217,255,0.05); }
-        .servicio-info { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 0; }
-        .servicio-info i { color: var(--cian); font-size: 1rem; flex-shrink: 0; }
-        .servicio-info span { font-size: 0.95rem; font-weight: 500; }
-        .servicio-acciones { display: flex; gap: 6px; flex-shrink: 0; }
-        .btn-circular {
-            width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center;
-            justify-content: center; text-decoration: none; color: white; font-size: 0.95rem; transition: transform 0.3s;
-        }
-        .btn-circular:hover { transform: scale(1.15); }
-        .bg-wsp { background: #25d366; }
-        .bg-call { background: var(--cian); color: var(--negro) !important; }
 
-        .horario-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .servicio-item:hover {
+            transform: translateY(-3px);
+            background: rgba(0,217,255,0.05);
+            box-shadow: 0 5px 20px rgba(0,217,255,0.1);
+        }
+
+        .servicio-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .servicio-info i {
+            color: var(--cian);
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .servicio-info span {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .servicio-acciones {
+            display: flex;
+            gap: 6px;
+            flex-shrink: 0;
+        }
+
+        .btn-circular {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: white;
+            font-size: 0.95rem;
+            transition: transform 0.3s;
+        }
+
+        .btn-circular:hover {
+            transform: scale(1.15);
+        }
+
+        .bg-wsp {
+            background: #25d366;
+        }
+
+        .bg-call {
+            background: var(--cian);
+            color: var(--negro) !important;
+        }
+
+        .horario-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
         .horario-box {
-            background: rgba(10,10,10,0.6); padding: 35px; border-radius: 16px; text-align: center;
+            background: rgba(10,10,10,0.6);
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
             border: 1px solid rgba(0,217,255,0.1);
         }
-        .horario-box i { font-size: 2.8rem; color: var(--cian); margin-bottom: 12px; }
-        .horario-box h3 { margin-bottom: 10px; font-weight: 600; }
-        .horario-box p { font-size: 1.1rem; color: var(--gris); }
 
-        .contacto-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .contacto-box {
-            background: rgba(10,10,10,0.6); padding: 35px 15px; border-radius: 16px; text-align: center;
-            text-decoration: none; color: var(--blanco); transition: all 0.3s; border: 1px solid rgba(0,217,255,0.1);
+        .horario-box i {
+            font-size: 2.8rem;
+            color: var(--cian);
+            margin-bottom: 12px;
+            text-shadow: 0 0 20px rgba(0,217,255,0.4);
         }
-        .contacto-box:hover { transform: translateY(-5px); border-color: var(--cian); }
-        .contacto-box i { font-size: 2.8rem; margin-bottom: 12px; display: block; }
-        .contacto-box h3 { margin-bottom: 5px; font-weight: 600; }
-        .ic-wsp { color: #25d366; }
-        .ic-call { color: var(--cian); }
-        .ic-fb { color: #1877f2; }
+
+        .horario-box h3 {
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .horario-box p {
+            font-size: 1.1rem;
+            color: var(--gris);
+        }
+
+        .contacto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .contacto-box {
+            background: rgba(10,10,10,0.6);
+            padding: 35px 15px;
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: var(--blanco);
+            transition: all 0.3s;
+            border: 1px solid rgba(0,217,255,0.1);
+        }
+
+        .contacto-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--cian);
+            box-shadow: 0 10px 30px rgba(0,217,255,0.15);
+        }
+
+        .contacto-box i {
+            font-size: 2.8rem;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .contacto-box h3 {
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .ic-wsp {
+            color: #25d366;
+        }
+
+        .ic-call {
+            color: var(--cian);
+        }
+
+        .ic-fb {
+            color: #1877f2;
+        }
 
         footer {
-            text-align: center; padding: 25px; color: var(--gris); font-size: 0.85rem;
-            background: rgba(0,0,0,0.6); border-top: 1px solid rgba(0,217,255,0.15);
+            text-align: center;
+            padding: 25px;
+            color: var(--gris);
+            font-size: 0.85rem;
+            background: rgba(0,0,0,0.6);
+            border-top: 1px solid rgba(0,217,255,0.15);
         }
 
         @media(max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
-            .hero-text { order: 2; } .hero-phone { order: 1; }
-            .hero-text h1 { font-size: 2.3rem; }
-            .cta-botones { justify-content: center; }
-            .hero-text .descripcion { margin-left: auto; margin-right: auto; }
-            .features { grid-template-columns: 1fr; }
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 30px;
+            }
+
+            .hero-text {
+                order: 2;
+            }
+
+            .hero-phone {
+                order: 1;
+            }
+
+            .hero-text h1 {
+                font-size: 2.3rem;
+            }
+
+            .cta-botones {
+                justify-content: center;
+            }
+
+            .hero-text .descripcion {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
         }
+
         @media(max-width: 600px) {
-            .header h1 { font-size: 1.5rem; }
-            .btn-menu { padding: 8px 14px; font-size: 0.8rem; }
-            .horario-grid, .contacto-grid { grid-template-columns: 1fr; }
-            .servicios-lista { grid-template-columns: 1fr; }
-            .hero-text h1 { font-size: 1.9rem; }
-            .stats { grid-template-columns: 1fr; gap: 15px; text-align: center; }
-            .phone-3d-container { width: 200px; height: 415px; }
-            .phone-glow { width: 280px; height: 280px; }
+            .header h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn-menu {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            .horario-grid,
+            .contacto-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .servicios-lista {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 1.9rem;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .hero-phone svg {
+                width: 220px;
+            }
+
+            .phone-glow {
+                width: 280px;
+                height: 280px;
+            }
         }
     </style>
 </head>
+
 <body>
 
 <div class="header">
@@ -257,276 +662,184 @@
 </div>
 
 <div class="botones-menu">
-    <button class="btn-menu active" onclick="mostrar('inicio', this)"><i class="fas fa-home"></i> Inicio</button>
-    <button class="btn-menu" onclick="mostrar('servicios', this)"><i class="fas fa-tools"></i> Servicios</button>
-    <button class="btn-menu" onclick="mostrar('horario', this)"><i class="fas fa-clock"></i> Horario</button>
-    <button class="btn-menu" onclick="mostrar('contacto', this)"><i class="fas fa-phone"></i> Contacto</button>
+    <button class="btn-menu active" onclick="mostrar('inicio', this)">
+        <i class="fas fa-home"></i> Inicio
+    </button>
+    <button class="btn-menu" onclick="mostrar('servicios', this)">
+        <i class="fas fa-tools"></i> Servicios
+    </button>
+    <button class="btn-menu" onclick="mostrar('horario', this)">
+        <i class="fas fa-clock"></i> Horario
+    </button>
+    <button class="btn-menu" onclick="mostrar('contacto', this)">
+        <i class="fas fa-phone"></i> Contacto
+    </button>
 </div>
 
 <div class="contenido">
+
     <!-- INICIO -->
     <div class="seccion active" id="inicio">
+
         <div class="hero">
+
             <div class="hero-text">
-                <div class="badge-top"><i class="fas fa-star"></i><span>Servicio Técnico Premium en La Habana</span></div>
-                <h1>Reparamos tu <span class="highlight">celular</span> con tecnología y profesionalismo</h1>
-                <p class="descripcion">Somos expertos en <strong>iPhone</strong> y <strong>Android</strong>. Hardware, software, microsoldaduras y mucho más. Diagnóstico gratuito y garantía en todos nuestros servicios.</p>
-                <div class="cta-botones">
-                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20quiero%20información" target="_blank" class="btn-cta btn-primary"><i class="fab fa-whatsapp"></i> Cotizar ahora</a>
-                    <a href="tel:+5356194280" class="btn-cta btn-secondary"><i class="fas fa-phone"></i> Llamar</a>
+                <div class="badge-top">
+                    <i class="fas fa-star"></i>
+                    <span>Servicio Técnico Premium en La Habana</span>
                 </div>
+
+                <h1>Reparamos tu <span class="highlight">celular</span> con tecnología y profesionalismo</h1>
+
+                <p class="descripcion">
+                    Somos expertos en <strong>iPhone</strong> y <strong>Android</strong>. Hardware, software,
+                    microsoldaduras y mucho más. Diagnóstico gratuito y garantía en todos nuestros servicios.
+                </p>
+
+                <div class="cta-botones">
+                    <a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20quiero%20información" target="_blank" class="btn-cta btn-primary">
+                        <i class="fab fa-whatsapp"></i> Cotizar ahora
+                    </a>
+
+                    <a href="tel:+5356194280" class="btn-cta btn-secondary">
+                        <i class="fas fa-phone"></i> Llamar
+                    </a>
+                </div>
+
                 <div class="stats">
-                    <div class="stat-item"><h3>+500</h3><p>Equipos reparados</p></div>
-                    <div class="stat-item"><h3>100%</h3><p>Garantía</p></div>
-                    <div class="stat-item"><h3>24h</h3><p>Respuesta rápida</p></div>
+                    <div class="stat-item">
+                        <h3>+500</h3>
+                        <p>Equipos reparados</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Garantía</p>
+                    </div>
+
+                    <div class="stat-item">
+                        <h3>24h</h3>
+                        <p>Respuesta rápida</p>
+                    </div>
                 </div>
             </div>
 
-            <!-- TELÉFONO 3D -->
+            <!-- TELÉFONO SIN INTERACCIÓN -->
             <div class="hero-phone">
                 <div class="phone-glow"></div>
-                <div class="phone-3d-container" id="phone3d">
 
-                    <!-- ===== FRENTE ===== -->
-                    <div class="phone-face phone-front">
-                        <svg viewBox="0 0 260 540" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Pantalla -->
-                            <rect x="8" y="8" width="244" height="524" rx="18" fill="#080810"/>
+                <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="100" cy="395" rx="60" ry="6" fill="rgba(0,0,0,0.5)"/>
 
-                            <!-- Cámara frontal (punch hole) -->
-                            <circle cx="130" cy="28" r="6" fill="#111"/>
-                            <circle cx="130" cy="28" r="3.5" fill="#0d1520"/>
-                            <circle cx="128" cy="26" r="1.2" fill="rgba(255,255,255,0.08)"/>
+                    <rect x="20" y="10" width="160" height="370" rx="32" fill="url(#bodyGradient)" stroke="#00d9ff" stroke-width="2"/>
+                    <rect x="28" y="18" width="144" height="354" rx="26" fill="url(#screenGradient)"/>
 
-                            <!-- Barra de estado -->
-                            <text x="22" y="24" fill="#666" font-size="9" font-family="Poppins">⬤⬤⬤⬤○</text>
-                            <text x="238" y="24" fill="#666" font-size="9" font-family="Poppins" text-anchor="end">87% 🔋</text>
+                    <rect x="75" y="32" width="50" height="16" rx="8" fill="#000"/>
+                    <circle cx="115" cy="40" r="3" fill="#1a1a1a"/>
 
-                            <!-- HORA -->
-                            <text id="hora-phone" x="130" y="115" text-anchor="middle" fill="white" font-size="48" font-weight="700" font-family="Poppins">00:00</text>
-                            <text id="ampm-phone" x="130" y="140" text-anchor="middle" fill="#666" font-size="13" font-family="Poppins">AM</text>
-                            <text id="fecha-phone" x="130" y="162" text-anchor="middle" fill="#00d9ff" font-size="11" font-family="Poppins">Cargando...</text>
+                    <text id="hora-phone" x="100" y="95" text-anchor="middle" fill="white" font-size="30" font-weight="700" font-family="Poppins">00:00</text>
+                    <text id="ampm-phone" x="100" y="113" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Poppins">AM</text>
+                    <text id="fecha-phone" x="100" y="128" text-anchor="middle" fill="#00d9ff" font-size="8" font-family="Poppins">Cargando...</text>
 
-                            <!-- Widget DR CELL -->
-                            <rect x="25" y="185" width="210" height="70" rx="16" fill="rgba(0,217,255,0.06)" stroke="rgba(0,217,255,0.15)" stroke-width="1"/>
-                            <circle cx="60" cy="220" r="18" fill="rgba(0,217,255,0.15)"/>
-                            <text x="60" y="226" text-anchor="middle" fill="#00d9ff" font-size="18">🔧</text>
-                            <text x="145" y="212" text-anchor="middle" fill="white" font-size="11" font-weight="600" font-family="Poppins">DR CELL HABANA</text>
-                            <text x="145" y="230" text-anchor="middle" fill="#00d9ff" font-size="9" font-family="Poppins">Servicio Profesional</text>
-                            <text x="145" y="246" text-anchor="middle" fill="#555" font-size="8" font-family="Poppins">📞 +53 5619 4280</text>
+                    <rect x="40" y="145" width="120" height="60" rx="12" fill="rgba(0,217,255,0.15)" stroke="rgba(0,217,255,0.3)" stroke-width="1"/>
+                    <text x="100" y="170" text-anchor="middle" fill="white" font-size="10" font-weight="600" font-family="Poppins">DR CELL HABANA</text>
+                    <text x="100" y="190" text-anchor="middle" fill="#00d9ff" font-size="14" font-weight="700" font-family="Poppins">Servicio Pro</text>
 
-                            <!-- Apps Fila 1 -->
-                            <rect x="22" y="275" width="46" height="46" rx="13" fill="#25d366"/>
-                            <text x="45" y="304" text-anchor="middle" fill="white" font-size="20">💬</text>
-                            <rect x="78" y="275" width="46" height="46" rx="13" fill="#007AFF"/>
-                            <text x="101" y="304" text-anchor="middle" fill="white" font-size="20">📷</text>
-                            <rect x="134" y="275" width="46" height="46" rx="13" fill="#FF3B30"/>
-                            <text x="157" y="304" text-anchor="middle" fill="white" font-size="20">🎵</text>
-                            <rect x="190" y="275" width="46" height="46" rx="13" fill="#FF9500"/>
-                            <text x="213" y="304" text-anchor="middle" fill="white" font-size="20">⚙️</text>
+                    <rect x="40" y="220" width="28" height="28" rx="7" fill="#00d9ff"/>
+                    <text x="54" y="239" text-anchor="middle" font-size="13">🔧</text>
 
-                            <!-- Apps Fila 2 -->
-                            <rect x="22" y="335" width="46" height="46" rx="13" fill="#5856D6"/>
-                            <text x="45" y="364" text-anchor="middle" fill="white" font-size="20">🗺️</text>
-                            <rect x="78" y="335" width="46" height="46" rx="13" fill="#34C759"/>
-                            <text x="101" y="364" text-anchor="middle" fill="white" font-size="20">🛒</text>
-                            <rect x="134" y="335" width="46" height="46" rx="13" fill="#AF52DE"/>
-                            <text x="157" y="364" text-anchor="middle" fill="white" font-size="20">📧</text>
-                            <rect x="190" y="335" width="46" height="46" rx="13" fill="#30B0C7"/>
-                            <text x="213" y="364" text-anchor="middle" fill="white" font-size="20">🎮</text>
+                    <rect x="76" y="220" width="28" height="28" rx="7" fill="#25d366"/>
+                    <text x="90" y="239" text-anchor="middle" font-size="13">💬</text>
 
-                            <!-- Apps Fila 3 -->
-                            <rect x="22" y="395" width="46" height="46" rx="13" fill="#FF2D55"/>
-                            <text x="45" y="424" text-anchor="middle" fill="white" font-size="20">📁</text>
-                            <rect x="78" y="395" width="46" height="46" rx="13" fill="#5AC8FA"/>
-                            <text x="101" y="424" text-anchor="middle" fill="white" font-size="20">💡</text>
-                            <rect x="134" y="395" width="46" height="46" rx="13" fill="#FFCC00"/>
-                            <text x="157" y="424" text-anchor="middle" fill="#333" font-size="20">📝</text>
-                            <rect x="190" y="395" width="46" height="46" rx="13" fill="#1877F2"/>
-                            <text x="213" y="424" text-anchor="middle" fill="white" font-size="20">👤</text>
+                    <rect x="112" y="220" width="28" height="28" rx="7" fill="#ef4444"/>
+                    <text x="126" y="239" text-anchor="middle" font-size="13">📱</text>
 
-                            <!-- Dock -->
-                            <rect x="22" y="460" width="216" height="56" rx="18" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"/>
-                            <rect x="32" y="468" width="40" height="40" rx="12" fill="#25d366"/>
-                            <text x="52" y="494" text-anchor="middle" fill="white" font-size="18">📞</text>
-                            <rect x="82" y="468" width="40" height="40" rx="12" fill="#007AFF"/>
-                            <text x="102" y="494" text-anchor="middle" fill="white" font-size="18">🌐</text>
-                            <rect x="132" y="468" width="40" height="40" rx="12" fill="#FF3B30"/>
-                            <text x="152" y="494" text-anchor="middle" fill="white" font-size="18">📸</text>
-                            <rect x="182" y="468" width="40" height="40" rx="12" fill="#1877F2"/>
-                            <text x="202" y="494" text-anchor="middle" fill="white" font-size="18">💬</text>
+                    <rect x="148" y="220" width="14" height="28" rx="7" fill="#f59e0b" opacity="0.7"/>
 
-                            <!-- Barra home -->
-                            <rect x="90" y="527" width="80" height="4" rx="2" fill="rgba(255,255,255,0.4)"/>
-                        </svg>
-                    </div>
+                    <rect x="40" y="257" width="28" height="28" rx="7" fill="#8b5cf6"/>
+                    <text x="54" y="276" text-anchor="middle" font-size="13">⚙️</text>
 
-                 <!-- ===== ATRÁS - S26 ULTRA REALISTA ===== -->
-<div class="phone-face phone-back">
-    <svg viewBox="0 0 260 540" xmlns="http://www.w3.org/2000/svg">
-        <!-- Cuerpo trasero -->
-        <rect x="0" y="0" width="260" height="540" rx="20" fill="url(#bodyGrad)"/>
-        
-        <!-- Brillo superior diagonal -->
-        <path d="M 0 0 L 260 0 L 260 200 L 0 350 Z" fill="url(#diagShine)" opacity="0.06"/>
+                    <rect x="76" y="257" width="28" height="28" rx="7" fill="#10b981"/>
+                    <text x="90" y="276" text-anchor="middle" font-size="13">🔋</text>
 
-        <!-- ===== MÓDULO DE CÁMARAS S26 ULTRA ===== -->
-        <!-- Placa elevada del módulo -->
-        <rect x="20" y="30" width="130" height="200" rx="28" fill="url(#moduleGrad)" stroke="#2a2a2a" stroke-width="0.5"/>
-        <rect x="22" y="32" width="126" height="196" rx="26" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.5"/>
+                    <rect x="112" y="257" width="28" height="28" rx="7" fill="#ec4899"/>
+                    <text x="126" y="276" text-anchor="middle" font-size="13">📷</text>
 
-        <!-- Cámara 1 - 200MP Principal (arriba izquierda, MÁS GRANDE) -->
-        <circle cx="55" cy="75" r="28" fill="#050505" stroke="#1a1a1a" stroke-width="2"/>
-        <circle cx="55" cy="75" r="24" fill="#000" stroke="#2a2a2a" stroke-width="1"/>
-        <circle cx="55" cy="75" r="20" fill="url(#lensBlue)"/>
-        <circle cx="55" cy="75" r="13" fill="#01020a"/>
-        <circle cx="55" cy="75" r="7" fill="#000510"/>
-        <circle cx="55" cy="75" r="4" fill="#000"/>
-        <!-- Reflejos lente -->
-        <ellipse cx="47" cy="65" rx="5" ry="3" fill="rgba(120,180,255,0.18)" transform="rotate(-30 47 65)"/>
-        <circle cx="62" cy="85" r="2" fill="rgba(120,180,255,0.1)"/>
-        <!-- Marca 200MP discreta -->
-        <text x="55" y="115" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="6" font-family="Poppins" letter-spacing="1">200MP</text>
+                    <rect x="148" y="257" width="14" height="28" rx="7" fill="#06b6d4" opacity="0.7"/>
 
-        <!-- Cámara 2 - Teleobjetivo 5x (derecha arriba) -->
-        <circle cx="115" cy="75" r="22" fill="#050505" stroke="#1a1a1a" stroke-width="2"/>
-        <circle cx="115" cy="75" r="18" fill="#000" stroke="#2a2a2a" stroke-width="1"/>
-        <circle cx="115" cy="75" r="15" fill="url(#lensGreen)"/>
-        <circle cx="115" cy="75" r="9" fill="#01020a"/>
-        <circle cx="115" cy="75" r="5" fill="#000510"/>
-        <ellipse cx="109" cy="68" rx="3.5" ry="2" fill="rgba(120,255,180,0.15)" transform="rotate(-30 109 68)"/>
-        <text x="115" y="108" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="5" font-family="Poppins">5x</text>
+                    <rect x="40" y="294" width="28" height="28" rx="7" fill="#f97316"/>
+                    <text x="54" y="313" text-anchor="middle" font-size="13">💾</text>
 
-        <!-- Cámara 3 - Teleobjetivo 3x (centro) -->
-        <circle cx="55" cy="155" r="22" fill="#050505" stroke="#1a1a1a" stroke-width="2"/>
-        <circle cx="55" cy="155" r="18" fill="#000" stroke="#2a2a2a" stroke-width="1"/>
-        <circle cx="55" cy="155" r="15" fill="url(#lensPurple)"/>
-        <circle cx="55" cy="155" r="9" fill="#01020a"/>
-        <circle cx="55" cy="155" r="5" fill="#000510"/>
-        <ellipse cx="49" cy="148" rx="3.5" ry="2" fill="rgba(180,120,255,0.15)" transform="rotate(-30 49 148)"/>
-        <text x="55" y="188" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="5" font-family="Poppins">3x</text>
+                    <rect x="76" y="294" width="28" height="28" rx="7" fill="#a855f7"/>
+                    <text x="90" y="313" text-anchor="middle" font-size="13">🔐</text>
 
-        <!-- Cámara 4 - Ultra Wide (derecha abajo) -->
-        <circle cx="115" cy="155" r="22" fill="#050505" stroke="#1a1a1a" stroke-width="2"/>
-        <circle cx="115" cy="155" r="18" fill="#000" stroke="#2a2a2a" stroke-width="1"/>
-        <circle cx="115" cy="155" r="15" fill="url(#lensAmber)"/>
-        <circle cx="115" cy="155" r="9" fill="#01020a"/>
-        <circle cx="115" cy="155" r="5" fill="#000510"/>
-        <ellipse cx="109" cy="148" rx="3.5" ry="2" fill="rgba(255,200,120,0.15)" transform="rotate(-30 109 148)"/>
-        <text x="115" y="188" text-anchor="middle" fill="rgba(255,255,255,0.15)" font-size="5" font-family="Poppins">UW</text>
+                    <rect x="112" y="294" width="28" height="28" rx="7" fill="#14b8a6"/>
+                    <text x="126" y="313" text-anchor="middle" font-size="13">📞</text>
 
-        <!-- Zona de Flash + Sensores (parte inferior del módulo) -->
-        <rect x="35" y="195" width="100" height="25" rx="12" fill="rgba(0,0,0,0.3)" stroke="#1a1a1a" stroke-width="0.5"/>
-        
-        <!-- Flash LED dual -->
-        <circle cx="50" cy="207" r="6" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="0.5"/>
-        <circle cx="50" cy="207" r="4" fill="#f0e0c0"/>
-        <circle cx="50" cy="207" r="2.5" fill="#fff8e8"/>
-        <circle cx="49" cy="206" r="1" fill="white" opacity="0.7"/>
-        
-        <!-- Sensor de temperatura/láser -->
-        <rect x="65" y="201" width="14" height="12" rx="2" fill="#0a0a0a" stroke="#1a1a1a" stroke-width="0.5"/>
-        <circle cx="69" cy="207" r="1.5" fill="#220505"/>
-        <circle cx="75" cy="207" r="1.5" fill="#052218"/>
-        
-        <!-- Micrófono trasero -->
-        <circle cx="92" cy="207" r="2" fill="#000" stroke="#1a1a1a" stroke-width="0.5"/>
-        
-        <!-- Texto LASER AF -->
-        <text x="118" y="210" fill="rgba(255,255,255,0.2)" font-size="5" font-family="Poppins">LASER AF</text>
+                    <rect x="148" y="294" width="14" height="28" rx="7" fill="#facc15" opacity="0.7"/>
 
-        <!-- ===== ETIQUETA TÉCNICA (estilo Samsung real) ===== -->
-        <text x="35" y="252" fill="rgba(255,255,255,0.18)" font-size="7" font-weight="600" font-family="Poppins" letter-spacing="1">GALAXY AI</text>
-        <line x1="85" y1="249" x2="135" y2="249" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/>
+                    <rect x="35" y="335" width="130" height="32" rx="14" fill="rgba(0,217,255,0.1)"/>
+                    <rect x="48" y="343" width="22" height="22" rx="6" fill="#25d366"/>
+                    <rect x="78" y="343" width="22" height="22" rx="6" fill="#1877f2"/>
+                    <rect x="108" y="343" width="22" height="22" rx="6" fill="#00d9ff"/>
+                    <rect x="138" y="343" width="22" height="22" rx="6" fill="#ef4444"/>
 
-        <!-- ===== LOGO SAMSUNG GRANDE Y CENTRADO ===== -->
-        <text x="130" y="420" text-anchor="middle" fill="rgba(255,255,255,0.25)" font-size="22" font-weight="300" font-family="Poppins" letter-spacing="10">SAMSUNG</text>
+                    <rect x="75" y="370" width="50" height="3" rx="2" fill="white"/>
 
-        <!-- Marca DR CELL -->
-        <g transform="translate(130, 455)">
-            <rect x="-55" y="-10" width="110" height="22" rx="11" fill="rgba(0,217,255,0.04)" stroke="rgba(0,217,255,0.12)" stroke-width="0.5"/>
-            <text x="0" y="5" text-anchor="middle" fill="rgba(0,217,255,0.5)" font-size="9" font-weight="600" font-family="Poppins" letter-spacing="2">DR CELL HABANA</text>
-        </g>
+                    <defs>
+                        <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1a1a1a"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
+                        </linearGradient>
 
-        <!-- Info técnica inferior -->
-        <text x="130" y="495" text-anchor="middle" fill="rgba(255,255,255,0.08)" font-size="6" font-family="Poppins" letter-spacing="1">GALAXY S26 ULTRA · 512GB</text>
-        <text x="130" y="508" text-anchor="middle" fill="rgba(255,255,255,0.06)" font-size="5" font-family="Poppins">TITANIUM BLACK · MADE IN VIETNAM</text>
+                        <linearGradient id="screenGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0d1f23"/>
+                            <stop offset="100%" stop-color="#0a0a0a"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
 
-        <defs>
-            <!-- Cuerpo titanio negro -->
-            <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#222"/>
-                <stop offset="30%" stop-color="#1a1a1a"/>
-                <stop offset="60%" stop-color="#161616"/>
-                <stop offset="100%" stop-color="#1f1f1f"/>
-            </linearGradient>
-            
-            <!-- Brillo diagonal -->
-            <linearGradient id="diagShine" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="white"/>
-                <stop offset="100%" stop-color="transparent"/>
-            </linearGradient>
+        </div>
 
-            <!-- Módulo de cámaras elevado -->
-            <linearGradient id="moduleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#1a1a1a"/>
-                <stop offset="50%" stop-color="#0e0e0e"/>
-                <stop offset="100%" stop-color="#161616"/>
-            </linearGradient>
+        <div class="features">
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-shield-halved"></i></div>
+                <h4>Garantía Total</h4>
+                <p>Todos nuestros servicios cuentan con garantía escrita.</p>
+            </div>
 
-            <!-- Lentes con colores realistas -->
-            <radialGradient id="lensBlue" cx="35%" cy="30%">
-                <stop offset="0%" stop-color="#2a4470"/>
-                <stop offset="35%" stop-color="#0e1830"/>
-                <stop offset="70%" stop-color="#050a18"/>
-                <stop offset="100%" stop-color="#000"/>
-            </radialGradient>
-            <radialGradient id="lensGreen" cx="35%" cy="30%">
-                <stop offset="0%" stop-color="#2a5040"/>
-                <stop offset="35%" stop-color="#0e2018"/>
-                <stop offset="70%" stop-color="#050f08"/>
-                <stop offset="100%" stop-color="#000"/>
-            </radialGradient>
-            <radialGradient id="lensPurple" cx="35%" cy="30%">
-                <stop offset="0%" stop-color="#402a55"/>
-                <stop offset="35%" stop-color="#18102a"/>
-                <stop offset="70%" stop-color="#0a0518"/>
-                <stop offset="100%" stop-color="#000"/>
-            </radialGradient>
-            <radialGradient id="lensAmber" cx="35%" cy="30%">
-                <stop offset="0%" stop-color="#553a20"/>
-                <stop offset="35%" stop-color="#251a0e"/>
-                <stop offset="70%" stop-color="#100a05"/>
-                <stop offset="100%" stop-color="#000"/>
-            </radialGradient>
-        </defs>
-    </svg>
-</div>
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-bolt"></i></div>
+                <h4>Servicio Rápido</h4>
+                <p>Reparamos tu equipo en el menor tiempo posible.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon-box"><i class="fas fa-user-tie"></i></div>
+                <h4>Técnicos Expertos</h4>
+                <p>Personal capacitado en iPhone, Android y microsoldaduras.</p>
+            </div>
+        </div>
+
+    </div>
 
     <!-- SERVICIOS -->
     <div class="seccion" id="servicios">
         <div class="card">
             <h2><i class="fas fa-tools"></i> Nuestros Servicios</h2>
-            <h3 class="categoria-titulo"><i class="fas fa-microchip"></i> Hardware</h3>
-            <div class="servicios-lista">
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-mobile-screen"></i><span>Cambio de pantalla</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20pantalla" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-battery-full"></i><span>Cambio de batería</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20batería" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-plug"></i><span>Cambio de puerto de carga</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20puerto%20de%20carga" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-circle-dot"></i><span>Cambio de botones</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20cambio%20de%20botones" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-fire"></i><span>Microsoldaduras</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20una%20microsoldadura" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-microchip"></i><span>Reparación de placa</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20reparación%20de%20placa" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-            </div>
 
-            <h3 class="categoria-titulo"><i class="fas fa-code"></i> Software</h3>
-            <div class="servicios-lista">
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-unlock"></i><span>Liberación de compañía</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20liberación%20de%20compañía" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-key"></i><span>Desbloqueos</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20desbloqueo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-download"></i><span>Flasheos</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20un%20flasheo" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fab fa-google"></i><span>Eliminar cuenta Google</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20eliminar%20cuenta%20de%20Google" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fab fa-apple"></i><span>Apps para iPhone</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20iPhone" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fab fa-android"></i><span>Apps para Android</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20instalar%20apps%20para%20Android" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-                <div class="servicio-item"><div class="servicio-info"><i class="fas fa-cloud"></i><span>Crear cuenta iCloud</span></div><div class="servicio-acciones"><a href="https://wa.me/5356194280?text=Hola%20DR%20CELL,%20necesito%20crear%20una%20cuenta%20iCloud" target="_blank" class="btn-circular bg-wsp"><i class="fab fa-whatsapp"></i></a><a href="tel:+5356194280" class="btn-circular bg-call"><i class="fas fa-phone"></i></a></div></div>
-            </div>
+            <h3 class="categoria-titulo">
+                <i class="fas fa-microchip"></i> Hardware
+            </h3>
+
+            <div class="servicios-lista" id="lista-hardware"></div>
+
+            <h3 class="categoria-titulo">
+                <i class="fas fa-code"></i> Software
+            </h3>
+
+            <div class="servicios-lista" id="lista-software"></div>
         </div>
     </div>
 
@@ -534,9 +847,19 @@
     <div class="seccion" id="horario">
         <div class="card">
             <h2><i class="fas fa-clock"></i> Horario de Atención</h2>
+
             <div class="horario-grid">
-                <div class="horario-box"><i class="fas fa-calendar-day"></i><h3>Lunes a Viernes</h3><p>10:00 AM - 4:00 PM</p></div>
-                <div class="horario-box"><i class="fas fa-calendar-week"></i><h3>Sábados</h3><p>10:00 AM - 2:00 PM</p></div>
+                <div class="horario-box">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Lunes a Viernes</h3>
+                    <p>10:00 AM - 4:00 PM</p>
+                </div>
+
+                <div class="horario-box">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3>Sábados</h3>
+                    <p>10:00 AM - 2:00 PM</p>
+                </div>
             </div>
         </div>
     </div>
@@ -545,112 +868,185 @@
     <div class="seccion" id="contacto">
         <div class="card">
             <h2><i class="fas fa-address-book"></i> Contáctanos</h2>
+
             <div class="contacto-grid">
-                <a href="https://wa.me/5356194280" target="_blank" class="contacto-box"><i class="fab fa-whatsapp ic-wsp"></i><h3>WhatsApp</h3><p>+53 5619 4280</p></a>
-                <a href="tel:+5356194280" class="contacto-box"><i class="fas fa-phone-alt ic-call"></i><h3>Llamar</h3><p>+53 5619 4280</p></a>
-                <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="contacto-box"><i class="fab fa-facebook ic-fb"></i><h3>Facebook</h3><p>Drcell Habana</p></a>
+                <a href="https://wa.me/5356194280" target="_blank" class="contacto-box">
+                    <i class="fab fa-whatsapp ic-wsp"></i>
+                    <h3>WhatsApp</h3>
+                    <p>+53 5619 4280</p>
+                </a>
+
+                <a href="tel:+5356194280" class="contacto-box">
+                    <i class="fas fa-phone-alt ic-call"></i>
+                    <h3>Llamar</h3>
+                    <p>+53 5619 4280</p>
+                </a>
+
+                <a href="https://www.facebook.com/share/1HD9zzmj3U/" target="_blank" class="contacto-box">
+                    <i class="fab fa-facebook ic-fb"></i>
+                    <h3>Facebook</h3>
+                    <p>Drcell Habana</p>
+                </a>
             </div>
         </div>
     </div>
+
 </div>
 
-<footer><p id="footer-texto"></p></footer>
+<footer>
+    <p id="footer-texto"></p>
+</footer>
 
 <script>
+    const telefono = "5356194280";
+
     function mostrar(id, btn) {
         document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
+
         document.querySelectorAll('.btn-menu').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 
-    // RELOJ
     function actualizarReloj() {
         const ahora = new Date();
+
         let horas = ahora.getHours();
         const minutos = ahora.getMinutes().toString().padStart(2, '0');
         const ampm = horas >= 12 ? 'PM' : 'AM';
-        horas = horas % 12 || 12;
-        const horaStr = horas.toString().padStart(2, '0');
-        const sep = ahora.getSeconds() % 2 === 0 ? ':' : ' ';
-        const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-        const meses = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
 
-        const el1 = document.getElementById('hora-phone');
-        const el2 = document.getElementById('ampm-phone');
-        const el3 = document.getElementById('fecha-phone');
-        if (el1) el1.textContent = `${horaStr}${sep}${minutos}`;
-        if (el2) el2.textContent = ampm;
-        if (el3) el3.textContent = `${dias[ahora.getDay()]}, ${ahora.getDate()} de ${meses[ahora.getMonth()]}`;
+        horas = horas % 12;
+        horas = horas ? horas : 12;
+
+        const horaStr = horas.toString().padStart(2, '0');
+        const separador = ahora.getSeconds() % 2 === 0 ? ':' : ' ';
+
+        const dias = [
+            'Domingo', 'Lunes', 'Martes', 'Miércoles',
+            'Jueves', 'Viernes', 'Sábado'
+        ];
+
+        const meses = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+
+        const horaEl = document.getElementById('hora-phone');
+        const ampmEl = document.getElementById('ampm-phone');
+        const fechaEl = document.getElementById('fecha-phone');
+
+        if (horaEl) horaEl.textContent = `${horaStr}${separador}${minutos}`;
+        if (ampmEl) ampmEl.textContent = ampm;
+        if (fechaEl) fechaEl.textContent = `${dias[ahora.getDay()]}, ${ahora.getDate()} ${meses[ahora.getMonth()]}`;
     }
+
     actualizarReloj();
     setInterval(actualizarReloj, 1000);
 
-    // TELÉFONO 3D
-    const phone = document.getElementById('phone3d');
-    let isDragging = false, startX = 0, startY = 0;
-    let targetRotY = 0, targetRotX = 0, lastRotY = 0, lastRotX = 0;
-    let velocityY = 0, animFrame = null, autoRotate = true, autoAngle = 0, hintHidden = false;
-
-    function autoRotatePhone() {
-        if (autoRotate) {
-            autoAngle += 0.3;
-            phone.style.transform = `rotateY(${Math.sin(autoAngle * Math.PI / 180) * 15}deg) rotateX(2deg)`;
-            animFrame = requestAnimationFrame(autoRotatePhone);
+    const hardware = [
+        {
+            icono: "fas fa-mobile-screen",
+            nombre: "Cambio de pantalla",
+            mensaje: "necesito cambio de pantalla"
+        },
+        {
+            icono: "fas fa-battery-full",
+            nombre: "Cambio de batería",
+            mensaje: "necesito cambio de batería"
+        },
+        {
+            icono: "fas fa-plug",
+            nombre: "Cambio de puerto de carga",
+            mensaje: "necesito cambio de puerto de carga"
+        },
+        {
+            icono: "fas fa-circle-dot",
+            nombre: "Cambio de botones",
+            mensaje: "necesito cambio de botones"
+        },
+        {
+            icono: "fas fa-fire",
+            nombre: "Microsoldaduras",
+            mensaje: "necesito una microsoldadura"
+        },
+        {
+            icono: "fas fa-microchip",
+            nombre: "Reparación de placa",
+            mensaje: "necesito reparación de placa"
         }
-    }
-    autoRotatePhone();
+    ];
 
-    phone.addEventListener('mousedown', e => { e.preventDefault(); startDrag(e.clientX, e.clientY); });
-    document.addEventListener('mousemove', e => { if (isDragging) moveDrag(e.clientX, e.clientY); });
-    document.addEventListener('mouseup', () => { if (isDragging) endDrag(); });
-    phone.addEventListener('touchstart', e => { startDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    document.addEventListener('touchmove', e => { if (isDragging) moveDrag(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-    document.addEventListener('touchend', () => { if (isDragging) endDrag(); });
-
-    function startDrag(x, y) {
-        isDragging = true; autoRotate = false;
-        if (animFrame) cancelAnimationFrame(animFrame);
-        phone.classList.add('no-transition');
-        startX = x; startY = y; lastRotY = targetRotY; lastRotX = targetRotX; velocityY = 0;
-        if (!hintHidden) {
-            const h = document.querySelector('.phone-hint');
-            if (h) { h.style.transition = 'opacity 0.5s'; h.style.opacity = '0'; setTimeout(() => h.style.display = 'none', 500); }
-            hintHidden = true;
+    const software = [
+        {
+            icono: "fas fa-unlock",
+            nombre: "Liberación de compañía",
+            mensaje: "necesito liberación de compañía"
+        },
+        {
+            icono: "fas fa-key",
+            nombre: "Desbloqueos",
+            mensaje: "necesito desbloqueo"
+        },
+        {
+            icono: "fas fa-download",
+            nombre: "Flasheos",
+            mensaje: "necesito un flasheo"
+        },
+        {
+            icono: "fab fa-google",
+            nombre: "Eliminar cuenta Google",
+            mensaje: "necesito eliminar cuenta de Google"
+        },
+        {
+            icono: "fab fa-apple",
+            nombre: "Apps para iPhone",
+            mensaje: "necesito instalar apps para iPhone"
+        },
+        {
+            icono: "fab fa-android",
+            nombre: "Apps para Android",
+            mensaje: "necesito instalar apps para Android"
+        },
+        {
+            icono: "fas fa-cloud",
+            nombre: "Crear cuenta iCloud",
+            mensaje: "necesito crear una cuenta iCloud"
         }
+    ];
+
+    function crearServicio(servicio) {
+        const texto = encodeURIComponent(`Hola DR CELL, ${servicio.mensaje}`);
+
+        return `
+            <div class="servicio-item">
+                <div class="servicio-info">
+                    <i class="${servicio.icono}"></i>
+                    <span>${servicio.nombre}</span>
+                </div>
+
+                <div class="servicio-acciones">
+                    <a href="https://wa.me/${telefono}?text=${texto}" target="_blank" class="btn-circular bg-wsp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+
+                    <a href="tel:+${telefono}" class="btn-circular bg-call">
+                        <i class="fas fa-phone"></i>
+                    </a>
+                </div>
+            </div>
+        `;
     }
 
-    function moveDrag(x, y) {
-        const dx = x - startX, dy = y - startY;
-        targetRotY = lastRotY + dx * 0.8;
-        targetRotX = Math.max(-25, Math.min(25, lastRotX - dy * 0.3));
-        velocityY = dx * 0.8;
-        phone.style.transform = `rotateY(${targetRotY}deg) rotateX(${targetRotX}deg)`;
-    }
+    document.getElementById('lista-hardware').innerHTML = hardware.map(crearServicio).join('');
+    document.getElementById('lista-software').innerHTML = software.map(crearServicio).join('');
 
-    function endDrag() {
-        isDragging = false; phone.classList.remove('no-transition');
-        let inY = velocityY * 0.4;
-        function inertia() {
-            if (Math.abs(inY) > 0.1) {
-                targetRotY += inY; inY *= 0.95;
-                targetRotX *= 0.95;
-                phone.style.transform = `rotateY(${targetRotY}deg) rotateX(${targetRotX}deg)`;
-                requestAnimationFrame(inertia);
-            } else { smoothReturn(); }
-        }
-        function smoothReturn() {
-            if (Math.abs(targetRotX) > 0.3) {
-                targetRotX *= 0.92;
-                phone.style.transform = `rotateY(${targetRotY}deg) rotateX(${targetRotX}deg)`;
-                requestAnimationFrame(smoothReturn);
-            }
-        }
-        requestAnimationFrame(inertia);
-    }
-
-    document.getElementById('footer-texto').innerHTML = `&copy; ${new Date().getFullYear()} DR CELL HABANA - Todos los derechos reservados`;
+    document.getElementById('footer-texto').innerHTML =
+        `&copy; ${new Date().getFullYear()} DR CELL HABANA - Todos los derechos reservados`;
 </script>
 
 </body>
