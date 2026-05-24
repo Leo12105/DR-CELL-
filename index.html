@@ -131,9 +131,7 @@
             min-height: 70vh;
         }
 
-        .hero-text {
-            animation: slideLeft 1s;
-        }
+        .hero-text { animation: slideLeft 1s; }
         @keyframes slideLeft {
             from { opacity: 0; transform: translateX(-50px); }
             to { opacity: 1; transform: translateX(0); }
@@ -200,9 +198,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
         .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,217,255,0.3); }
-        .btn-primary {
-            background: linear-gradient(135deg, #25d366, #1ea952);
-        }
+        .btn-primary { background: linear-gradient(135deg, #25d366, #1ea952); }
         .btn-secondary {
             background: rgba(255,255,255,0.05);
             border: 2px solid var(--cian);
@@ -418,7 +414,7 @@
             border-color: var(--cian);
             box-shadow: 0 10px 30px rgba(0,217,255,0.15);
         }
-        .contacto-box i { font-size: 2.8rem; margin-bottom: 12px; }
+        .contacto-box i { font-size: 2.8rem; margin-bottom: 12px; display: block; }
         .contacto-box h3 { margin-bottom: 5px; font-weight: 600; }
         .ic-wsp { color: #25d366; }
         .ic-call { color: var(--cian); }
@@ -514,6 +510,7 @@
                 </div>
             </div>
 
+            <!-- TELÉFONO SVG CON RELOJ REAL -->
             <div class="hero-phone">
                 <div class="phone-glow"></div>
                 <svg viewBox="0 0 200 400" xmlns="http://www.w3.org/2000/svg">
@@ -522,35 +519,40 @@
                     <rect x="28" y="18" width="144" height="354" rx="26" fill="url(#screenGradient)"/>
                     <rect x="75" y="32" width="50" height="16" rx="8" fill="#000"/>
                     <circle cx="115" cy="40" r="3" fill="#1a1a1a"/>
-                    <text x="100" y="100" text-anchor="middle" fill="white" font-size="32" font-weight="700" font-family="Poppins">9:41</text>
-                    <text x="100" y="120" text-anchor="middle" fill="#00d9ff" font-size="9" font-family="Poppins">DR CELL HABANA</text>
 
-                    <rect x="40" y="140" width="120" height="60" rx="12" fill="rgba(0,217,255,0.15)" stroke="rgba(0,217,255,0.3)" stroke-width="1"/>
-                    <text x="100" y="165" text-anchor="middle" fill="white" font-size="10" font-weight="600" font-family="Poppins">Servicio Técnico</text>
-                    <text x="100" y="185" text-anchor="middle" fill="#00d9ff" font-size="14" font-weight="700" font-family="Poppins">Profesional</text>
+                    <!-- HORA REAL -->
+                    <text id="hora-phone" x="100" y="98" text-anchor="middle" fill="white" font-size="30" font-weight="700" font-family="Poppins, sans-serif">00:00</text>
+                    <!-- AM/PM -->
+                    <text id="ampm-phone" x="100" y="114" text-anchor="middle" fill="#94a3b8" font-size="9" font-family="Poppins, sans-serif">AM</text>
+                    <!-- FECHA -->
+                    <text id="fecha-phone" x="100" y="128" text-anchor="middle" fill="#00d9ff" font-size="8" font-family="Poppins, sans-serif">Cargando...</text>
 
-                    <rect x="40" y="215" width="28" height="28" rx="7" fill="#00d9ff"/>
-                    <rect x="76" y="215" width="28" height="28" rx="7" fill="#25d366"/>
-                    <rect x="112" y="215" width="28" height="28" rx="7" fill="#ef4444"/>
-                    <rect x="148" y="215" width="14" height="28" rx="7" fill="#f59e0b" opacity="0.7"/>
+                    <rect x="40" y="145" width="120" height="55" rx="12" fill="rgba(0,217,255,0.15)" stroke="rgba(0,217,255,0.3)" stroke-width="1"/>
+                    <text x="100" y="168" text-anchor="middle" fill="white" font-size="10" font-weight="600" font-family="Poppins, sans-serif">Servicio Técnico</text>
+                    <text x="100" y="187" text-anchor="middle" fill="#00d9ff" font-size="13" font-weight="700" font-family="Poppins, sans-serif">Profesional</text>
 
-                    <rect x="40" y="252" width="28" height="28" rx="7" fill="#8b5cf6"/>
-                    <rect x="76" y="252" width="28" height="28" rx="7" fill="#10b981"/>
-                    <rect x="112" y="252" width="28" height="28" rx="7" fill="#ec4899"/>
-                    <rect x="148" y="252" width="14" height="28" rx="7" fill="#06b6d4" opacity="0.7"/>
+                    <rect x="40" y="213" width="28" height="28" rx="7" fill="#00d9ff"/>
+                    <rect x="76" y="213" width="28" height="28" rx="7" fill="#25d366"/>
+                    <rect x="112" y="213" width="28" height="28" rx="7" fill="#ef4444"/>
+                    <rect x="148" y="213" width="14" height="28" rx="7" fill="#f59e0b" opacity="0.7"/>
 
-                    <rect x="40" y="289" width="28" height="28" rx="7" fill="#f97316"/>
-                    <rect x="76" y="289" width="28" height="28" rx="7" fill="#a855f7"/>
-                    <rect x="112" y="289" width="28" height="28" rx="7" fill="#14b8a6"/>
-                    <rect x="148" y="289" width="14" height="28" rx="7" fill="#facc15" opacity="0.7"/>
+                    <rect x="40" y="250" width="28" height="28" rx="7" fill="#8b5cf6"/>
+                    <rect x="76" y="250" width="28" height="28" rx="7" fill="#10b981"/>
+                    <rect x="112" y="250" width="28" height="28" rx="7" fill="#ec4899"/>
+                    <rect x="148" y="250" width="14" height="28" rx="7" fill="#06b6d4" opacity="0.7"/>
 
-                    <rect x="35" y="335" width="130" height="32" rx="14" fill="rgba(0,217,255,0.1)"/>
-                    <rect x="48" y="343" width="22" height="22" rx="6" fill="#00d9ff"/>
-                    <rect x="78" y="343" width="22" height="22" rx="6" fill="#25d366"/>
-                    <rect x="108" y="343" width="22" height="22" rx="6" fill="#1877f2"/>
-                    <rect x="138" y="343" width="22" height="22" rx="6" fill="#ef4444"/>
+                    <rect x="40" y="287" width="28" height="28" rx="7" fill="#f97316"/>
+                    <rect x="76" y="287" width="28" height="28" rx="7" fill="#a855f7"/>
+                    <rect x="112" y="287" width="28" height="28" rx="7" fill="#14b8a6"/>
+                    <rect x="148" y="287" width="14" height="28" rx="7" fill="#facc15" opacity="0.7"/>
 
-                    <rect x="75" y="370" width="50" height="3" rx="2" fill="white"/>
+                    <rect x="35" y="325" width="130" height="32" rx="14" fill="rgba(0,217,255,0.1)"/>
+                    <rect x="48" y="333" width="22" height="22" rx="6" fill="#00d9ff"/>
+                    <rect x="78" y="333" width="22" height="22" rx="6" fill="#25d366"/>
+                    <rect x="108" y="333" width="22" height="22" rx="6" fill="#1877f2"/>
+                    <rect x="138" y="333" width="22" height="22" rx="6" fill="#ef4444"/>
+
+                    <rect x="75" y="368" width="50" height="3" rx="2" fill="white"/>
 
                     <defs>
                         <linearGradient id="bodyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -737,10 +739,11 @@
 </div>
 
 <footer>
-    <p>&copy; 2024 DR CELL HABANA - Todos los derechos reservados</p>
+    <p id="footer-texto">&copy; 2025 DR CELL HABANA - Todos los derechos reservados</p>
 </footer>
 
 <script>
+    // ===== NAVEGACIÓN =====
     function mostrar(id, btn) {
         document.querySelectorAll('.seccion').forEach(s => s.classList.remove('active'));
         document.getElementById(id).classList.add('active');
@@ -748,6 +751,46 @@
         btn.classList.add('active');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
+
+    // ===== RELOJ EN TIEMPO REAL =====
+    function actualizarReloj() {
+        const ahora = new Date();
+
+        // Hora formato 12h
+        let horas = ahora.getHours();
+        const minutos = ahora.getMinutes().toString().padStart(2, '0');
+        const ampm = horas >= 12 ? 'PM' : 'AM';
+        horas = horas % 12;
+        horas = horas ? horas : 12;
+        const horaStr = horas.toString().padStart(2, '0');
+
+        // Parpadeo de los dos puntos cada segundo
+        const separador = ahora.getSeconds() % 2 === 0 ? ':' : ' ';
+
+        // Fecha en español
+        const dias = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
+        const meses = ['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];
+        const diaSemana = dias[ahora.getDay()];
+        const dia = ahora.getDate();
+        const mes = meses[ahora.getMonth()];
+
+        // Actualizar elementos del SVG
+        const horaEl = document.getElementById('hora-phone');
+        const ampmEl = document.getElementById('ampm-phone');
+        const fechaEl = document.getElementById('fecha-phone');
+
+        if (horaEl) horaEl.textContent = `${horaStr}${separador}${minutos}`;
+        if (ampmEl) ampmEl.textContent = ampm;
+        if (fechaEl) fechaEl.textContent = `${diaSemana} ${dia} ${mes}`;
+    }
+
+    // Iniciar reloj
+    actualizarReloj();
+    setInterval(actualizarReloj, 1000);
+
+    // Año dinámico en footer
+    document.getElementById('footer-texto').innerHTML =
+        `&copy; ${new Date().getFullYear()} DR CELL HABANA - Todos los derechos reservados`;
 </script>
 
 </body>
