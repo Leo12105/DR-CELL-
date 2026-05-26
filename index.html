@@ -8,7 +8,7 @@
   <link rel="icon" type="image/jpeg" href="logo.jpg" />
   <link rel="apple-touch-icon" href="logo.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
   <style>
     *{margin:0;padding:0;box-sizing:border-box}
 
@@ -21,6 +21,7 @@
       --gris-borde:#e0e0e0;
       --rojo:#e63946;
       --rojo-glow:#ff1f3d;
+      --azul-logo:#1e90ff;
       --verde:#25d366;
       --verde-hover:#1fb855;
       --sombra:0 2px 20px rgba(0,0,0,.06);
@@ -45,7 +46,6 @@
       margin:0 auto;
     }
 
-    /* Iconos SVG inline */
     .icon-wa{
       width:20px;
       height:20px;
@@ -152,8 +152,8 @@
     }
 
     .brand:hover .brand-logo-wrap{
-      border-color:var(--rojo);
-      box-shadow:0 2px 15px rgba(230,57,70,.25);
+      border-color:var(--azul-logo);
+      box-shadow:0 2px 15px rgba(30,144,255,.35);
     }
 
     .brand-logo{
@@ -164,14 +164,18 @@
     }
 
     .brand-name{
-      font-family:'Space Grotesk',sans-serif;
-      font-size:1.35rem;
-      font-weight:700;
-      letter-spacing:-.5px;
+      font-family:'Orbitron', sans-serif;
+      font-size:1.5rem;
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-style:italic;
+      color:var(--negro);
+      line-height:1;
     }
 
     .brand-name span{
-      color:var(--rojo);
+      color:var(--azul-logo);
     }
 
     .nav-links{
@@ -481,10 +485,13 @@
     }
 
     .contacto-info h3{
-      font-family:'Space Grotesk',sans-serif;
-      font-size:1.5rem;
+      font-family:'Orbitron',sans-serif;
+      font-size:1.6rem;
       margin-bottom:10px;
-      letter-spacing:-.5px;
+      letter-spacing:1px;
+      font-weight:900;
+      font-style:italic;
+      text-transform:uppercase;
     }
 
     .contacto-info>p{color:#999;font-size:.9rem;margin-bottom:28px;line-height:1.6}
@@ -697,7 +704,8 @@
       }
 
       .brand-name{
-        font-size:1.15rem;
+        font-size:1.2rem;
+        letter-spacing:.5px;
       }
 
       .header-inner{
@@ -747,7 +755,7 @@
         <div class="brand-logo-wrap">
           <img src="logo.jpg" alt="DR Cell" class="brand-logo" />
         </div>
-        <div class="brand-name">DR <span>Cell</span></div>
+        <div class="brand-name">DR<span>CELL</span></div>
       </a>
 
       <nav class="nav-links" id="navLinks">
@@ -924,7 +932,7 @@
 
       <div class="contacto-grid">
         <div class="contacto-info">
-          <h3>DR Cell</h3>
+          <h3>DR<span style="color:var(--azul-logo)">CELL</span></h3>
           <p>Servicio técnico de celulares en Marianao, La Habana. Tráenos tu equipo y lo dejamos funcionando.</p>
 
           <div class="info-items">
