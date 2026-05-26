@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DR Cell | Reparación de Celulares</title>
-  <meta name="description" content="DR Cell - Servicio técnico especializado en reparación de celulares. Pantallas, baterías, software y más." />
+  <title>DR Cell | Reparación de Celulares en La Habana</title>
+  <meta name="description" content="DR Cell - Servicio técnico especializado en reparación de celulares en La Habana, Marianao. Pantallas, baterías, software, desbloqueos y más." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
   <style>
@@ -41,6 +41,54 @@
     .wrap{
       width:min(1100px,90%);
       margin:0 auto;
+    }
+
+    /* ══════════════════════════════
+       STATUS BAR (Abierto/Cerrado)
+    ══════════════════════════════ */
+    .status-bar{
+      padding:8px 0;
+      text-align:center;
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.5px;
+      transition:.3s;
+    }
+
+    .status-bar.abierto{
+      background:#ecfdf5;
+      color:#065f46;
+      border-bottom:1px solid #a7f3d0;
+    }
+
+    .status-bar.cerrado{
+      background:#fef2f2;
+      color:#991b1b;
+      border-bottom:1px solid #fecaca;
+    }
+
+    .status-dot{
+      display:inline-block;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      margin-right:6px;
+      vertical-align:middle;
+    }
+
+    .abierto .status-dot{
+      background:#10b981;
+      box-shadow:0 0 6px #10b981;
+      animation:pulse 2s infinite;
+    }
+
+    .cerrado .status-dot{
+      background:#ef4444;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:1}
+      50%{opacity:.4}
     }
 
     /* ══════════════════════════════
@@ -306,6 +354,7 @@
     .repair-item:nth-child(3) .repair-dot{background:var(--rojo)}
     .repair-item:nth-child(4) .repair-dot{background:#f59e0b}
     .repair-item:nth-child(5) .repair-dot{background:#8b5cf6}
+    .repair-item:nth-child(6) .repair-dot{background:#ec4899}
 
     .float-badge{
       position:absolute;
@@ -405,6 +454,12 @@
     .servicio:nth-child(4) .servicio-icono{background:#fce7f3;color:#db2777}
     .servicio:nth-child(5) .servicio-icono{background:#ede9fe;color:#7c3aed}
     .servicio:nth-child(6) .servicio-icono{background:#ffedd5;color:#ea580c}
+    .servicio:nth-child(7) .servicio-icono{background:#e0f2fe;color:#0284c7}
+    .servicio:nth-child(8) .servicio-icono{background:#fce7f3;color:#be185d}
+    .servicio:nth-child(9) .servicio-icono{background:#f0fdf4;color:#15803d}
+    .servicio:nth-child(10) .servicio-icono{background:#fef9c3;color:#a16207}
+    .servicio:nth-child(11) .servicio-icono{background:#ede9fe;color:#6d28d9}
+    .servicio:nth-child(12) .servicio-icono{background:#e0e7ff;color:#4338ca}
 
     .servicio h3{
       font-size:1rem;
@@ -426,6 +481,21 @@
       color:var(--azul);
       text-transform:uppercase;
       letter-spacing:.5px;
+    }
+
+    /* Separador de categorías */
+    .categoria-titulo{
+      grid-column:1/-1;
+      margin-top:20px;
+      padding-bottom:8px;
+      border-bottom:2px solid var(--negro);
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.15rem;
+      letter-spacing:-.3px;
+    }
+
+    .categoria-titulo:first-child{
+      margin-top:0;
     }
 
     /* ══════════════════════════════
@@ -791,6 +861,12 @@
 </head>
 <body>
 
+  <!-- STATUS BAR - Abierto / Cerrado -->
+  <div class="status-bar" id="statusBar">
+    <span class="status-dot"></span>
+    <span id="statusText">Verificando horario...</span>
+  </div>
+
   <!-- HEADER -->
   <header class="header">
     <div class="wrap header-inner">
@@ -804,7 +880,7 @@
         <a href="#servicios">Servicios</a>
         <a href="#proceso">Proceso</a>
         <a href="#contacto">Contacto</a>
-        <a href="tel:+521234567890" class="nav-cta">Llamar ahora</a>
+        <a href="tel:+5356194280" class="nav-cta">Llamar ahora</a>
       </nav>
 
       <div class="burger" id="burger">
@@ -819,34 +895,30 @@
   <section class="hero" id="inicio">
     <div class="wrap hero-grid">
       <div>
-        <div class="hero-tag">Servicio técnico especializado</div>
+        <div class="hero-tag">Servicio técnico en La Habana</div>
         <h1>Tu celular en las <span>mejores manos</span></h1>
         <p class="hero-desc">
-          En DR Cell nos dedicamos a darle una segunda vida a tu equipo. 
-          Reparaciones rápidas, repuestos de calidad y trato directo sin rodeos.
+          En DR Cell nos dedicamos a darle una segunda vida a tu equipo.
+          Reparaciones de hardware y software, trato directo y soluciones reales en Marianao, La Habana.
         </p>
 
         <div class="hero-btns">
-          <a href="https://wa.me/521234567890?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="btn btn-wa">
+          <a href="https://wa.me/5356194280?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="btn btn-wa">
             💬 Escribir por WhatsApp
           </a>
-          <a href="tel:+521234567890" class="btn btn-call">
+          <a href="tel:+5356194280" class="btn btn-call">
             📞 Llamar ahora
           </a>
         </div>
 
         <div class="hero-stats">
           <div class="stat">
-            <h4>+2,000</h4>
-            <p>Equipos reparados</p>
+            <h4>Hardware</h4>
+            <p>Pantallas · Baterías · Placas</p>
           </div>
           <div class="stat">
-            <h4>+5 años</h4>
-            <p>De experiencia</p>
-          </div>
-          <div class="stat">
-            <h4>98%</h4>
-            <p>Clientes satisfechos</p>
+            <h4>Software</h4>
+            <p>Desbloqueos · FRP · Apps</p>
           </div>
         </div>
       </div>
@@ -854,27 +926,31 @@
       <div class="hero-visual">
         <div class="phone-mockup">
           <div class="phone-inner">
-            <h3>Reparaciones del día</h3>
+            <h3>Servicios más pedidos</h3>
             <div class="repair-list">
               <div class="repair-item">
                 <div class="repair-dot"></div>
-                iPhone 14 — Cambio de pantalla
+                Cambio de pantalla
               </div>
               <div class="repair-item">
                 <div class="repair-dot"></div>
-                Samsung S23 — Batería nueva
+                Cambio de batería
               </div>
               <div class="repair-item">
                 <div class="repair-dot"></div>
-                Xiaomi 13 — Puerto de carga
+                Puerto de carga
               </div>
               <div class="repair-item">
                 <div class="repair-dot"></div>
-                Motorola G54 — Software
+                Desbloqueo y FRP
               </div>
               <div class="repair-item">
                 <div class="repair-dot"></div>
-                Huawei P40 — Cámara trasera
+                Microsoldaduras
+              </div>
+              <div class="repair-item">
+                <div class="repair-dot"></div>
+                Liberación de compañía
               </div>
             </div>
           </div>
@@ -891,52 +967,109 @@
     <div class="wrap">
       <div class="section-top">
         <p class="section-label">Servicios</p>
-        <h2>Lo que hacemos por tu equipo</h2>
-        <p>Cada reparación se hace con cuidado, probando el equipo antes de entregarlo.</p>
+        <h2>Lo que hacemos en DR Cell</h2>
+        <p>Reparaciones de hardware y software para todas las marcas de celulares.</p>
       </div>
 
       <div class="servicios-grid">
+
+        <!-- HARDWARE -->
+        <div class="categoria-titulo">🔧 Hardware</div>
+
         <div class="servicio">
           <div class="servicio-icono">📱</div>
           <h3>Cambio de pantalla</h3>
-          <p>Pantalla rota, táctil sin respuesta o display con manchas. Lo resolvemos con repuestos compatibles y de calidad.</p>
-          <span class="servicio-tag">El más solicitado</span>
+          <p>Pantalla rota, táctil sin respuesta o display que no muestra imagen. Trabajamos con todas las marcas.</p>
+          <span class="servicio-tag">Todas las marcas</span>
         </div>
 
         <div class="servicio">
           <div class="servicio-icono">🔋</div>
-          <h3>Reemplazo de batería</h3>
-          <p>Si tu celular se descarga rápido, se apaga solo o la batería está inflada, es momento de cambiarla.</p>
+          <h3>Cambio de batería</h3>
+          <p>Si tu celular se descarga rápido, se apaga solo o la batería está inflada, la reemplazamos.</p>
           <span class="servicio-tag">Mismo día</span>
         </div>
 
         <div class="servicio">
           <div class="servicio-icono">🔌</div>
           <h3>Puerto de carga</h3>
-          <p>Conector flojo, carga intermitente o que no reconoce el cable. Reparamos o reemplazamos el puerto.</p>
+          <p>Conector flojo, carga intermitente o que no reconoce el cable. Reparamos o cambiamos el puerto.</p>
           <span class="servicio-tag">Reparación rápida</span>
         </div>
 
         <div class="servicio">
-          <div class="servicio-icono">📷</div>
-          <h3>Cámara y audio</h3>
-          <p>Cámara borrosa, micrófono sin audio o altavoz dañado. Revisamos y dejamos todo funcionando.</p>
-          <span class="servicio-tag">Diagnóstico incluido</span>
+          <div class="servicio-icono">🔘</div>
+          <h3>Cambio de botones</h3>
+          <p>Botón de encendido, volumen o home que no responde. Los reemplazamos para que funcionen como nuevos.</p>
+          <span class="servicio-tag">Hardware</span>
         </div>
 
         <div class="servicio">
-          <div class="servicio-icono">⚙️</div>
-          <h3>Software y desbloqueo</h3>
-          <p>Celular lento, bloqueado o con errores. Actualizamos, formateamos y optimizamos tu equipo.</p>
-          <span class="servicio-tag">Sin perder datos*</span>
+          <div class="servicio-icono">🔬</div>
+          <h3>Reparación de placa</h3>
+          <p>Diagnóstico y reparación a nivel de placa madre. Resolvemos fallas que otros talleres no pueden.</p>
+          <span class="servicio-tag">Nivel avanzado</span>
         </div>
 
         <div class="servicio">
-          <div class="servicio-icono">💧</div>
-          <h3>Daño por agua</h3>
-          <p>Se te cayó al agua o se mojó por dentro. Hacemos limpieza y diagnóstico para recuperarlo.</p>
-          <span class="servicio-tag">Evaluación urgente</span>
+          <div class="servicio-icono">⚡</div>
+          <h3>Microsoldaduras</h3>
+          <p>Trabajo de precisión para componentes dañados a nivel de microchip. Soldadura profesional.</p>
+          <span class="servicio-tag">Especializado</span>
         </div>
+
+        <!-- SOFTWARE -->
+        <div class="categoria-titulo">💻 Software</div>
+
+        <div class="servicio">
+          <div class="servicio-icono">🔓</div>
+          <h3>Desbloqueos</h3>
+          <p>Celulares bloqueados por patrón, PIN, contraseña o cuenta. Te lo dejamos listo para usar.</p>
+          <span class="servicio-tag">Rápido</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">💾</div>
+          <h3>Flasheos</h3>
+          <p>Reinstalación completa del sistema operativo. Ideal para equipos que no encienden o tienen errores graves.</p>
+          <span class="servicio-tag">Software</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">🛡️</div>
+          <h3>FRP (Google Lock)</h3>
+          <p>Eliminamos el bloqueo de cuenta de Google después de un reseteo de fábrica.</p>
+          <span class="servicio-tag">Android</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">🌐</div>
+          <h3>Liberación de compañía</h3>
+          <p>Liberamos tu celular para que funcione con cualquier operador o compañía telefónica.</p>
+          <span class="servicio-tag">Todas las compañías</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">🍎</div>
+          <h3>Apps para iPhone</h3>
+          <p>Instalación de aplicaciones para iPhone. Te dejamos el equipo listo con todo lo que necesitas.</p>
+          <span class="servicio-tag">iOS</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">🤖</div>
+          <h3>Apps para Android</h3>
+          <p>Instalación y configuración de aplicaciones en equipos Android de cualquier marca.</p>
+          <span class="servicio-tag">Android</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">☁️</div>
+          <h3>Creación de cuenta iCloud</h3>
+          <p>Creamos y configuramos tu cuenta de iCloud para que puedas usar tu iPhone sin problemas.</p>
+          <span class="servicio-tag">Apple</span>
+        </div>
+
       </div>
     </div>
   </section>
@@ -978,7 +1111,7 @@
   <!-- MARCAS -->
   <section class="marcas">
     <div class="wrap marcas-inner">
-      <p>Trabajamos con todas las marcas</p>
+      <p>Reparamos todas las marcas</p>
       <div class="marcas-list">
         <span class="marca-item">Apple</span>
         <span class="marca-item">Samsung</span>
@@ -988,6 +1121,10 @@
         <span class="marca-item">OPPO</span>
         <span class="marca-item">Redmi</span>
         <span class="marca-item">Realme</span>
+        <span class="marca-item">Honor</span>
+        <span class="marca-item">ZTE</span>
+        <span class="marca-item">LG</span>
+        <span class="marca-item">Alcatel</span>
       </div>
     </div>
   </section>
@@ -1004,42 +1141,44 @@
       <div class="contacto-grid">
         <div class="contacto-info">
           <h3>DR Cell</h3>
-          <p>Servicio técnico de confianza. Tráenos tu equipo y lo dejamos funcionando.</p>
+          <p>Servicio técnico de celulares en Marianao, La Habana. Tráenos tu equipo y lo dejamos funcionando.</p>
 
           <div class="info-items">
             <div class="info-item">
               <div class="info-icon">📍</div>
               <div class="info-text">
                 <strong>Dirección</strong>
-                <p>Calle Principal #123, Tu Ciudad</p>
+                <p>Marianao, Ave 43 entre 118 y 120 #11807, interior 2, La Habana</p>
               </div>
             </div>
             <div class="info-item">
               <div class="info-icon">📞</div>
               <div class="info-text">
                 <strong>Teléfono</strong>
-                <p>+52 123 456 7890</p>
+                <p>+53 5619 4280</p>
               </div>
             </div>
             <div class="info-item">
               <div class="info-icon">💬</div>
               <div class="info-text">
                 <strong>WhatsApp</strong>
-                <p>+52 123 456 7890</p>
+                <p>+53 5619 4280</p>
               </div>
             </div>
             <div class="info-item">
               <div class="info-icon">🕒</div>
               <div class="info-text">
                 <strong>Horario</strong>
-                <p>Lun - Sáb: 9:00 AM - 7:00 PM</p>
+                <p>Lunes a viernes: 10:00 AM — 4:00 PM</p>
+                <p>Sábados: 10:00 AM — 2:00 PM</p>
+                <p>Domingos: Cerrado</p>
               </div>
             </div>
           </div>
 
           <div class="contacto-acciones">
-            <a href="https://wa.me/521234567890?text=Hola%2C%20necesito%20información" target="_blank" class="btn btn-wa">💬 WhatsApp</a>
-            <a href="tel:+521234567890" class="btn btn-call" style="color:#fff;border-color:rgba(255,255,255,.2)">📞 Llamar</a>
+            <a href="https://wa.me/5356194280?text=Hola%2C%20necesito%20información%20sobre%20una%20reparación" target="_blank" class="btn btn-wa">💬 WhatsApp</a>
+            <a href="tel:+5356194280" class="btn btn-call" style="color:#fff;border-color:rgba(255,255,255,.2)">📞 Llamar</a>
           </div>
         </div>
 
@@ -1067,12 +1206,19 @@
             <div class="form-group">
               <label>¿Qué problema tiene?</label>
               <select id="problema">
+                <option value="">Selecciona una opción</option>
                 <option value="Pantalla rota">Pantalla rota</option>
-                <option value="Batería">Problema de batería</option>
-                <option value="No carga">No carga</option>
-                <option value="Software">Problema de software</option>
-                <option value="Cámara">Cámara dañada</option>
-                <option value="Agua">Daño por agua</option>
+                <option value="Problema de batería">Problema de batería</option>
+                <option value="No carga">No carga / Puerto de carga</option>
+                <option value="Botones">Botones dañados</option>
+                <option value="Placa / microsoldadura">Placa / Microsoldadura</option>
+                <option value="Desbloqueo">Desbloqueo</option>
+                <option value="FRP Google">FRP / Google Lock</option>
+                <option value="Flasheo">Flasheo / Software</option>
+                <option value="Liberación">Liberación de compañía</option>
+                <option value="Apps iPhone">Aplicaciones iPhone</option>
+                <option value="Apps Android">Aplicaciones Android</option>
+                <option value="Cuenta iCloud">Creación cuenta iCloud</option>
                 <option value="Otro">Otro</option>
               </select>
             </div>
@@ -1092,7 +1238,7 @@
   <!-- FOOTER -->
   <footer class="footer">
     <div class="wrap footer-inner">
-      <p>© 2025 DR Cell — Reparación de celulares</p>
+      <p>© 2025 DR Cell — Reparación de celulares · Marianao, La Habana</p>
       <div class="footer-links">
         <a href="#inicio">Inicio</a>
         <a href="#servicios">Servicios</a>
@@ -1103,12 +1249,14 @@
 
   <!-- BOTONES FLOTANTES -->
   <div class="floating-btns">
-    <a href="https://wa.me/521234567890?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="float-btn wa" title="WhatsApp">💬</a>
-    <a href="tel:+521234567890" class="float-btn tel" title="Llamar">📞</a>
+    <a href="https://wa.me/5356194280?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="float-btn wa" title="WhatsApp">💬</a>
+    <a href="tel:+5356194280" class="float-btn tel" title="Llamar">📞</a>
   </div>
 
   <script>
-    // Menú móvil
+    // ══════════════════════════════
+    // MENÚ MÓVIL
+    // ══════════════════════════════
     const burger = document.getElementById('burger');
     const navLinks = document.getElementById('navLinks');
 
@@ -1117,7 +1265,6 @@
       navLinks.classList.toggle('open');
     });
 
-    // Cerrar menú al hacer clic en un enlace
     document.querySelectorAll('.nav-links a').forEach(link => {
       link.addEventListener('click', () => {
         burger.classList.remove('open');
@@ -1125,7 +1272,9 @@
       });
     });
 
-    // Formulario → WhatsApp
+    // ══════════════════════════════
+    // FORMULARIO → WHATSAPP
+    // ══════════════════════════════
     document.getElementById('formContacto').addEventListener('submit', function(e) {
       e.preventDefault();
 
@@ -1141,11 +1290,77 @@
       msg += `🔧 Problema: ${problema}%0A`;
       if (detalles) msg += `📝 Detalles: ${detalles}`;
 
-      // ⚠️ CAMBIA ESTE NÚMERO POR TU WHATSAPP REAL
-      const numero = '521234567890';
-
+      const numero = '5356194280';
       window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
     });
+
+    // ══════════════════════════════
+    // STATUS BAR — ABIERTO / CERRADO EN TIEMPO REAL
+    // ══════════════════════════════
+    function checkStatus() {
+      const statusBar = document.getElementById('statusBar');
+      const statusText = document.getElementById('statusText');
+
+      // Hora de Cuba (America/Havana)
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Havana' }));
+      const dia = now.getDay();    // 0=Dom, 1=Lun ... 6=Sab
+      const hora = now.getHours();
+      const minutos = now.getMinutes();
+      const tiempo = hora + minutos / 60; // hora decimal
+
+      let abierto = false;
+      let horarioHoy = '';
+
+      if (dia >= 1 && dia <= 5) {
+        // Lunes a Viernes: 10:00 - 16:00
+        if (tiempo >= 10 && tiempo < 16) {
+          abierto = true;
+        }
+        horarioHoy = 'Hoy: 10:00 AM — 4:00 PM';
+      } else if (dia === 6) {
+        // Sábado: 10:00 - 14:00
+        if (tiempo >= 10 && tiempo < 14) {
+          abierto = true;
+        }
+        horarioHoy = 'Hoy: 10:00 AM — 2:00 PM';
+      } else {
+        // Domingo
+        horarioHoy = 'Hoy: Cerrado';
+      }
+
+      if (abierto) {
+        statusBar.className = 'status-bar abierto';
+        statusText.textContent = `Estamos abiertos · ${horarioHoy}`;
+      } else {
+        statusBar.className = 'status-bar cerrado';
+
+        // Calcular próximo día de apertura
+        let proximoDia = '';
+        if (dia === 6) {
+          proximoDia = 'Abrimos el lunes a las 10:00 AM';
+        } else if (dia === 0) {
+          proximoDia = 'Abrimos mañana lunes a las 10:00 AM';
+        } else if (dia >= 1 && dia <= 4) {
+          if (tiempo < 10) {
+            proximoDia = `${horarioHoy}`;
+          } else {
+            proximoDia = 'Abrimos mañana a las 10:00 AM';
+          }
+        } else if (dia === 5) {
+          if (tiempo < 10) {
+            proximoDia = `${horarioHoy}`;
+          } else {
+            proximoDia = 'Abrimos el sábado a las 10:00 AM';
+          }
+        }
+
+        statusText.textContent = `Cerrado ahora · ${proximoDia}`;
+      }
+    }
+
+    // Verificar al cargar y cada minuto
+    checkStatus();
+    setInterval(checkStatus, 60000);
   </script>
 
 </body>
