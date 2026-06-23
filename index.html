@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DR Cell | Reparación de Celulares en La Habana</title>
+  <meta name="description" content="DR Cell - Servicio técnico especializado en reparación de celulares en La Habana, Marianao." />
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <link rel="apple-touch-icon" href="logo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@700&family=Orbitron:wght@700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    :root{
+      --negro:#0a0a0a;
+      --negro-2:#111;
+      --blanco:#fff;
+      --gris:#666;
+      --gris-claro:#f5f5f5;
+      --gris-borde:#e0e0e0;
+      --rojo:#e63946;
+      --rojo-glow:#ff1f3d;
+      --azul-logo:#1e90ff;
+      --verde:#25d366;
+      --verde-hover:#1fb855;
+      --sombra:0 2px 20px rgba(0,0,0,.06);
+      --radio:10px;
+    }
+
+    html{scroll-behavior:smooth}
+
+    body{
+      font-family:'Inter', sans-serif;
+      color:var(--negro);
+      background:var(--blanco);
+      -webkit-font-smoothing:antialiased;
+    }
+
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    ul{list-style:none}
+
+    .wrap{
+      width:min(1100px,90%);
+      margin:0 auto;
+    }
+
+    .icon-wa{
+      width:20px;
+      height:20px;
+      flex-shrink:0;
+    }
+
+    .icon-phone{
+      width:16px;
+      height:16px;
+      flex-shrink:0;
+    }
+
+    /* ══════════════════════════════
+       STATUS BAR
+    ══════════════════════════════ */
+    .status-bar{
+      padding:8px 0;
+      text-align:center;
+      font-size:.82rem;
+      font-weight:700;
+      letter-spacing:.5px;
+      transition:.3s;
+    }
+
+    .status-bar.abierto{
+      background:#ecfdf5;
+      color:#065f46;
+      border-bottom:1px solid #a7f3d0;
+    }
+
+    .status-bar.cerrado{
+      background:#fef2f2;
+      color:#991b1b;
+      border-bottom:1px solid #fecaca;
+    }
+
+    .status-dot{
+      display:inline-block;
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      margin-right:6px;
+      vertical-align:middle;
+    }
+
+    .abierto .status-dot{
+      background:#10b981;
+      box-shadow:0 0 6px #10b981;
+      animation:pulse 2s infinite;
+    }
+
+    .cerrado .status-dot{
+      background:#ef4444;
+    }
+
+    @keyframes pulse{
+      0%,100%{opacity:1}
+      50%{opacity:.4}
+    }
+
+    /* ══════════════════════════════
+       HEADER
+    ══════════════════════════════ */
+    .header{
+      position:sticky;
+      top:0;
+      z-index:900;
+      background:rgba(255,255,255,.97);
+      border-bottom:1px solid var(--gris-borde);
+      backdrop-filter:blur(12px);
+    }
+
+    .header-inner{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      height:72px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      transition:.2s;
+    }
+
+    .brand:hover{
+      transform:scale(1.02);
+    }
+
+    .brand-logo-wrap{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      overflow:hidden;
+      background:#000;
+      border:2px solid #1a1a1a;
+      box-shadow:0 2px 10px rgba(0,0,0,.15);
+      transition:.2s;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-shrink:0;
+    }
+
+    .brand:hover .brand-logo-wrap{
+      border-color:var(--azul-logo);
+      box-shadow:0 2px 15px rgba(30,144,255,.35);
+    }
+
+    .brand-logo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      transform:scale(1.7);
+    }
+
+    .brand-name{
+      font-family:'Orbitron', sans-serif;
+      font-size:1.5rem;
+      font-weight:900;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      font-style:italic;
+      color:var(--negro);
+      line-height:1;
+    }
+
+    .brand-name span{
+      color:var(--azul-logo);
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+
+    .nav-links a{
+      font-size:.9rem;
+      font-weight:500;
+      color:var(--gris);
+      transition:color .2s;
+    }
+
+    .nav-links a:hover{color:var(--negro)}
+
+    .nav-cta{
+      background:var(--negro);
+      color:var(--blanco)!important;
+      padding:9px 18px;
+      border-radius:8px;
+      font-weight:600!important;
+      font-size:.85rem!important;
+      transition:background .2s;
+    }
+
+    .nav-cta:hover{background:#333}
+
+    .burger{
+      display:none;
+      flex-direction:column;
+      gap:5px;
+      cursor:pointer;
+      padding:6px;
+    }
+
+    .burger div{
+      width:22px;
+      height:2px;
+      background:var(--negro);
+      border-radius:2px;
+      transition:.3s;
+    }
+
+    .burger.open div:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .burger.open div:nth-child(2){opacity:0}
+    .burger.open div:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+    /* ══════════════════════════════
+       HERO CON IMAGEN REAL
+    ══════════════════════════════ */
+    .hero{
+      position:relative;
+      min-height:600px;
+      background:#0a0a0a;
+      color:var(--blanco);
+      overflow:hidden;
+      display:flex;
+      align-items:center;
+      padding:80px 0;
+    }
+
+    .hero-bg{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background-image:url('hero.jpg');
+      background-size:cover;
+      background-position:center right;
+      background-repeat:no-repeat;
+      z-index:1;
+    }
+
+    .hero-overlay{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:100%;
+      background:
+        linear-gradient(90deg,
+          rgba(10,10,10,.95) 0%,
+          rgba(10,10,10,.85) 35%,
+          rgba(10,10,10,.5) 60%,
+          rgba(10,10,10,.2) 100%
+        );
+      z-index:2;
+    }
+
+    .hero-content{
+      position:relative;
+      z-index:3;
+      max-width:560px;
+    }
+
+    .hero-tag{
+      display:inline-block;
+      background:rgba(230,57,70,.15);
+      color:#ff6b78;
+      border:1px solid rgba(230,57,70,.4);
+      font-size:.72rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      padding:7px 14px;
+      border-radius:6px;
+      margin-bottom:24px;
+      backdrop-filter:blur(10px);
+    }
+
+    .hero h1{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:3.3rem;
+      line-height:1.05;
+      letter-spacing:-1.5px;
+      margin-bottom:20px;
+      color:#fff;
+    }
+
+    .hero h1 span{
+      color:var(--rojo);
+      text-shadow:0 0 30px rgba(230,57,70,.5);
+    }
+
+    .hero-desc{
+      font-size:1.05rem;
+      color:#ccc;
+      line-height:1.65;
+      margin-bottom:32px;
+      max-width:480px;
+    }
+
+    .hero-btns{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:36px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:14px 24px;
+      border-radius:10px;
+      font-weight:600;
+      font-size:.95rem;
+      border:none;
+      cursor:pointer;
+      transition:.25s;
+    }
+
+    .btn-wa{
+      background:var(--verde);
+      color:var(--blanco);
+      box-shadow:0 4px 20px rgba(37,211,102,.3);
+    }
+    .btn-wa:hover{background:var(--verde-hover);transform:translateY(-2px)}
+
+    .btn-call{
+      background:rgba(255,255,255,.1);
+      color:var(--blanco);
+      border:1.5px solid rgba(255,255,255,.25);
+      backdrop-filter:blur(10px);
+    }
+    .btn-call:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.5);transform:translateY(-2px)}
+
+    .hero-stats{
+      display:flex;
+      gap:30px;
+    }
+
+    .stat h4{
+      font-size:1.4rem;
+      font-weight:800;
+      letter-spacing:-.5px;
+      color:#fff;
+    }
+
+    .stat p{
+      font-size:.75rem;
+      color:#aaa;
+      text-transform:uppercase;
+      letter-spacing:.5px;
+      font-weight:500;
+      margin-top:2px;
+    }
+
+    /* ══════════════════════════════
+       SERVICIOS
+    ══════════════════════════════ */
+    .servicios{padding:80px 0}
+
+    .section-top{margin-bottom:45px}
+
+    .section-label{
+      font-size:.72rem;
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:1.5px;
+      color:var(--rojo);
+      margin-bottom:10px;
+    }
+
+    .section-top h2{
+      font-family:'Space Grotesk',sans-serif;
+      font-size:2rem;
+      letter-spacing:-1px;
+    }
+
+    .section-top p{
+      color:var(--gris);
+      margin-top:8px;
+      max-width:520px;
+      line-height:1.6;
+    }
+
+    .servicios-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .servicio{
+      background:var(--gris-claro);
+      border:1px solid var(--gris-borde);
+      border-radius:var(--radio);
+      padding:28px 24px;
+      transition:.3s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .servicio:hover{
+      border-color:var(--negro);
+      transform:translateY(-3px);
+      box-shadow:var(--sombra);
+    }
+
+    .servicio-icono{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:16px;
+}
+
+.servicio-icono svg{
+  width:26px;
+  height:26px;
+}
+
+    .servicio:nth-child(1) .servicio-icono{background:#fee2e2;color:#dc2626}
+    .servicio:nth-child(2) .servicio-icono{background:#dcfce7;color:#16a34a}
+    .servicio:nth-child(3) .servicio-icono{background:#fef3c7;color:#d97706}
+    .servicio:nth-child(4) .servicio-icono{background:#fce7f3;color:#db2777}
+    .servicio:nth-child(5) .servicio-icono{background:#ede9fe;color:#7c3aed}
+    .servicio:nth-child(6) .servicio-icono{background:#ffedd5;color:#ea580c}
+    .servicio:nth-child(7) .servicio-icono{background:#fee2e2;color:#dc2626}
+    .servicio:nth-child(8) .servicio-icono{background:#fce7f3;color:#be185d}
+    .servicio:nth-child(9) .servicio-icono{background:#f0fdf4;color:#15803d}
+    .servicio:nth-child(10) .servicio-icono{background:#fef9c3;color:#a16207}
+    .servicio:nth-child(11) .servicio-icono{background:#ede9fe;color:#6d28d9}
+    .servicio:nth-child(12) .servicio-icono{background:#e0e7ff;color:#4338ca}
+
+    .servicio h3{font-size:1rem;margin-bottom:8px;font-weight:700}
+
+    .servicio p{font-size:.88rem;color:var(--gris);line-height:1.55}
+
+    .servicio-tag{
+      display:inline-block;
+      margin-top:14px;
+      font-size:.72rem;
+      font-weight:600;
+      color:var(--rojo);
+      text-transform:uppercase;
+      letter-spacing:.5px;
+    }
+
+    .categoria-titulo{
+      grid-column:1/-1;
+      margin-top:20px;
+      padding-bottom:8px;
+      border-bottom:2px solid var(--negro);
+      font-family:'Space Grotesk',sans-serif;
+      font-size:1.15rem;
+      letter-spacing:-.3px;
+    }
+
+    .categoria-titulo:first-child{margin-top:0}
+
+    /* CONTACTO */
+    .contacto{padding:80px 0;background:var(--gris-claro);border-top:1px solid var(--gris-borde)}
+
+    .contacto-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+    }
+
+    .contacto-info{
+      padding:30px;
+      background:var(--negro);
+      color:var(--blanco);
+      border-radius:var(--radio);
+    }
+
+    .contacto-info h3{
+      font-family:'Orbitron',sans-serif;
+      font-size:1.6rem;
+      margin-bottom:10px;
+      letter-spacing:1px;
+      font-weight:900;
+      font-style:italic;
+      text-transform:uppercase;
+    }
+
+    .contacto-info>p{color:#999;font-size:.9rem;margin-bottom:28px;line-height:1.6}
+
+    .info-items{display:grid;gap:16px}
+
+    .info-item{display:flex;gap:14px;align-items:flex-start}
+
+    .info-icon{
+      width:40px;
+      height:40px;
+      border-radius:8px;
+      background:rgba(255,255,255,.07);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1rem;
+      flex-shrink:0;
+    }
+
+    .info-icon svg{
+      width:20px;
+      height:20px;
+    }
+
+    .info-text p{font-size:.88rem;color:#ccc}
+
+    .info-text strong{
+      display:block;
+      font-size:.9rem;
+      color:var(--blanco);
+      margin-bottom:2px;
+    }
+
+    .contacto-acciones{
+      margin-top:30px;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .contacto-acciones .btn{font-size:.88rem;padding:12px 20px}
+
+    .contacto-form{
+      background:var(--blanco);
+      border:1px solid var(--gris-borde);
+      border-radius:var(--radio);
+      padding:30px;
+    }
+
+    .contacto-form h3{font-size:1.15rem;margin-bottom:6px}
+
+    .contacto-form>p{color:var(--gris);font-size:.88rem;margin-bottom:22px}
+
+    .form-group{margin-bottom:14px}
+
+    .form-group label{
+      display:block;
+      font-size:.8rem;
+      font-weight:600;
+      margin-bottom:5px;
+      color:var(--negro);
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;
+      padding:12px 14px;
+      border:1.5px solid var(--gris-borde);
+      border-radius:8px;
+      font-size:.92rem;
+      font-family:inherit;
+      outline:none;
+      transition:border .2s;
+      background:var(--blanco);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus{border-color:var(--negro)}
+
+    .form-group textarea{min-height:90px;resize:vertical}
+
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+
+    .form-submit{
+      width:100%;
+      padding:14px;
+      background:var(--negro);
+      color:var(--blanco);
+      border:none;
+      border-radius:8px;
+      font-size:.95rem;
+      font-weight:600;
+      cursor:pointer;
+      transition:.2s;
+      font-family:inherit;
+      margin-top:6px;
+    }
+
+    .form-submit:hover{background:#333}
+
+    /* FOOTER */
+    .footer{
+      background:var(--negro);
+      color:#888;
+      padding:30px 0;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .footer p{font-size:.82rem}
+
+    .footer-links{display:flex;gap:20px}
+
+    .footer-links a{font-size:.82rem;color:#888;transition:color .2s}
+
+    .footer-links a:hover{color:var(--blanco)}
+
+    /* BOTÓN SUBIR ARRIBA */
+.btn-top{
+  position:fixed;
+  bottom:20px;
+  left:20px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:var(--negro);
+  color:var(--blanco);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  box-shadow:0 4px 15px rgba(0,0,0,.25);
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(20px);
+  transition:.3s;
+  z-index:1000;
+  border:none;
+}
+
+.btn-top.visible{
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+.btn-top:hover{
+  background:var(--rojo);
+  transform:translateY(-3px);
+}
+
+.btn-top svg{
+  width:22px;
+  height:22px;
+}
+
+    /* BOTONES FLOTANTES */
+    .floating-btns{
+      position:fixed;
+      bottom:20px;
+      right:20px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      z-index:1000;
+    }
+
+    .float-btn{
+      width:54px;
+      height:54px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--blanco);
+      box-shadow:0 4px 15px rgba(0,0,0,.2);
+      transition:.3s;
+    }
+
+    .float-btn:hover{transform:scale(1.08)}
+    .float-btn.wa{background:var(--verde)}
+    .float-btn.tel{background:var(--rojo)}
+
+    .float-btn svg{
+      width:28px;
+      height:28px;
+    }
+
+    .float-btn.tel svg{
+      width:24px;
+      height:24px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero{
+        min-height:550px;
+        padding:60px 0;
+      }
+
+      .hero-bg{
+        background-position:center center;
+      }
+
+      .hero-overlay{
+        background:
+          linear-gradient(180deg,
+            rgba(10,10,10,.7) 0%,
+            rgba(10,10,10,.85) 50%,
+            rgba(10,10,10,.95) 100%
+          );
+      }
+
+      .hero-content{
+        text-align:center;
+        max-width:100%;
+        margin:0 auto;
+      }
+
+      .hero h1{font-size:2.3rem}
+
+      .hero-desc{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .hero-btns{justify-content:center}
+
+      .hero-stats{justify-content:center}
+
+      .contacto-grid{grid-template-columns:1fr}
+      .servicios-grid{grid-template-columns:repeat(2,1fr)}
+    }
+
+    @media(max-width:640px){
+      .brand-logo-wrap{
+        width:46px;
+        height:46px;
+      }
+
+      .brand-name{
+        font-size:1.2rem;
+        letter-spacing:.5px;
+      }
+
+      .header-inner{
+        height:64px;
+      }
+
+      .nav-links{
+        position:fixed;
+        top:64px;
+        left:0;
+        right:0;
+        background:var(--blanco);
+        flex-direction:column;
+        padding:24px;
+        gap:18px;
+        border-bottom:1px solid var(--gris-borde);
+        display:none;
+        box-shadow:0 10px 30px rgba(0,0,0,.06);
+      }
+
+      .nav-links.open{display:flex}
+      .burger{display:flex}
+
+      .hero{min-height:500px}
+      .hero h1{font-size:1.9rem}
+      .hero-desc{font-size:.95rem}
+      .hero-stats{gap:20px;flex-wrap:wrap}
+
+      .servicios-grid{grid-template-columns:1fr}
+      .form-row{grid-template-columns:1fr}
+      .section-top h2{font-size:1.6rem}
+
+      .footer-inner{flex-direction:column;text-align:center}
+    }
+  </style>
+</head>
+<body>
+
+  <div class="status-bar" id="statusBar">
+    <span class="status-dot"></span>
+    <span id="statusText">Verificando horario...</span>
+  </div>
+
+  <header class="header">
+    <div class="wrap header-inner">
+      <a href="#" class="brand">
+        <div class="brand-logo-wrap">
+          <img src="logo.jpg" alt="DR Cell" class="brand-logo" />
+        </div>
+        <div class="brand-name">DR<span>CELL</span></div>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+        <a href="tel:+5356194280" class="nav-cta">Llamar ahora</a>
+      </nav>
+
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO CON IMAGEN REAL -->
+  <section class="hero" id="inicio">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+
+    <div class="wrap">
+      <div class="hero-content">
+        <div class="hero-tag">⚡ Servicio técnico en La Habana</div>
+        <h1>Tu celular en las <span>mejores manos</span></h1>
+        <p class="hero-desc">
+          En DR Cell le damos una segunda vida a tu equipo.
+          Reparaciones de hardware y software, trato directo y soluciones reales en Marianao, La Habana.
+        </p>
+
+        <div class="hero-btns">
+          <a href="https://wa.me/5356194280?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="btn btn-wa">
+            <svg class="icon-wa" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Escribir por WhatsApp
+          </a>
+          <a href="tel:+5356194280" class="btn btn-call">
+            <svg class="icon-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+            Llamar ahora
+          </a>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <h4>Hardware</h4>
+            <p>Pantallas · Baterías · Placas</p>
+          </div>
+          <div class="stat">
+            <h4>Software</h4>
+            <p>Desbloqueos · FRP · Apps</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICIOS -->
+  <section class="servicios" id="servicios">
+    <div class="wrap">
+      <div class="section-top">
+        <p class="section-label">Servicios</p>
+        <h2>Lo que hacemos en DR Cell</h2>
+        <p>Reparaciones de hardware y software para todas las marcas de celulares.</p>
+      </div>
+
+      <div class="servicios-grid">
+
+        <div class="categoria-titulo">
+  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+  Hardware
+</div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+</div>
+          <h3>Cambio de pantalla</h3>
+          <p>Pantalla rota, táctil sin respuesta o display que no muestra imagen. Trabajamos con todas las marcas.</p>
+          <span class="servicio-tag">Todas las marcas</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2" ry="2"/><line x1="23" y1="13" x2="23" y2="11"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/></svg>
+</div>
+          <h3>Cambio de batería</h3>
+          <p>Si tu celular se descarga rápido, se apaga solo o la batería está inflada, la reemplazamos.</p>
+          <span class="servicio-tag">Mismo día</span>
+        </div>
+
+        <div class="servicio">
+         <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+</div>
+          <h3>Puerto de carga</h3>
+          <p>Conector flojo, carga intermitente o que no reconoce el cable. Reparamos o cambiamos el puerto.</p>
+          <span class="servicio-tag">Reparación rápida</span>
+        </div>
+
+        <div class="servicio">
+         <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+</div>
+          <h3>Cambio de botones</h3>
+          <p>Botón de encendido, volumen o home que no responde. Los reemplazamos para que funcionen como nuevos.</p>
+          <span class="servicio-tag">Hardware</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="14" x2="22" y2="14"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="14" x2="4" y2="14"/></svg>
+</div>
+          <h3>Reparación de placa</h3>
+          <p>Diagnóstico y reparación a nivel de placa madre. Resolvemos fallas que otros talleres no pueden.</p>
+          <span class="servicio-tag">Nivel avanzado</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+</div>
+          <h3>Microsoldaduras</h3>
+          <p>Trabajo de precisión para componentes dañados a nivel de microchip. Soldadura profesional.</p>
+          <span class="servicio-tag">Especializado</span>
+        </div>
+
+        <div class="categoria-titulo">
+  <svg style="width:20px;height:20px;vertical-align:middle;margin-right:8px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+  Software
+</div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/></svg>
+</div>
+          <h3>Desbloqueos</h3>
+          <p>Celulares bloqueados por patrón, PIN, contraseña o cuenta. Te lo dejamos listo para usar.</p>
+          <span class="servicio-tag">Rápido</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+</div>
+          <h3>Flasheos</h3>
+          <p>Reinstalación completa del sistema operativo. Ideal para equipos que no encienden o tienen errores graves.</p>
+          <span class="servicio-tag">Software</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+</div>
+          <h3>FRP (Google Lock)</h3>
+          <p>Eliminamos el bloqueo de cuenta de Google después de un reseteo de fábrica.</p>
+          <span class="servicio-tag">Android</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+</div>
+          <h3>Liberación de compañía</h3>
+          <p>Liberamos tu celular para que funcione con cualquier operador o compañía telefónica.</p>
+          <span class="servicio-tag">Todas las compañías</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+</div>
+          <h3>Apps para iPhone</h3>
+          <p>Instalación de aplicaciones para iPhone. Te dejamos el equipo listo con todo lo que necesitas.</p>
+          <span class="servicio-tag">iOS</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4483.9993.9993 0 .5511-.4483.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0989L4.841 5.4467a.4161.4161 0 00-.5677-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3435-4.1021-2.6892-7.5743-6.1185-9.4396"/></svg>
+</div>
+          <h3>Apps para Android</h3>
+          <p>Instalación y configuración de aplicaciones en equipos Android de cualquier marca.</p>
+          <span class="servicio-tag">Android</span>
+        </div>
+
+        <div class="servicio">
+          <div class="servicio-icono">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>
+</div>
+          <h3>Creación de cuenta iCloud</h3>
+          <p>Creamos y configuramos tu cuenta de iCloud para que puedas usar tu iPhone sin problemas.</p>
+          <span class="servicio-tag">Apple</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <div class="wrap">
+      <div class="section-top">
+        <p class="section-label">Contacto</p>
+        <h2>¿Listo para reparar tu celular?</h2>
+        <p>Escríbenos, llámanos o déjanos un mensaje con los datos de tu equipo.</p>
+      </div>
+
+      <div class="contacto-grid">
+
+  <div class="contacto-form">
+    <h3>Envíanos un mensaje</h3>
+    <p>Completa el formulario y te respondemos por WhatsApp.</p>
+
+    <form id="formContacto">
+      <div class="form-row">
+        <div class="form-group">
+          <label>Nombre</label>
+          <input type="text" id="nombre" placeholder="Tu nombre" required />
+        </div>
+        <div class="form-group">
+          <label>Teléfono</label>
+          <input type="tel" id="telefono" placeholder="Tu número" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Marca y modelo</label>
+        <input type="text" id="modelo" placeholder="Ej: iPhone 13, Samsung S22..." required />
+      </div>
+
+      <div class="form-group">
+        <label>¿Qué problema tiene?</label>
+        <select id="problema">
+          <option value="">Selecciona una opción</option>
+          <option value="Pantalla rota">Pantalla rota</option>
+          <option value="Problema de batería">Problema de batería</option>
+          <option value="No carga">No carga / Puerto de carga</option>
+          <option value="Botones">Botones dañados</option>
+          <option value="Placa / microsoldadura">Placa / Microsoldadura</option>
+          <option value="Desbloqueo">Desbloqueo</option>
+          <option value="FRP Google">FRP / Google Lock</option>
+          <option value="Flasheo">Flasheo / Software</option>
+          <option value="Liberación">Liberación de compañía</option>
+          <option value="Apps iPhone">Aplicaciones iPhone</option>
+          <option value="Apps Android">Aplicaciones Android</option>
+          <option value="Cuenta iCloud">Creación cuenta iCloud</option>
+          <option value="Otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Detalles adicionales</label>
+        <textarea id="detalles" placeholder="Cuéntanos más sobre la falla..."></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Enviar por WhatsApp →</button>
+    </form>
+  </div>
+
+  <div class="contacto-info">
+    <h3>DR<span style="color:var(--azul-logo)">CELL</span></h3>
+    <p>Servicio técnico de celulares en Marianao, La Habana. Tráenos tu equipo y lo dejamos funcionando.</p>
+
+    <div class="info-items">
+      <div class="info-item">
+        <div class="info-icon">📍</div>
+        <div class="info-text">
+          <strong>Dirección</strong>
+          <p>Marianao, Ave 43 entre 118 y 120 #11807, interior 2, La Habana</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        </div>
+        <div class="info-text">
+          <strong>Teléfono</strong>
+          <p>+53 5619 4280</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon" style="color:#25d366">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        </div>
+        <div class="info-text">
+          <strong>WhatsApp</strong>
+          <p>+53 5619 4280</p>
+        </div>
+      </div>
+      <div class="info-item">
+        <div class="info-icon">🕒</div>
+        <div class="info-text">
+          <strong>Horario</strong>
+          <p>Lunes a viernes: 10:00 AM — 4:00 PM</p>
+          <p>Sábados: 10:00 AM — 2:00 PM</p>
+          <p>Domingos: Cerrado</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contacto-acciones">
+      <a href="tel:+5356194280" class="btn btn-call" style="color:#fff;border-color:rgba(255,255,255,.2)">
+        <svg class="icon-phone" viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+        Llamar
+      </a>
+    </div>
+  </div>
+
+</div>
+
+            <div class="form-group">
+              <label>Detalles adicionales</label>
+              <textarea id="detalles" placeholder="Cuéntanos más sobre la falla..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">Enviar por WhatsApp →</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <p>© 2025 DR Cell — Reparación de celulares · Marianao, La Habana</p>
+      <div class="footer-links">
+        <a href="#inicio">Inicio</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BOTÓN SUBIR ARRIBA -->
+<button class="btn-top" id="btnTop" title="Subir arriba">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="19" x2="12" y2="5"/>
+    <polyline points="5 12 12 5 19 12"/>
+  </svg>
+</button>
+  <div class="floating-btns">
+    <a href="https://wa.me/5356194280?text=Hola%2C%20necesito%20una%20reparación" target="_blank" class="float-btn wa" title="WhatsApp">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    </a>
+    <a href="tel:+5356194280" class="float-btn tel" title="Llamar">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/></svg>
+    </a>
+  </div>
+
+  <script>
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('navLinks');
+
+    burger.addEventListener('click', () => {
+      burger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        burger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+
+    document.getElementById('formContacto').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const telefono = document.getElementById('telefono').value.trim();
+      const modelo = document.getElementById('modelo').value.trim();
+      const problema = document.getElementById('problema').value;
+      const detalles = document.getElementById('detalles').value.trim();
+
+      let msg = `Hola, soy *${nombre}*%0A`;
+      msg += `📞 ${telefono}%0A`;
+      msg += `📱 Equipo: ${modelo}%0A`;
+      msg += `🔧 Problema: ${problema}%0A`;
+      if (detalles) msg += `📝 Detalles: ${detalles}`;
+
+      const numero = '5356194280';
+      window.open(`https://wa.me/${numero}?text=${msg}`, '_blank');
+    });
+
+    function checkStatus() {
+      const statusBar = document.getElementById('statusBar');
+      const statusText = document.getElementById('statusText');
+
+      const now = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Havana' }));
+      const dia = now.getDay();
+      const hora = now.getHours();
+      const minutos = now.getMinutes();
+      const tiempo = hora + minutos / 60;
+
+      let abierto = false;
+      let horarioHoy = '';
+
+      if (dia >= 1 && dia <= 5) {
+        if (tiempo >= 10 && tiempo < 16) abierto = true;
+        horarioHoy = 'Hoy: 10:00 AM — 4:00 PM';
+      } else if (dia === 6) {
+        if (tiempo >= 10 && tiempo < 14) abierto = true;
+        horarioHoy = 'Hoy: 10:00 AM — 2:00 PM';
+      } else {
+        horarioHoy = 'Hoy: Cerrado';
+      }
+
+      if (abierto) {
+        statusBar.className = 'status-bar abierto';
+        statusText.textContent = `Estamos abiertos · ${horarioHoy}`;
+      } else {
+        statusBar.className = 'status-bar cerrado';
+
+        let proximoDia = '';
+        if (dia === 6) proximoDia = 'Abrimos el lunes a las 10:00 AM';
+        else if (dia === 0) proximoDia = 'Abrimos mañana lunes a las 10:00 AM';
+        else if (dia >= 1 && dia <= 4) {
+          if (tiempo < 10) proximoDia = `${horarioHoy}`;
+          else proximoDia = 'Abrimos mañana a las 10:00 AM';
+        } else if (dia === 5) {
+          if (tiempo < 10) proximoDia = `${horarioHoy}`;
+          else proximoDia = 'Abrimos el sábado a las 10:00 AM';
+        }
+
+        statusText.textContent = `Cerrado ahora · ${proximoDia}`;
+      }
+    }
+
+       checkStatus();
+    setInterval(checkStatus, 60000);
+
+    // BOTÓN SUBIR ARRIBA
+    const btnTop = document.getElementById('btnTop');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 400) {
+        btnTop.classList.add('visible');
+      } else {
+        btnTop.classList.remove('visible');
+      }
+    });
+
+    btnTop.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    });
+  </script>
+
+</body>
+</html>
