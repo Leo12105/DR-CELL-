@@ -59,6 +59,68 @@
     }
 
     /* ══════════════════════════════
+   BANNER TASAS DE CAMBIO
+══════════════════════════════ */
+.tasas-bar{
+  background:linear-gradient(90deg, #0a0a0a 0%, #1a1a1a 100%);
+  color:#fff;
+  padding:8px 0;
+  font-size:.82rem;
+  font-weight:600;
+  overflow:hidden;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.tasas-inner{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:24px;
+  flex-wrap:wrap;
+  width:min(1100px,90%);
+  margin:0 auto;
+}
+
+.tasa-item{
+  display:flex;
+  align-items:center;
+  gap:6px;
+  color:#fff;
+}
+
+.tasa-label{
+  color:#888;
+  font-weight:500;
+  font-size:.78rem;
+}
+
+.tasa-valor{
+  color:#25d366;
+  font-weight:700;
+  font-size:.88rem;
+}
+
+.tasa-separator{
+  color:#333;
+  font-weight:300;
+}
+
+.tasa-fuente{
+  color:#666;
+  font-size:.72rem;
+  font-style:italic;
+}
+
+@media(max-width:640px){
+  .tasas-inner{
+    gap:12px;
+    font-size:.75rem;
+  }
+  .tasa-separator{display:none}
+  .tasa-fuente{display:none}
+}
+
+    /* ══════════════════════════════
        STATUS BAR
     ══════════════════════════════ */
     .status-bar{
@@ -787,6 +849,31 @@
 </head>
 <body>
 
+  <!-- BANNER TASAS DE CAMBIO -->
+<div class="tasas-bar">
+  <div class="tasas-inner">
+    <span class="tasa-item">
+      <span class="tasa-label">💵 USD:</span>
+      <span class="tasa-valor" id="tasaUSD">---</span>
+      <span style="color:#888;font-size:.75rem">CUP</span>
+    </span>
+    <span class="tasa-separator">|</span>
+    <span class="tasa-item">
+      <span class="tasa-label">💶 EUR:</span>
+      <span class="tasa-valor" id="tasaEUR">---</span>
+      <span style="color:#888;font-size:.75rem">CUP</span>
+    </span>
+    <span class="tasa-separator">|</span>
+    <span class="tasa-item">
+      <span class="tasa-label">💳 MLC:</span>
+      <span class="tasa-valor" id="tasaMLC">---</span>
+      <span style="color:#888;font-size:.75rem">CUP</span>
+    </span>
+    <span class="tasa-separator">|</span>
+    <span class="tasa-fuente">Fuente: elToque</span>
+  </div>
+</div>
+  
   <div class="status-bar" id="statusBar">
     <span class="status-dot"></span>
     <span id="statusText">Verificando horario...</span>
@@ -1236,6 +1323,70 @@
 
        checkStatus();
     setInterval(checkStatus, 60000);
+
+
+    // ════════════════════════════════
+    // TASAS DE CAMBIO (API elToque)
+    // ════════════════════════════════
+    const TOKEN_ELTOQUE = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4MzYyMjMzMywianRpIjoiYTFhYjIzOWQtZGY3OC00NzYyLThkZTAtOTM1YzllMzUzMzRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjZhNDg5YTM0NmNhMjY5OGE5NjQwZGRiMiIsIm5iZiI6MTc4MzYyMjMzM30.l5vAojywhvQR4h4PTZOJlEsfnHh2HHAFL5YaFhjKyaQ";
+
+    const CACHE_KEY = "tasas_eltoque_cache";
+    const CACHE_TIEMPO = 60 * 60 * 1000;
+
+    async function cargarTasas() {
+      const cache = localStorage.getItem(CACHE_KEY);
+      if (cache) {
+        const data = JSON.parse(cache);
+        const edad = Date.now() - data.timestamp;
+        if (edad < CACHE_TIEMPO) {
+          mostrarTasas(data.tasas);
+          return;
+        }
+      }
+
+      try {
+        const hoy = new Date();
+        const ayer = new Date();
+        ayer.setDate(ayer.getDate() - 1);
+        
+        const fechaHoy = hoy.toISOString().split('T')[0];
+        const fechaAyer = ayer.toISOString().split('T')[0];
+        
+        const url = `https://tasas.eltoque.com/v1/trmi?date_from=${fechaAyer}%2000:00:00&date_to=${fechaHoy}%2023:59:59`;
+        
+        const response = await fetch(url, {
+          headers: {
+            "Authorization": `Bearer ${TOKEN_ELTOQUE}`
+          }
+        });
+        
+        if (!response.ok) throw new Error("Error API");
+        
+        const data = await response.json();
+        const tasas = data.tasas;
+        
+        localStorage.setItem(CACHE_KEY, JSON.stringify({
+          tasas: tasas,
+          timestamp: Date.now()
+        }));
+        
+        mostrarTasas(tasas);
+        
+      } catch (error) {
+        console.error("Error cargando tasas:", error);
+        document.getElementById("tasaUSD").textContent = "N/A";
+        document.getElementById("tasaEUR").textContent = "N/A";
+        document.getElementById("tasaMLC").textContent = "N/A";
+      }
+    }
+
+    function mostrarTasas(tasas) {
+      if (tasas.USD) document.getElementById("tasaUSD").textContent = Math.round(tasas.USD);
+      if (tasas.ECU) document.getElementById("tasaEUR").textContent = Math.round(tasas.ECU);
+      if (tasas.MLC) document.getElementById("tasaMLC").textContent = Math.round(tasas.MLC);
+    }
+
+    cargarTasas();
 
     // BOTÓN SUBIR ARRIBA
     const btnTop = document.getElementById('btnTop');
