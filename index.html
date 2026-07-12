@@ -1326,51 +1326,20 @@
 
 
     // ════════════════════════════════
-    // TASAS DE CAMBIO (API elToque)
+    // TASAS DE CAMBIO (via Cloudflare Worker)
     // ════════════════════════════════
-    const TOKEN_ELTOQUE = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmcmVzaCI6ZmFsc2UsImlhdCI6MTc4MzYyMjMzMywianRpIjoiYTFhYjIzOWQtZGY3OC00NzYyLThkZTAtOTM1YzllMzUzMzRmIiwidHlwZSI6ImFjY2VzcyIsInN1YiI6IjZhNDg5YTM0NmNhMjY5OGE5NjQwZGRiMiIsIm5iZiI6MTc4MzYyMjMzM30.l5vAojywhvQR4h4PTZOJlEsfnHh2HHAFL5YaFhjKyaQ";
-
-    const CACHE_KEY = "tasas_eltoque_cache";
-    const CACHE_TIEMPO = 60 * 60 * 1000;
+    const WORKER_URL = "https://tasas-eltoque.leorrmrval.workers.dev/";
 
     async function cargarTasas() {
-      const cache = localStorage.getItem(CACHE_KEY);
-      if (cache) {
-        const data = JSON.parse(cache);
-        const edad = Date.now() - data.timestamp;
-        if (edad < CACHE_TIEMPO) {
-          mostrarTasas(data.tasas);
-          return;
-        }
-      }
-
       try {
-        const hoy = new Date();
-        const ayer = new Date();
-        ayer.setDate(ayer.getDate() - 1);
-        
-        const fechaHoy = hoy.toISOString().split('T')[0];
-        const fechaAyer = ayer.toISOString().split('T')[0];
-        
-                        const url = `https://api.allorigins.win/raw?url=${encodeURIComponent(`https://tasas.eltoque.com/v1/trmi?date_from=${fechaAyer} 00:00:00&date_to=${fechaHoy} 23:59:59`)}`;
-        
-        const response = await fetch(url, {
-          headers: {
-            "Authorization": `Bearer ${TOKEN_ELTOQUE}`
-          }
-        });
-        
-        if (!response.ok) throw new Error("Error API");
-        
+        const response = await fetch(WORKER_URL);
         const data = await response.json();
-        const tasas = data.tasas;
         
-        localStorage.setItem(CACHE_KEY, JSON.stringify({
-          tasas: tasas,
-          timestamp: Date.now()
-        }));
-        
-        mostrarTasas(tasas);
+        if (data.tasas) {
+          if (data.tasas.USD) document.getElementById("tasaUSD").textContent = Math.round(data.tasas.USD);
+          if (data.tasas.ECU) document.getElementById("tasaEUR").textContent = Math.round(data.tasas.ECU);
+          if (data.tasas.MLC) document.getElementById("tasaMLC").textContent = Math.round(data.tasas.MLC);
+        }
         
       } catch (error) {
         console.error("Error cargando tasas:", error);
@@ -1380,14 +1349,8 @@
       }
     }
 
-    function mostrarTasas(tasas) {
-      if (tasas.USD) document.getElementById("tasaUSD").textContent = Math.round(tasas.USD);
-      if (tasas.ECU) document.getElementById("tasaEUR").textContent = Math.round(tasas.ECU);
-      if (tasas.MLC) document.getElementById("tasaMLC").textContent = Math.round(tasas.MLC);
-    }
-
     cargarTasas();
-
+    
     // BOTÓN SUBIR ARRIBA
     const btnTop = document.getElementById('btnTop');
 
