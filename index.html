@@ -1352,7 +1352,7 @@
         const fechaHoy = hoy.toISOString().split('T')[0];
         const fechaAyer = ayer.toISOString().split('T')[0];
         
-        const url = `https://tasas.eltoque.com/v1/trmi?date_from=${fechaAyer}%2000:00:00&date_to=${fechaHoy}%2023:59:59`;
+                const url = `https://corsproxy.io/?https://tasas.eltoque.com/v1/trmi?date_from=${fechaAyer}%2000:00:00&date_to=${fechaHoy}%2023:59:59`;
         
         const response = await fetch(url, {
           headers: {
