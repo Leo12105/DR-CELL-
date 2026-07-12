@@ -1335,11 +1335,12 @@
         const response = await fetch(WORKER_URL);
         const data = await response.json();
         
-        if (data.tasas) {
-          if (data.tasas.USD) document.getElementById("tasaUSD").textContent = Math.round(data.tasas.USD);
-          if (data.tasas.ECU) document.getElementById("tasaEUR").textContent = Math.round(data.tasas.ECU);
-          if (data.tasas.MLC) document.getElementById("tasaMLC").textContent = Math.round(data.tasas.MLC);
-        }
+         if (data.actual && data.actual.tasas) {
+  const tasas = data.actual.tasas;
+  if (tasas.USD) document.getElementById("tasaUSD").textContent = Math.round(tasas.USD);
+  if (tasas.ECU) document.getElementById("tasaEUR").textContent = Math.round(tasas.ECU);
+  if (tasas.MLC) document.getElementById("tasaMLC").textContent = Math.round(tasas.MLC);
+}
         
       } catch (error) {
         console.error("Error cargando tasas:", error);
